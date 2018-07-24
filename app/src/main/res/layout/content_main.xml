@@ -37,6 +37,7 @@
                 tools:layout_editor_absoluteX="4dp" />
 
 
+
             <Spinner
                 android:id="@+id/gradIzbor"
                 style="@android:style/Widget.Material.Light.Spinner"
