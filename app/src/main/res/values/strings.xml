@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">ServisInfo</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+    <string name="title_kompanija_list">Kompanije</string>
+    <string name="title_kompanija_detail">Kompanija Detail</string>
+    <string name="title_activity_upiti">UpitiActivity</string>
+    <string name="title_activity_ponude">PonudeActivity</string>
+    <string name="title_activity_kreiraj_upit_fragment">KreirajUpitFragment</string>
+    <string name="title_activity_dodaj_upit__fragment">DodajUpit_Fragment</string>
+    <string name="title_activity_dodaj_upit_fragment">DodajUpitFragmentActivity</string>
+</resources>

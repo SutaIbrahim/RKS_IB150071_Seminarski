@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_pocetna"
+            android:icon="@drawable/ic_action_home"
+            android:title="Pocetna" />
+        <item
+            android:id="@+id/nav_upiti"
+            android:icon="@drawable/ic_action_name"
+            android:title="Upiti" />
+       <!-- <item
+            android:id="@+id/nav_ponude"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="Slideshow" />
+        <item
+            android:id="@+id/nav_odjava"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="Odjava" />-->
+    </group>
+
+    <item android:title="Communicate">
+        <menu>
+            <item
+                android:id="@+id/nav_postavke"
+                android:icon="@drawable/ic_action_settings"
+                android:title="Postavke" />
+            <item
+                android:id="@+id/nav_odjava"
+                android:icon="@drawable/ic_action_logout"
+                android:title="Odjava" />
+        </menu>
+    </item>
+
+</menu>

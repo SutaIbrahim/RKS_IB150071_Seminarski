@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.ibrahim.servisinfo_ib150071">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_logo_round"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme.NoActionBar">
+        <activity android:name=".MainActivity" />
+        <activity android:name=".LoginActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".RegistrationActivity" />
+        <activity
+            android:name=".UpitiActivity"
+            android:label="@string/title_activity_upiti"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".PonudeActivity"
+            android:label="@string/title_activity_ponude"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity android:name=".DodajUpitActivity" />
+        <activity android:name=".PostavkeActivity"></activity>
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
+    </application>
+
+</manifest>
