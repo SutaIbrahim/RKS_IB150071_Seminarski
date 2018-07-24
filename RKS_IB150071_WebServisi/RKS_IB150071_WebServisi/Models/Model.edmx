@@ -1,0 +1,787 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="RKS_150071Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Gradovi">
+          <Key>
+            <PropertyRef Name="GradID" />
+          </Key>
+          <Property Name="GradID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Naziv" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Kategorije">
+          <Key>
+            <PropertyRef Name="KategorijaID" />
+          </Key>
+          <Property Name="KategorijaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Naziv" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Klijenti">
+          <Key>
+            <PropertyRef Name="KlijentID" />
+          </Key>
+          <Property Name="KlijentID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Ime" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Prezime" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Adresa" Type="nvarchar" MaxLength="100" />
+          <Property Name="Telefon" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="KorisickoIme" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="LozinkaSalt" Type="nvarchar(max)" />
+          <Property Name="LozinkaHash" Type="nvarchar(max)" />
+          <Property Name="GradID" Type="int" />
+        </EntityType>
+        <EntityType Name="Kompanije">
+          <Key>
+            <PropertyRef Name="KompanijaID" />
+          </Key>
+          <Property Name="KompanijaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Naziv" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Adresa" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Telefon" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="KorisickoIme" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="LozinkaSalt" Type="nvarchar(max)" />
+          <Property Name="LozinkaHash" Type="nvarchar(max)" />
+          <Property Name="GradID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="KompanijeKategorije">
+          <Key>
+            <PropertyRef Name="KompanijaKategorijaID" />
+          </Key>
+          <Property Name="KompanijaKategorijaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="KategorijaID" Type="int" Nullable="false" />
+          <Property Name="KompanijaID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="KompanijeUpiti">
+          <Key>
+            <PropertyRef Name="KompanijaUpitID" />
+          </Key>
+          <Property Name="KompanijaUpitID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="KompanijaID" Type="int" Nullable="false" />
+          <Property Name="UpitID" Type="int" Nullable="false" />
+          <Property Name="Odgovoreno" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Ponude">
+          <Key>
+            <PropertyRef Name="PonudaID" />
+          </Key>
+          <Property Name="PonudaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DatumKreiranja" Type="datetime" Nullable="false" />
+          <Property Name="Odgovor" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Cijena" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="DatumNajranijegMogucegPrijema" Type="datetime" Nullable="false" />
+          <Property Name="TrajanjeDani" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="TrajanjeSati" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Prihvacena" Type="bit" Nullable="false" />
+          <Property Name="KompanijaID" Type="int" Nullable="false" />
+          <Property Name="KlijentID" Type="int" Nullable="false" />
+          <Property Name="UpitID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Servisi">
+          <Key>
+            <PropertyRef Name="ServisID" />
+          </Key>
+          <Property Name="ServisID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DatumPrihvatanja" Type="datetime" Nullable="false" />
+          <Property Name="DatumPocetka" Type="datetime" />
+          <Property Name="DatumZavršetka" Type="datetime" />
+          <Property Name="Cijena" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="TrajanjeDani" Type="int" />
+          <Property Name="KompanijaID" Type="int" Nullable="false" />
+          <Property Name="PonudaID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Upiti">
+          <Key>
+            <PropertyRef Name="UpitID" />
+          </Key>
+          <Property Name="UpitID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MarkaUredjaja" Type="nvarchar" MaxLength="50" />
+          <Property Name="ModelUredjaja" Type="nvarchar" MaxLength="50" />
+          <Property Name="OpisKvara" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Slika" Type="varbinary(max)" />
+          <Property Name="ZeljeniDatumPrijemaOd" Type="datetime" />
+          <Property Name="ZeljeniDatumPrijemaDo" Type="datetime" />
+          <Property Name="KlijentID" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__Klijenti__GradID__286302EC">
+          <End Role="Gradovi" Type="Self.Gradovi" Multiplicity="0..1" />
+          <End Role="Klijenti" Type="Self.Klijenti" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gradovi">
+              <PropertyRef Name="GradID" />
+            </Principal>
+            <Dependent Role="Klijenti">
+              <PropertyRef Name="GradID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Kompanije__GradI__2D27B809">
+          <End Role="Gradovi" Type="Self.Gradovi" Multiplicity="1" />
+          <End Role="Kompanije" Type="Self.Kompanije" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gradovi">
+              <PropertyRef Name="GradID" />
+            </Principal>
+            <Dependent Role="Kompanije">
+              <PropertyRef Name="GradID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Kompanije__Kateg__398D8EEE">
+          <End Role="Kategorije" Type="Self.Kategorije" Multiplicity="1" />
+          <End Role="KompanijeKategorije" Type="Self.KompanijeKategorije" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kategorije">
+              <PropertyRef Name="KategorijaID" />
+            </Principal>
+            <Dependent Role="KompanijeKategorije">
+              <PropertyRef Name="KategorijaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Kompanije__Kompa__32E0915F">
+          <End Role="Kompanije" Type="Self.Kompanije" Multiplicity="1" />
+          <End Role="KompanijeUpiti" Type="Self.KompanijeUpiti" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kompanije">
+              <PropertyRef Name="KompanijaID" />
+            </Principal>
+            <Dependent Role="KompanijeUpiti">
+              <PropertyRef Name="KompanijaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Kompanije__Kompa__3A81B327">
+          <End Role="Kompanije" Type="Self.Kompanije" Multiplicity="1" />
+          <End Role="KompanijeKategorije" Type="Self.KompanijeKategorije" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kompanije">
+              <PropertyRef Name="KompanijaID" />
+            </Principal>
+            <Dependent Role="KompanijeKategorije">
+              <PropertyRef Name="KompanijaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Kompanije__UpitI__33D4B598">
+          <End Role="Upiti" Type="Self.Upiti" Multiplicity="1" />
+          <End Role="KompanijeUpiti" Type="Self.KompanijeUpiti" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Upiti">
+              <PropertyRef Name="UpitID" />
+            </Principal>
+            <Dependent Role="KompanijeUpiti">
+              <PropertyRef Name="UpitID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Ponude__KlijentI__3E52440B">
+          <End Role="Klijenti" Type="Self.Klijenti" Multiplicity="1" />
+          <End Role="Ponude" Type="Self.Ponude" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Klijenti">
+              <PropertyRef Name="KlijentID" />
+            </Principal>
+            <Dependent Role="Ponude">
+              <PropertyRef Name="KlijentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Ponude__Kompanij__3D5E1FD2">
+          <End Role="Kompanije" Type="Self.Kompanije" Multiplicity="1" />
+          <End Role="Ponude" Type="Self.Ponude" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kompanije">
+              <PropertyRef Name="KompanijaID" />
+            </Principal>
+            <Dependent Role="Ponude">
+              <PropertyRef Name="KompanijaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Ponude__UpitID__3F466844">
+          <End Role="Upiti" Type="Self.Upiti" Multiplicity="1" />
+          <End Role="Ponude" Type="Self.Ponude" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Upiti">
+              <PropertyRef Name="UpitID" />
+            </Principal>
+            <Dependent Role="Ponude">
+              <PropertyRef Name="UpitID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Servisi__Kompani__4222D4EF">
+          <End Role="Kompanije" Type="Self.Kompanije" Multiplicity="1" />
+          <End Role="Servisi" Type="Self.Servisi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kompanije">
+              <PropertyRef Name="KompanijaID" />
+            </Principal>
+            <Dependent Role="Servisi">
+              <PropertyRef Name="KompanijaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Servisi__PonudaI__4316F928">
+          <End Role="Ponude" Type="Self.Ponude" Multiplicity="1" />
+          <End Role="Servisi" Type="Self.Servisi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ponude">
+              <PropertyRef Name="PonudaID" />
+            </Principal>
+            <Dependent Role="Servisi">
+              <PropertyRef Name="PonudaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Upiti__KlijentID__300424B4">
+          <End Role="Klijenti" Type="Self.Klijenti" Multiplicity="1" />
+          <End Role="Upiti" Type="Self.Upiti" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Klijenti">
+              <PropertyRef Name="KlijentID" />
+            </Principal>
+            <Dependent Role="Upiti">
+              <PropertyRef Name="KlijentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="RKS_150071ModelStoreContainer">
+          <EntitySet Name="Gradovi" EntityType="Self.Gradovi" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Kategorije" EntityType="Self.Kategorije" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Klijenti" EntityType="Self.Klijenti" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Kompanije" EntityType="Self.Kompanije" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="KompanijeKategorije" EntityType="Self.KompanijeKategorije" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="KompanijeUpiti" EntityType="Self.KompanijeUpiti" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Ponude" EntityType="Self.Ponude" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Servisi" EntityType="Self.Servisi" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Upiti" EntityType="Self.Upiti" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Klijenti__GradID__286302EC" Association="Self.FK__Klijenti__GradID__286302EC">
+            <End Role="Gradovi" EntitySet="Gradovi" />
+            <End Role="Klijenti" EntitySet="Klijenti" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Kompanije__GradI__2D27B809" Association="Self.FK__Kompanije__GradI__2D27B809">
+            <End Role="Gradovi" EntitySet="Gradovi" />
+            <End Role="Kompanije" EntitySet="Kompanije" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Kompanije__Kateg__398D8EEE" Association="Self.FK__Kompanije__Kateg__398D8EEE">
+            <End Role="Kategorije" EntitySet="Kategorije" />
+            <End Role="KompanijeKategorije" EntitySet="KompanijeKategorije" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Kompanije__Kompa__32E0915F" Association="Self.FK__Kompanije__Kompa__32E0915F">
+            <End Role="Kompanije" EntitySet="Kompanije" />
+            <End Role="KompanijeUpiti" EntitySet="KompanijeUpiti" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Kompanije__Kompa__3A81B327" Association="Self.FK__Kompanije__Kompa__3A81B327">
+            <End Role="Kompanije" EntitySet="Kompanije" />
+            <End Role="KompanijeKategorije" EntitySet="KompanijeKategorije" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Kompanije__UpitI__33D4B598" Association="Self.FK__Kompanije__UpitI__33D4B598">
+            <End Role="Upiti" EntitySet="Upiti" />
+            <End Role="KompanijeUpiti" EntitySet="KompanijeUpiti" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Ponude__KlijentI__3E52440B" Association="Self.FK__Ponude__KlijentI__3E52440B">
+            <End Role="Klijenti" EntitySet="Klijenti" />
+            <End Role="Ponude" EntitySet="Ponude" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Ponude__Kompanij__3D5E1FD2" Association="Self.FK__Ponude__Kompanij__3D5E1FD2">
+            <End Role="Kompanije" EntitySet="Kompanije" />
+            <End Role="Ponude" EntitySet="Ponude" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Ponude__UpitID__3F466844" Association="Self.FK__Ponude__UpitID__3F466844">
+            <End Role="Upiti" EntitySet="Upiti" />
+            <End Role="Ponude" EntitySet="Ponude" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Servisi__Kompani__4222D4EF" Association="Self.FK__Servisi__Kompani__4222D4EF">
+            <End Role="Kompanije" EntitySet="Kompanije" />
+            <End Role="Servisi" EntitySet="Servisi" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Servisi__PonudaI__4316F928" Association="Self.FK__Servisi__PonudaI__4316F928">
+            <End Role="Ponude" EntitySet="Ponude" />
+            <End Role="Servisi" EntitySet="Servisi" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Upiti__KlijentID__300424B4" Association="Self.FK__Upiti__KlijentID__300424B4">
+            <End Role="Klijenti" EntitySet="Klijenti" />
+            <End Role="Upiti" EntitySet="Upiti" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="RKS_150071Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Gradovi">
+          <Key>
+            <PropertyRef Name="GradID" />
+          </Key>
+          <Property Name="GradID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Naziv" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Klijenti" Relationship="Self.FK__Klijenti__GradID__286302EC" FromRole="Gradovi" ToRole="Klijenti" />
+          <NavigationProperty Name="Kompanije" Relationship="Self.FK__Kompanije__GradI__2D27B809" FromRole="Gradovi" ToRole="Kompanije" />
+        </EntityType>
+        <EntityType Name="Kategorije">
+          <Key>
+            <PropertyRef Name="KategorijaID" />
+          </Key>
+          <Property Name="KategorijaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Naziv" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="KompanijeKategorije" Relationship="Self.FK__Kompanije__Kateg__398D8EEE" FromRole="Kategorije" ToRole="KompanijeKategorije" />
+        </EntityType>
+        <EntityType Name="Klijenti">
+          <Key>
+            <PropertyRef Name="KlijentID" />
+          </Key>
+          <Property Name="KlijentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Ime" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Prezime" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Adresa" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Telefon" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="KorisickoIme" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LozinkaSalt" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="LozinkaHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="GradID" Type="Int32" />
+          <NavigationProperty Name="Gradovi" Relationship="Self.FK__Klijenti__GradID__286302EC" FromRole="Klijenti" ToRole="Gradovi" />
+          <NavigationProperty Name="Ponude" Relationship="Self.FK__Ponude__KlijentI__3E52440B" FromRole="Klijenti" ToRole="Ponude" />
+          <NavigationProperty Name="Upiti" Relationship="Self.FK__Upiti__KlijentID__300424B4" FromRole="Klijenti" ToRole="Upiti" />
+        </EntityType>
+        <EntityType Name="Kompanije">
+          <Key>
+            <PropertyRef Name="KompanijaID" />
+          </Key>
+          <Property Name="KompanijaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Naziv" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Adresa" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Telefon" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="KorisickoIme" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LozinkaSalt" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="LozinkaHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="GradID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Gradovi" Relationship="Self.FK__Kompanije__GradI__2D27B809" FromRole="Kompanije" ToRole="Gradovi" />
+          <NavigationProperty Name="KompanijeUpiti" Relationship="Self.FK__Kompanije__Kompa__32E0915F" FromRole="Kompanije" ToRole="KompanijeUpiti" />
+          <NavigationProperty Name="KompanijeKategorije" Relationship="Self.FK__Kompanije__Kompa__3A81B327" FromRole="Kompanije" ToRole="KompanijeKategorije" />
+          <NavigationProperty Name="Ponude" Relationship="Self.FK__Ponude__Kompanij__3D5E1FD2" FromRole="Kompanije" ToRole="Ponude" />
+          <NavigationProperty Name="Servisi" Relationship="Self.FK__Servisi__Kompani__4222D4EF" FromRole="Kompanije" ToRole="Servisi" />
+        </EntityType>
+        <EntityType Name="KompanijeKategorije">
+          <Key>
+            <PropertyRef Name="KompanijaKategorijaID" />
+          </Key>
+          <Property Name="KompanijaKategorijaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="KategorijaID" Type="Int32" Nullable="false" />
+          <Property Name="KompanijaID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Kategorije" Relationship="Self.FK__Kompanije__Kateg__398D8EEE" FromRole="KompanijeKategorije" ToRole="Kategorije" />
+          <NavigationProperty Name="Kompanije" Relationship="Self.FK__Kompanije__Kompa__3A81B327" FromRole="KompanijeKategorije" ToRole="Kompanije" />
+        </EntityType>
+        <EntityType Name="KompanijeUpiti">
+          <Key>
+            <PropertyRef Name="KompanijaUpitID" />
+          </Key>
+          <Property Name="KompanijaUpitID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="KompanijaID" Type="Int32" Nullable="false" />
+          <Property Name="UpitID" Type="Int32" Nullable="false" />
+          <Property Name="Odgovoreno" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Kompanije" Relationship="Self.FK__Kompanije__Kompa__32E0915F" FromRole="KompanijeUpiti" ToRole="Kompanije" />
+          <NavigationProperty Name="Upiti" Relationship="Self.FK__Kompanije__UpitI__33D4B598" FromRole="KompanijeUpiti" ToRole="Upiti" />
+        </EntityType>
+        <EntityType Name="Ponude">
+          <Key>
+            <PropertyRef Name="PonudaID" />
+          </Key>
+          <Property Name="PonudaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DatumKreiranja" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Odgovor" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Cijena" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DatumNajranijegMogucegPrijema" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="TrajanjeDani" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="TrajanjeSati" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Prihvacena" Type="Boolean" Nullable="false" />
+          <Property Name="KompanijaID" Type="Int32" Nullable="false" />
+          <Property Name="KlijentID" Type="Int32" Nullable="false" />
+          <Property Name="UpitID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Klijenti" Relationship="Self.FK__Ponude__KlijentI__3E52440B" FromRole="Ponude" ToRole="Klijenti" />
+          <NavigationProperty Name="Kompanije" Relationship="Self.FK__Ponude__Kompanij__3D5E1FD2" FromRole="Ponude" ToRole="Kompanije" />
+          <NavigationProperty Name="Upiti" Relationship="Self.FK__Ponude__UpitID__3F466844" FromRole="Ponude" ToRole="Upiti" />
+          <NavigationProperty Name="Servisi" Relationship="Self.FK__Servisi__PonudaI__4316F928" FromRole="Ponude" ToRole="Servisi" />
+        </EntityType>
+        <EntityType Name="Servisi">
+          <Key>
+            <PropertyRef Name="ServisID" />
+          </Key>
+          <Property Name="ServisID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DatumPrihvatanja" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DatumPocetka" Type="DateTime" Precision="3" />
+          <Property Name="DatumZavršetka" Type="DateTime" Precision="3" />
+          <Property Name="Cijena" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="TrajanjeDani" Type="Int32" />
+          <Property Name="KompanijaID" Type="Int32" Nullable="false" />
+          <Property Name="PonudaID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Kompanije" Relationship="Self.FK__Servisi__Kompani__4222D4EF" FromRole="Servisi" ToRole="Kompanije" />
+          <NavigationProperty Name="Ponude" Relationship="Self.FK__Servisi__PonudaI__4316F928" FromRole="Servisi" ToRole="Ponude" />
+        </EntityType>
+        <EntityType Name="Upiti">
+          <Key>
+            <PropertyRef Name="UpitID" />
+          </Key>
+          <Property Name="UpitID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MarkaUredjaja" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ModelUredjaja" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="OpisKvara" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Slika" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="ZeljeniDatumPrijemaOd" Type="DateTime" Precision="3" />
+          <Property Name="ZeljeniDatumPrijemaDo" Type="DateTime" Precision="3" />
+          <Property Name="KlijentID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Klijenti" Relationship="Self.FK__Upiti__KlijentID__300424B4" FromRole="Upiti" ToRole="Klijenti" />
+          <NavigationProperty Name="KompanijeUpiti" Relationship="Self.FK__Kompanije__UpitI__33D4B598" FromRole="Upiti" ToRole="KompanijeUpiti" />
+          <NavigationProperty Name="Ponude" Relationship="Self.FK__Ponude__UpitID__3F466844" FromRole="Upiti" ToRole="Ponude" />
+        </EntityType>
+        <Association Name="FK__Klijenti__GradID__286302EC">
+          <End Role="Gradovi" Type="Self.Gradovi" Multiplicity="0..1" />
+          <End Role="Klijenti" Type="Self.Klijenti" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gradovi">
+              <PropertyRef Name="GradID" />
+            </Principal>
+            <Dependent Role="Klijenti">
+              <PropertyRef Name="GradID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Kompanije__GradI__2D27B809">
+          <End Role="Gradovi" Type="Self.Gradovi" Multiplicity="1" />
+          <End Role="Kompanije" Type="Self.Kompanije" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gradovi">
+              <PropertyRef Name="GradID" />
+            </Principal>
+            <Dependent Role="Kompanije">
+              <PropertyRef Name="GradID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Kompanije__Kateg__398D8EEE">
+          <End Role="Kategorije" Type="Self.Kategorije" Multiplicity="1" />
+          <End Role="KompanijeKategorije" Type="Self.KompanijeKategorije" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kategorije">
+              <PropertyRef Name="KategorijaID" />
+            </Principal>
+            <Dependent Role="KompanijeKategorije">
+              <PropertyRef Name="KategorijaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Ponude__KlijentI__3E52440B">
+          <End Role="Klijenti" Type="Self.Klijenti" Multiplicity="1" />
+          <End Role="Ponude" Type="Self.Ponude" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Klijenti">
+              <PropertyRef Name="KlijentID" />
+            </Principal>
+            <Dependent Role="Ponude">
+              <PropertyRef Name="KlijentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Upiti__KlijentID__300424B4">
+          <End Role="Klijenti" Type="Self.Klijenti" Multiplicity="1" />
+          <End Role="Upiti" Type="Self.Upiti" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Klijenti">
+              <PropertyRef Name="KlijentID" />
+            </Principal>
+            <Dependent Role="Upiti">
+              <PropertyRef Name="KlijentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Kompanije__Kompa__32E0915F">
+          <End Role="Kompanije" Type="Self.Kompanije" Multiplicity="1" />
+          <End Role="KompanijeUpiti" Type="Self.KompanijeUpiti" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kompanije">
+              <PropertyRef Name="KompanijaID" />
+            </Principal>
+            <Dependent Role="KompanijeUpiti">
+              <PropertyRef Name="KompanijaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Kompanije__Kompa__3A81B327">
+          <End Role="Kompanije" Type="Self.Kompanije" Multiplicity="1" />
+          <End Role="KompanijeKategorije" Type="Self.KompanijeKategorije" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kompanije">
+              <PropertyRef Name="KompanijaID" />
+            </Principal>
+            <Dependent Role="KompanijeKategorije">
+              <PropertyRef Name="KompanijaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Ponude__Kompanij__3D5E1FD2">
+          <End Role="Kompanije" Type="Self.Kompanije" Multiplicity="1" />
+          <End Role="Ponude" Type="Self.Ponude" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kompanije">
+              <PropertyRef Name="KompanijaID" />
+            </Principal>
+            <Dependent Role="Ponude">
+              <PropertyRef Name="KompanijaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Servisi__Kompani__4222D4EF">
+          <End Role="Kompanije" Type="Self.Kompanije" Multiplicity="1" />
+          <End Role="Servisi" Type="Self.Servisi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kompanije">
+              <PropertyRef Name="KompanijaID" />
+            </Principal>
+            <Dependent Role="Servisi">
+              <PropertyRef Name="KompanijaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Kompanije__UpitI__33D4B598">
+          <End Role="Upiti" Type="Self.Upiti" Multiplicity="1" />
+          <End Role="KompanijeUpiti" Type="Self.KompanijeUpiti" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Upiti">
+              <PropertyRef Name="UpitID" />
+            </Principal>
+            <Dependent Role="KompanijeUpiti">
+              <PropertyRef Name="UpitID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Ponude__UpitID__3F466844">
+          <End Role="Upiti" Type="Self.Upiti" Multiplicity="1" />
+          <End Role="Ponude" Type="Self.Ponude" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Upiti">
+              <PropertyRef Name="UpitID" />
+            </Principal>
+            <Dependent Role="Ponude">
+              <PropertyRef Name="UpitID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Servisi__PonudaI__4316F928">
+          <End Role="Ponude" Type="Self.Ponude" Multiplicity="1" />
+          <End Role="Servisi" Type="Self.Servisi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ponude">
+              <PropertyRef Name="PonudaID" />
+            </Principal>
+            <Dependent Role="Servisi">
+              <PropertyRef Name="PonudaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="RKS_150071Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Gradovi" EntityType="Self.Gradovi" />
+          <EntitySet Name="Kategorije" EntityType="Self.Kategorije" />
+          <EntitySet Name="Klijenti" EntityType="Self.Klijenti" />
+          <EntitySet Name="Kompanije" EntityType="Self.Kompanije" />
+          <EntitySet Name="KompanijeKategorije" EntityType="Self.KompanijeKategorije" />
+          <EntitySet Name="KompanijeUpiti" EntityType="Self.KompanijeUpiti" />
+          <EntitySet Name="Ponude" EntityType="Self.Ponude" />
+          <EntitySet Name="Servisi" EntityType="Self.Servisi" />
+          <EntitySet Name="Upiti" EntityType="Self.Upiti" />
+          <AssociationSet Name="FK__Klijenti__GradID__286302EC" Association="Self.FK__Klijenti__GradID__286302EC">
+            <End Role="Gradovi" EntitySet="Gradovi" />
+            <End Role="Klijenti" EntitySet="Klijenti" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Kompanije__GradI__2D27B809" Association="Self.FK__Kompanije__GradI__2D27B809">
+            <End Role="Gradovi" EntitySet="Gradovi" />
+            <End Role="Kompanije" EntitySet="Kompanije" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Kompanije__Kateg__398D8EEE" Association="Self.FK__Kompanije__Kateg__398D8EEE">
+            <End Role="Kategorije" EntitySet="Kategorije" />
+            <End Role="KompanijeKategorije" EntitySet="KompanijeKategorije" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Ponude__KlijentI__3E52440B" Association="Self.FK__Ponude__KlijentI__3E52440B">
+            <End Role="Klijenti" EntitySet="Klijenti" />
+            <End Role="Ponude" EntitySet="Ponude" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Upiti__KlijentID__300424B4" Association="Self.FK__Upiti__KlijentID__300424B4">
+            <End Role="Klijenti" EntitySet="Klijenti" />
+            <End Role="Upiti" EntitySet="Upiti" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Kompanije__Kompa__32E0915F" Association="Self.FK__Kompanije__Kompa__32E0915F">
+            <End Role="Kompanije" EntitySet="Kompanije" />
+            <End Role="KompanijeUpiti" EntitySet="KompanijeUpiti" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Kompanije__Kompa__3A81B327" Association="Self.FK__Kompanije__Kompa__3A81B327">
+            <End Role="Kompanije" EntitySet="Kompanije" />
+            <End Role="KompanijeKategorije" EntitySet="KompanijeKategorije" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Ponude__Kompanij__3D5E1FD2" Association="Self.FK__Ponude__Kompanij__3D5E1FD2">
+            <End Role="Kompanije" EntitySet="Kompanije" />
+            <End Role="Ponude" EntitySet="Ponude" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Servisi__Kompani__4222D4EF" Association="Self.FK__Servisi__Kompani__4222D4EF">
+            <End Role="Kompanije" EntitySet="Kompanije" />
+            <End Role="Servisi" EntitySet="Servisi" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Kompanije__UpitI__33D4B598" Association="Self.FK__Kompanije__UpitI__33D4B598">
+            <End Role="Upiti" EntitySet="Upiti" />
+            <End Role="KompanijeUpiti" EntitySet="KompanijeUpiti" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Ponude__UpitID__3F466844" Association="Self.FK__Ponude__UpitID__3F466844">
+            <End Role="Upiti" EntitySet="Upiti" />
+            <End Role="Ponude" EntitySet="Ponude" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Servisi__PonudaI__4316F928" Association="Self.FK__Servisi__PonudaI__4316F928">
+            <End Role="Ponude" EntitySet="Ponude" />
+            <End Role="Servisi" EntitySet="Servisi" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="RKS_150071ModelStoreContainer" CdmEntityContainer="RKS_150071Entities">
+          <EntitySetMapping Name="Gradovi">
+            <EntityTypeMapping TypeName="RKS_150071Model.Gradovi">
+              <MappingFragment StoreEntitySet="Gradovi">
+                <ScalarProperty Name="GradID" ColumnName="GradID" />
+                <ScalarProperty Name="Naziv" ColumnName="Naziv" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Kategorije">
+            <EntityTypeMapping TypeName="RKS_150071Model.Kategorije">
+              <MappingFragment StoreEntitySet="Kategorije">
+                <ScalarProperty Name="KategorijaID" ColumnName="KategorijaID" />
+                <ScalarProperty Name="Naziv" ColumnName="Naziv" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Klijenti">
+            <EntityTypeMapping TypeName="RKS_150071Model.Klijenti">
+              <MappingFragment StoreEntitySet="Klijenti">
+                <ScalarProperty Name="KlijentID" ColumnName="KlijentID" />
+                <ScalarProperty Name="Ime" ColumnName="Ime" />
+                <ScalarProperty Name="Prezime" ColumnName="Prezime" />
+                <ScalarProperty Name="Adresa" ColumnName="Adresa" />
+                <ScalarProperty Name="Telefon" ColumnName="Telefon" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="KorisickoIme" ColumnName="KorisickoIme" />
+                <ScalarProperty Name="LozinkaSalt" ColumnName="LozinkaSalt" />
+                <ScalarProperty Name="LozinkaHash" ColumnName="LozinkaHash" />
+                <ScalarProperty Name="GradID" ColumnName="GradID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Kompanije">
+            <EntityTypeMapping TypeName="RKS_150071Model.Kompanije">
+              <MappingFragment StoreEntitySet="Kompanije">
+                <ScalarProperty Name="KompanijaID" ColumnName="KompanijaID" />
+                <ScalarProperty Name="Naziv" ColumnName="Naziv" />
+                <ScalarProperty Name="Adresa" ColumnName="Adresa" />
+                <ScalarProperty Name="Telefon" ColumnName="Telefon" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="KorisickoIme" ColumnName="KorisickoIme" />
+                <ScalarProperty Name="LozinkaSalt" ColumnName="LozinkaSalt" />
+                <ScalarProperty Name="LozinkaHash" ColumnName="LozinkaHash" />
+                <ScalarProperty Name="GradID" ColumnName="GradID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="KompanijeKategorije">
+            <EntityTypeMapping TypeName="RKS_150071Model.KompanijeKategorije">
+              <MappingFragment StoreEntitySet="KompanijeKategorije">
+                <ScalarProperty Name="KompanijaKategorijaID" ColumnName="KompanijaKategorijaID" />
+                <ScalarProperty Name="KategorijaID" ColumnName="KategorijaID" />
+                <ScalarProperty Name="KompanijaID" ColumnName="KompanijaID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="KompanijeUpiti">
+            <EntityTypeMapping TypeName="RKS_150071Model.KompanijeUpiti">
+              <MappingFragment StoreEntitySet="KompanijeUpiti">
+                <ScalarProperty Name="KompanijaUpitID" ColumnName="KompanijaUpitID" />
+                <ScalarProperty Name="KompanijaID" ColumnName="KompanijaID" />
+                <ScalarProperty Name="UpitID" ColumnName="UpitID" />
+                <ScalarProperty Name="Odgovoreno" ColumnName="Odgovoreno" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Ponude">
+            <EntityTypeMapping TypeName="RKS_150071Model.Ponude">
+              <MappingFragment StoreEntitySet="Ponude">
+                <ScalarProperty Name="PonudaID" ColumnName="PonudaID" />
+                <ScalarProperty Name="DatumKreiranja" ColumnName="DatumKreiranja" />
+                <ScalarProperty Name="Odgovor" ColumnName="Odgovor" />
+                <ScalarProperty Name="Cijena" ColumnName="Cijena" />
+                <ScalarProperty Name="DatumNajranijegMogucegPrijema" ColumnName="DatumNajranijegMogucegPrijema" />
+                <ScalarProperty Name="TrajanjeDani" ColumnName="TrajanjeDani" />
+                <ScalarProperty Name="TrajanjeSati" ColumnName="TrajanjeSati" />
+                <ScalarProperty Name="Prihvacena" ColumnName="Prihvacena" />
+                <ScalarProperty Name="KompanijaID" ColumnName="KompanijaID" />
+                <ScalarProperty Name="KlijentID" ColumnName="KlijentID" />
+                <ScalarProperty Name="UpitID" ColumnName="UpitID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Servisi">
+            <EntityTypeMapping TypeName="RKS_150071Model.Servisi">
+              <MappingFragment StoreEntitySet="Servisi">
+                <ScalarProperty Name="ServisID" ColumnName="ServisID" />
+                <ScalarProperty Name="DatumPrihvatanja" ColumnName="DatumPrihvatanja" />
+                <ScalarProperty Name="DatumPocetka" ColumnName="DatumPocetka" />
+                <ScalarProperty Name="DatumZavršetka" ColumnName="DatumZavršetka" />
+                <ScalarProperty Name="Cijena" ColumnName="Cijena" />
+                <ScalarProperty Name="TrajanjeDani" ColumnName="TrajanjeDani" />
+                <ScalarProperty Name="KompanijaID" ColumnName="KompanijaID" />
+                <ScalarProperty Name="PonudaID" ColumnName="PonudaID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Upiti">
+            <EntityTypeMapping TypeName="RKS_150071Model.Upiti">
+              <MappingFragment StoreEntitySet="Upiti">
+                <ScalarProperty Name="UpitID" ColumnName="UpitID" />
+                <ScalarProperty Name="MarkaUredjaja" ColumnName="MarkaUredjaja" />
+                <ScalarProperty Name="ModelUredjaja" ColumnName="ModelUredjaja" />
+                <ScalarProperty Name="OpisKvara" ColumnName="OpisKvara" />
+                <ScalarProperty Name="Slika" ColumnName="Slika" />
+                <ScalarProperty Name="ZeljeniDatumPrijemaOd" ColumnName="ZeljeniDatumPrijemaOd" />
+                <ScalarProperty Name="ZeljeniDatumPrijemaDo" ColumnName="ZeljeniDatumPrijemaDo" />
+                <ScalarProperty Name="KlijentID" ColumnName="KlijentID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
