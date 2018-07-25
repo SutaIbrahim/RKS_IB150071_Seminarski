@@ -1,5 +1,6 @@
 package com.example.ibrahim.servisinfo_ib150071;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -7,19 +8,24 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
+import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.example.ibrahim.servisinfo_ib150071.Helper.MyApiRequest;
 import com.example.ibrahim.servisinfo_ib150071.Helper.MyRunnable;
 import com.example.ibrahim.servisinfo_ib150071.data.KompanijePregledVM;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity
@@ -28,6 +34,7 @@ public class MainActivity extends AppCompatActivity
     private RecyclerView rv;
     private KompanijePregledVM podaci;
     private BaseAdapter adapter;
+    private ListView lvKompanije;
 
 
 
@@ -91,14 +98,19 @@ public class MainActivity extends AppCompatActivity
 
 
         //card view lista
-        rv=(RecyclerView)findViewById(R.id.rv);
 
-        LinearLayoutManager llm = new LinearLayoutManager(this);
-        rv.setLayoutManager(llm);
+        lvKompanije=(ListView) findViewById(R.id.rv);
+
+        popuniPodatke();
+
+        //rv=(RecyclerView)findViewById(R.id.rv);
+
+       /* LinearLayoutManager llm = new LinearLayoutManager(this);
+        rv.setLayoutManager(llm);*/
 
        /* initializeData();
         initializeAdapter();*/
-        popuniPodatkeTask();
+       // popuniPodatkeTask();
 
 
 
@@ -109,19 +121,57 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void run(KompanijePregledVM x) {
                 podaci = x; //postavljeno kao field radi    adapter.notifyDataSetChanged(); za brisanje posiljke iz ListView
-                popuniPodatke();
             }
         });
     }
 
 
-
 private void popuniPodatke() {
 
 
-            RVAdapter adapter2 = new RVAdapter(podaci); // treba mijenjati ovdje RVAdapter !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! i to je to u ovoj klasi
-            rv.setAdapter(adapter2);
+        podaci=new KompanijePregledVM();
+        podaci.rows=new ArrayList<KompanijePregledVM.Row>();
+    KompanijePregledVM.Row r=new KompanijePregledVM.Row();
 
+    r.Naziv="HEHE";
+    r.Adresa="222";
+
+    podaci.rows.add(r);
+
+    adapter = new BaseAdapter() {
+        @Override
+        public int getCount() {
+            return podaci.rows.size();
+        }
+
+        @Override
+        public Object getItem(int position) {
+            return null;
+        }
+
+        @Override
+        public long getItemId(int position) {
+            return 0;
+        }
+
+        @Override
+        public View getView(int position, View view, ViewGroup parent) {
+
+            if (view == null) {
+                LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                view = inflater.inflate(R.layout.item, parent, false);
+            }
+            TextView txtFirstLine = view.findViewById(R.id.person_name);
+            TextView txtSecondLine = view.findViewById(R.id.person_age);
+
+            KompanijePregledVM.Row x = podaci.rows.get(position);
+
+            txtFirstLine.setText(x.Naziv);
+            txtSecondLine.setText(x.Adresa);
+            return view;
+        }
+    };
+    lvKompanije.setAdapter(adapter);
 
 
 }
