@@ -10,12 +10,10 @@ public class AutentifikacijaLoginPostVM implements Serializable
 {
     public String username ;
     public String password ;
-    public String deviceInfo ;
 
-    public AutentifikacijaLoginPostVM(String username, String password, String deviceInfo)
+    public AutentifikacijaLoginPostVM(String username, String password)
     {
         this.username = username;
         this.password = password;
-        this.deviceInfo = deviceInfo;
     }
 }

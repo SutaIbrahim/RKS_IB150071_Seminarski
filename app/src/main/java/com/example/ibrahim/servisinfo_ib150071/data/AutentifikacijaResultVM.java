@@ -8,9 +8,9 @@ import java.io.Serializable;
 
 public class AutentifikacijaResultVM implements Serializable
 {
-    public String username;
-    public String ime;
-    public String prezime;
-    public String token;
-    public Integer korisnickiNalogId;
+    public String Ime ;
+    public String Prezime ;
+    public String KorisickoIme ;
+    public String Lozinka ;
+
 }

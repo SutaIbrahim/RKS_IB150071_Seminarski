@@ -12,7 +12,7 @@ import com.example.ibrahim.servisinfo_ib150071.data.AutentifikacijaResultVM;
 
 
 public class MySession {
-    private static final String PREFS_NAME = "DatotekaZaSharedPrefernces";
+    private static final String PREFS_NAME = "SP";
     private static String nekikey="Key_korisnik";
 
     public static AutentifikacijaResultVM getKorisnik()
@@ -30,9 +30,9 @@ public class MySession {
     {
         String strJson = x!=null? MyGson.build().toJson(x):"";
 
-        SharedPreferences sharedPreferences = MyApp.getContext().getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString(nekikey, strJson);
-        editor.apply();
+            SharedPreferences sharedPreferences = MyApp.getContext().getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putString(nekikey, strJson);
+            editor.apply();
     }
 }
