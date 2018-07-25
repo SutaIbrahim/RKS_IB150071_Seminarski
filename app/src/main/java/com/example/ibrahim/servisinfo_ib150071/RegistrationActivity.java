@@ -64,7 +64,7 @@ public class RegistrationActivity extends AppCompatActivity {
         model.Adresa="Test";
         model.GradID=2;
 
-        MyApiRequest.post(this, "", model, new MyRunnable<KlijentPostVM>() {
+        MyApiRequest.post(this, "api/Klijenti", model, new MyRunnable<KlijentPostVM>() {
             @Override
             public void run(KlijentPostVM x) {
                 Toast.makeText(RegistrationActivity.this,"Uspjesna registracija",Toast.LENGTH_SHORT).show();
