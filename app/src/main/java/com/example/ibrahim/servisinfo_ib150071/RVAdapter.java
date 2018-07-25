@@ -8,9 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.ibrahim.servisinfo_ib150071.R;
-
-import java.util.List;
+import com.example.ibrahim.servisinfo_ib150071.data.KompanijePregledVM;
 
 public class RVAdapter extends RecyclerView.Adapter<RVAdapter.PersonViewHolder> {
 
@@ -30,10 +28,10 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.PersonViewHolder> 
         }
     }
 
-    List<Person> persons;
+KompanijePregledVM podaci;
 
-    RVAdapter(List<Person> persons){
-        this.persons = persons;
+    RVAdapter(KompanijePregledVM podaci){
+        this.podaci = podaci;
     }
 
     @Override
@@ -50,12 +48,12 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.PersonViewHolder> 
 
     @Override
     public void onBindViewHolder(PersonViewHolder personViewHolder, int i) {
-        personViewHolder.personName.setText(persons.get(i).name);
-        personViewHolder.personAge.setText(persons.get(i).age);
+        personViewHolder.personName.setText(podaci.rows.get(i).Naziv);
+      //  personViewHolder.personAge.setText(podaci.get(i).age);
     }
 
     @Override
     public int getItemCount() {
-        return persons.size();
+        return podaci.rows.size();
     }
 }

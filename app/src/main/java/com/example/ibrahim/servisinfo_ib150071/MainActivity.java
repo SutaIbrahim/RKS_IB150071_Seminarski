@@ -2,26 +2,37 @@ package com.example.ibrahim.servisinfo_ib150071;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
 import android.widget.Spinner;
 
-import java.util.ArrayList;
+import com.example.ibrahim.servisinfo_ib150071.Helper.MyApiRequest;
+import com.example.ibrahim.servisinfo_ib150071.Helper.MyRunnable;
+import com.example.ibrahim.servisinfo_ib150071.data.KompanijePregledVM;
+
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     private List<Person> persons;
     private RecyclerView rv;
+    private KompanijePregledVM podaci;
+    private BaseAdapter adapter;
+
+
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -85,14 +96,37 @@ public class MainActivity extends AppCompatActivity
         LinearLayoutManager llm = new LinearLayoutManager(this);
         rv.setLayoutManager(llm);
 
-        initializeData();
-        initializeAdapter();
+       /* initializeData();
+        initializeAdapter();*/
+        popuniPodatkeTask();
 
 
 
     }
 
-    private void initializeData(){
+    private void popuniPodatkeTask() {
+        MyApiRequest.get(this,"/api/kompanije", new MyRunnable<KompanijePregledVM>() {
+            @Override
+            public void run(KompanijePregledVM x) {
+                podaci = x; //postavljeno kao field radi    adapter.notifyDataSetChanged(); za brisanje posiljke iz ListView
+                popuniPodatke();
+            }
+        });
+    }
+
+
+
+private void popuniPodatke() {
+
+
+            RVAdapter adapter2 = new RVAdapter(podaci); // treba mijenjati ovdje RVAdapter !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! i to je to u ovoj klasi
+            rv.setAdapter(adapter2);
+
+
+
+}
+/*
+    private void initializeData () {
         persons = new ArrayList<>();
         persons.add(new Person("Kompanija 1", "Mostar, ulica XVI br 82 061/123/456"));
         persons.add(new Person("Kompanija 2", "Mostar, ulica XVI br 82 061/123/456"));
@@ -106,10 +140,11 @@ public class MainActivity extends AppCompatActivity
 
     }
 
-    private void initializeAdapter(){
-        RVAdapter adapter = new RVAdapter(persons); // treba mijenjati ovdje RVAdapter !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! i to je to u ovoj klasi
+    private void initializeAdapter() {
+        RVAdapter adapter = new RVAdapter(podaci); // treba mijenjati ovdje RVAdapter !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! i to je to u ovoj klasi
         rv.setAdapter(adapter);
-    }
+    }*/
+
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
