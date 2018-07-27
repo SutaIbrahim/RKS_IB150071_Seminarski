@@ -19,6 +19,8 @@ public class KompanijePregledVM implements Serializable {
         public String LozinkaSalt ;
         public String LozinkaHash ;
         public int GradID ;
+        public String Grad ;
+
     }
 
     public List<Row> rows;

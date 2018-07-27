@@ -37,12 +37,11 @@
                 tools:layout_editor_absoluteX="4dp" />
 
 
-
             <Spinner
                 android:id="@+id/gradIzbor"
                 style="@android:style/Widget.Material.Light.Spinner"
-                android:layout_width="137dp"
-                android:layout_height="33dp"
+                android:layout_width="147dp"
+                android:layout_height="38dp"
                 android:layout_marginBottom="8dp"
                 android:layout_marginTop="8dp"
                 android:clickable="true"
@@ -52,8 +51,7 @@
                 app:layout_constraintBottom_toBottomOf="@+id/textView"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/textView"
-                app:layout_constraintVertical_bias="0.0"
-                />
+                app:layout_constraintVertical_bias="0.0" />
 
 
             <ListView

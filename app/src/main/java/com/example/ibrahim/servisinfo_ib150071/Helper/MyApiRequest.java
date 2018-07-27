@@ -77,7 +77,7 @@ public class MyApiRequest {
                         } catch (Exception e) {
 
                           /*  try {
-                               *//* Type collectionType = new TypeToken<Collection<T>>() {
+                               *//* Type collectionType = new TypeToken<Collection<T>>() {  // za listu
                                 }.getType();
                                 Collection<T> enums = MyGson.build().fromJson(result.value, collectionType);
                                 myCallback.run(enums);*//*

@@ -15,6 +15,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
@@ -23,19 +24,23 @@ import android.widget.TextView;
 
 import com.example.ibrahim.servisinfo_ib150071.Helper.MyApiRequest;
 import com.example.ibrahim.servisinfo_ib150071.Helper.MyRunnable;
+import com.example.ibrahim.servisinfo_ib150071.data.GradoviResultVM;
 import com.example.ibrahim.servisinfo_ib150071.data.KompanijePregledVM;
 
+import java.lang.reflect.Field;
+import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
     private List<Person> persons;
     private RecyclerView rv;
     private KompanijePregledVM podaci;
+    private GradoviResultVM gradovi;
+    private Spinner gradSpinner;
     private BaseAdapter adapter;
     private ListView lvKompanije;
-
-
 
 
 
@@ -63,78 +68,116 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
 // moje->
-
-        Spinner grad=findViewById(R.id.gradIzbor);
-        grad.setClickable(true);
-        String[] items = new String[]{"Mostar", "Sarajevo", "Zenica"};
-        ArrayAdapter<String> adapter2 = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, items);
-        grad.setAdapter(adapter2);
-
-        //
-/*        ListView listaKompanija = (ListView) findViewById(R.id.lista);
-
-        List<String> values = new ArrayList<>();
-
-        for(int i=0;i<50;i++){
-        values.add("Kompanijaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
-        }
-        List<String> values2 = new ArrayList<>();
-
-        for(int i=0;i<2;i++){
-            values2.add("Grad");
-        }
+        gradSpinner=findViewById(R.id.gradIzbor);
+        postaviDimenzijeSpinnera();
 
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-                android.R.layout.simple_list_item_1, values);
+        gradSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                doSpinnerItemClick();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
 
 
-        ArrayAdapter<String> adapterSub = new ArrayAdapter<String>(this,
-                android.R.layout.simple_list_item_2, values2);
+        });
 
-        listaKompanija.setAdapter(adapter);*/
-
-
-        //card view lista
 
         lvKompanije=(ListView) findViewById(R.id.rv);
 
-
-
-       popuniPodatkeTask();
-
-
+        popuniGradoveTask();
+        popuniPodatkeTask("0");
 
     }
 
-    private void popuniPodatkeTask() {
-        MyApiRequest.get(this,"/api/kompanije", new MyRunnable<KompanijePregledVM>() {
+    private void doSpinnerItemClick() {
+
+        popuniPodatkeTask(gradSpinner.getSelectedItem().toString());
+
+    }
+
+    private void postaviDimenzijeSpinnera() {
+
+        try {
+            Field popup = Spinner.class.getDeclaredField("mPopup");
+            popup.setAccessible(true);
+
+            // Get private mPopup member variable and try cast to ListPopupWindow
+            android.widget.ListPopupWindow popupWindow = (android.widget.ListPopupWindow) popup.get(gradSpinner);
+
+            // Set popupWindow height to 500px
+            popupWindow.setHeight(550);
+        }
+        catch (NoClassDefFoundError | ClassCastException | NoSuchFieldException | IllegalAccessException e) {
+            // silently fail...
+        }
+
+        gradSpinner.setDropDownWidth(550);
+
+    }
+
+    //func
+
+    private void popuniGradoveTask() {
+
+        gradSpinner.setClickable(true);
+        MyApiRequest.get(this,"/api/gradovi", new MyRunnable<GradoviResultVM>() {
             @Override
-            public void run(KompanijePregledVM x) {
-                podaci = x; //postavljeno kao field radi    adapter.notifyDataSetChanged(); za brisanje posiljke iz ListView
-                popuniPodatke();
+            public void run(GradoviResultVM x) {
+                gradovi = x;
+                popuniGradove();
             }
         });
+    }
+
+    private void popuniGradove(){
+
+        List<String> gradList = new ArrayList<String>();
+        gradList.add("---");
+
+        for(GradoviResultVM.Row x :gradovi.rows){
+            gradList.add(x.Naziv);
+        }
+
+        ArrayAdapter<String> adapter2 = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, gradList);
+        gradSpinner.setAdapter(adapter2);
+
+    }
+
+
+
+    private void popuniPodatkeTask( String grad) {
+
+        if(grad!="0") {
+            MyApiRequest.get(this, "/api/kompanije/GetKompanije/"+ grad, new MyRunnable<KompanijePregledVM>() {
+                @Override
+                public void run(KompanijePregledVM x) {
+                    podaci = x; //postavljeno kao field radi    adapter.notifyDataSetChanged(); za brisanje posiljke iz ListView
+                    popuniPodatke();
+                }
+            });
+        }
+        else {
+            MyApiRequest.get(this, "/api/kompanije/GetKompanije/---", new MyRunnable<KompanijePregledVM>() {
+                @Override
+                public void run(KompanijePregledVM x) {
+                    podaci = x; //postavljeno kao field radi    adapter.notifyDataSetChanged(); za brisanje posiljke iz ListView
+                    popuniPodatke();
+                }
+            });
+        }
     }
 
 
 private void popuniPodatke() {
 
-
-       /* podaci=new KompanijePregledVM();
-        podaci.rows=new ArrayList<KompanijePregledVM.Row>();
-    KompanijePregledVM.Row r=new KompanijePregledVM.Row();
-
-    r.Naziv="HEHE";
-    r.Adresa="222";
-
-    podaci.rows.add(r);*/
-
-
-       KompanijePregledVM k=podaci;
-
-    adapter = new BaseAdapter() {
+        adapter = new BaseAdapter() {
         @Override
         public int getCount() {
             return podaci.rows.size();
@@ -163,33 +206,14 @@ private void popuniPodatke() {
             KompanijePregledVM.Row x = podaci.rows.get(position);
 
             txtFirstLine.setText(x.Naziv);
-            txtSecondLine.setText(x.Adresa);
+            txtSecondLine.setText(x.Adresa + ", " + x.Grad);
             return view;
         }
     };
+
     lvKompanije.setAdapter(adapter);
 
-
-}
-/*
-    private void initializeData () {
-        persons = new ArrayList<>();
-        persons.add(new Person("Kompanija 1", "Mostar, ulica XVI br 82 061/123/456"));
-        persons.add(new Person("Kompanija 2", "Mostar, ulica XVI br 82 061/123/456"));
-        persons.add(new Person("Kompanija 3", "Mostar, ulica XVI br 82 061/123/456"));
-        persons.add(new Person("Kompanija 4", "Mostar, ulica XVI br 82 061/123/456"));
-        persons.add(new Person("Kompanija 5", "Mostar, ulica XVI br 82 061/123/456"));
-        persons.add(new Person("Kompanija 6", "Mostar, ulica XVI br 8  061/123/456"));
-        persons.add(new Person("Kompanija 7", "Mostar, ulica XVI b2      061/123/456"));
-        persons.add(new Person("Kompanija 8", "Mostar, ulica XVr 82                                       061/123/456"));
-        persons.add(new Person("Kompanija 9", "Mostar, ulicaI br 82                                    061/123/456"));
-
     }
-
-    private void initializeAdapter() {
-        RVAdapter adapter = new RVAdapter(podaci); // treba mijenjati ovdje RVAdapter !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! i to je to u ovoj klasi
-        rv.setAdapter(adapter);
-    }*/
 
     @Override
     public void onBackPressed() {
@@ -224,9 +248,6 @@ private void popuniPodatke() {
     }
 
 
-
-
-
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
@@ -243,13 +264,13 @@ private void popuniPodatke() {
         } else if (id == R.id.nav_odjava) {
           /*finish();*/
             startActivity(new Intent(MainActivity.this,PonudeActivity.class));
-
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
 
 
 }
