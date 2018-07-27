@@ -52,6 +52,7 @@ KompanijePregledVM podaci;
       //  personViewHolder.personAge.setText(podaci.get(i).age);
     }
 
+
     @Override
     public int getItemCount() {
         return podaci.rows.size();
