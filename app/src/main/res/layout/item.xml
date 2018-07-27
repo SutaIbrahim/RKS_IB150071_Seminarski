@@ -56,7 +56,7 @@
 
 
         <TextView
-            android:id="@+id/person_name"
+            android:id="@+id/NazivKompanijeTxt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
@@ -65,19 +65,19 @@
             android:textColor="#29302E"
             android:textSize="16sp"
             android:textStyle="bold" />
+
         <TextView
-            android:id="@+id/person_age"
+            android:id="@+id/AdresaKompanijeTxt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/person_name"
-            android:layout_marginStart="16dp"
+            android:layout_below="@+id/NazivKompanijeTxt"
             android:layout_marginLeft="2dp"
+            android:layout_marginStart="16dp"
 
             android:layout_toRightOf="@+id/logo"
             android:paddingTop="2dp"
-            android:textSize="14sp"
             android:textColor="#29302E"
-            />
+            android:textSize="14sp" />
 
 
     </RelativeLayout>

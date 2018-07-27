@@ -27,7 +27,7 @@
             />
 
         <TextView
-            android:id="@+id/person_name"
+            android:id="@+id/NazivKompanijeTxt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
@@ -44,7 +44,7 @@
             android:id="@+id/person_age"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/person_name"
+            android:layout_below="@+id/NazivKompanijeTxt"
             android:layout_toRightOf="@+id/person_photo"
             android:paddingRight="10dp"
             android:paddingTop="3dp"

@@ -70,11 +70,24 @@ public class MyApiRequest {
 
                         T x = null;
                         try {
-                            x = MyGson.build().fromJson(result.value, genericType);
+                           x = MyGson.build().fromJson(result.value, genericType);
+
+
+
                         } catch (Exception e) {
-                            View parentLayout = activity.findViewById(android.R.id.content);
-                            Snackbar.make(parentLayout, "Greška u aplikaciji. ", Snackbar.LENGTH_LONG).show();
-                        }
+
+                          /*  try {
+                               *//* Type collectionType = new TypeToken<Collection<T>>() {
+                                }.getType();
+                                Collection<T> enums = MyGson.build().fromJson(result.value, collectionType);
+                                myCallback.run(enums);*//*
+
+
+                            } catch (Exception ee) {*/
+                                View parentLayout = activity.findViewById(android.R.id.content);
+                                Snackbar.make(parentLayout, "Greška u aplikaciji. ", Snackbar.LENGTH_LONG).show();
+                            }
+                        //}
                         myCallback.run(x);
                     }
                 }

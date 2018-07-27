@@ -25,7 +25,6 @@ import com.example.ibrahim.servisinfo_ib150071.Helper.MyApiRequest;
 import com.example.ibrahim.servisinfo_ib150071.Helper.MyRunnable;
 import com.example.ibrahim.servisinfo_ib150071.data.KompanijePregledVM;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity
@@ -101,16 +100,9 @@ public class MainActivity extends AppCompatActivity
 
         lvKompanije=(ListView) findViewById(R.id.rv);
 
-        popuniPodatke();
 
-        //rv=(RecyclerView)findViewById(R.id.rv);
 
-       /* LinearLayoutManager llm = new LinearLayoutManager(this);
-        rv.setLayoutManager(llm);*/
-
-       /* initializeData();
-        initializeAdapter();*/
-       // popuniPodatkeTask();
+       popuniPodatkeTask();
 
 
 
@@ -121,6 +113,7 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void run(KompanijePregledVM x) {
                 podaci = x; //postavljeno kao field radi    adapter.notifyDataSetChanged(); za brisanje posiljke iz ListView
+                popuniPodatke();
             }
         });
     }
@@ -129,14 +122,17 @@ public class MainActivity extends AppCompatActivity
 private void popuniPodatke() {
 
 
-        podaci=new KompanijePregledVM();
+       /* podaci=new KompanijePregledVM();
         podaci.rows=new ArrayList<KompanijePregledVM.Row>();
     KompanijePregledVM.Row r=new KompanijePregledVM.Row();
 
     r.Naziv="HEHE";
     r.Adresa="222";
 
-    podaci.rows.add(r);
+    podaci.rows.add(r);*/
+
+
+       KompanijePregledVM k=podaci;
 
     adapter = new BaseAdapter() {
         @Override
@@ -161,8 +157,8 @@ private void popuniPodatke() {
                 LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                 view = inflater.inflate(R.layout.item, parent, false);
             }
-            TextView txtFirstLine = view.findViewById(R.id.person_name);
-            TextView txtSecondLine = view.findViewById(R.id.person_age);
+            TextView txtFirstLine = view.findViewById(R.id.NazivKompanijeTxt);
+            TextView txtSecondLine = view.findViewById(R.id.AdresaKompanijeTxt);
 
             KompanijePregledVM.Row x = podaci.rows.get(position);
 
