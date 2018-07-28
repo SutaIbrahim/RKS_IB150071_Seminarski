@@ -10,8 +10,8 @@
     android:theme="@style/AppTheme.NoActionBar"
     >
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/rv"
+    <ListView
+        android:id="@+id/lvUpiti"
         android:layout_width="0dp"
         android:layout_height="531dp"
         android:layout_margin="6dp"
@@ -24,7 +24,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView3">
 
-    </android.support.v7.widget.RecyclerView>
+    </ListView>
 
     <TextView
         android:id="@+id/textView3"

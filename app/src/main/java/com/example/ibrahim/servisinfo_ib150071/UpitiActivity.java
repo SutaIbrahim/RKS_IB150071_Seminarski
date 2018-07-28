@@ -1,5 +1,6 @@
 package com.example.ibrahim.servisinfo_ib150071;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -9,19 +10,29 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.BaseAdapter;
+import android.widget.ListView;
+import android.widget.TextView;
 
-import java.util.ArrayList;
+import com.example.ibrahim.servisinfo_ib150071.Helper.MyApiRequest;
+import com.example.ibrahim.servisinfo_ib150071.Helper.MyRunnable;
+import com.example.ibrahim.servisinfo_ib150071.data.Global;
+import com.example.ibrahim.servisinfo_ib150071.data.UpitiResultVM;
+
 import java.util.List;
 
 public class UpitiActivity extends AppCompatActivity {
     private DrawerLayout drawer;
     private List<Person> persons;
-    private RecyclerView rv;
+    private ListView rv;
+    private UpitiResultVM podaci;
+    private BaseAdapter adapter;
+    private ListView lvUpiti;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,35 +83,92 @@ public class UpitiActivity extends AppCompatActivity {
             }
         });
 
-        rv=(RecyclerView)findViewById(R.id.rv);
 
-        LinearLayoutManager llm = new LinearLayoutManager(this);
-        rv.setLayoutManager(llm);
+   /*     LinearLayoutManager llm = new LinearLayoutManager(this);
+        rv.setLayoutManager(llm);*/
 
-        initializeData();
-        initializeAdapter();
 
-    }
+        lvUpiti=(ListView) findViewById(R.id.lvUpiti);
+        popuniPodatkeTask();
 
-    private void initializeData(){
-        persons = new ArrayList<>();
-        persons.add(new Person("Naslov upita", "Model mobilnog uredjaja"));
-        persons.add(new Person("Popravak displeya", "Samsung Galaxy s4"));
-        persons.add(new Person("Zamjena baterije", "Sony xperia Z2"));
-        persons.add(new Person("Nedefinisan problem", "text text text text text text text text"));
-        persons.add(new Person("Utor za punjenje neispravan", "text text text text text text text text"));
-        persons.add(new Person("Upit 1", "text text text text text text text text"));
-        persons.add(new Person("Upit 1", "text text text text text text text text"));
-        persons.add(new Person("Upit 1", "text text text text text text text text"));
-        persons.add(new Person("Upit 1", "text text text text text text text text"));
-        persons.add(new Person("Upit 1", "text text text text text text text texttext text texttext text text text text text text texttext text text text text text text texttext text text text text text text texttext text text text text text text texttext text text text text text text texttext text text text text text text texttext text text text text text text texttext text text text text text text texttext text text text text text text texttext text text text text text text texttext text text text text text text texttext text text text text text text texttext text text text text text text texttext text text text text text text texttext text text text text text text texttext text text text text text text texttext text text text text text text texttext text text text text text text texttext text text text text text text texttext text text text text text text texttext text text text text text text texttext text text text text text text texttext text text text text text text texttext text text text text text text text texttext text text text text text text texttext text text text text text text texttext text text text text text text texttext text text text text text text texttext text text text text text text texttext text text text text text text texttext text text text text text text texttext text text text text text text texttext text text text text text texttext text text text text text text text"));
+
+
+
 
     }
 
-    private void initializeAdapter(){
-        RVAdapterUpiti adapter = new RVAdapterUpiti(persons);
-        rv.setAdapter(adapter);
+    private void popuniPodatkeTask() {
+
+        MyApiRequest.get(this, "/api/upiti/getUpitiByKlijentID/" + String.valueOf(Global.prijavljeniKlijent.KlijentID), new MyRunnable<UpitiResultVM>() {
+            @Override
+            public void run(UpitiResultVM x) {
+                podaci = x; //postavljeno kao field radi    adapter.notifyDataSetChanged(); za brisanje posiljke iz ListView
+                popuniPodatke();
+            }
+        });
     }
+
+
+
+    private void popuniPodatke() {
+
+        adapter = new BaseAdapter() {
+            @Override
+            public int getCount() {
+                return podaci.rows.size();
+            }
+
+            @Override
+            public Object getItem(int position) {
+                return null;
+            }
+
+            @Override
+            public long getItemId(int position) {
+                return 0;
+            }
+
+            @Override
+            public View getView(int position, View view, ViewGroup parent) {
+
+                if (view == null) {
+                    LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                    view = inflater.inflate(R.layout.itemupiti, parent, false);
+                }
+                TextView txtFirstLine = view.findViewById(R.id.NaslovUpitaTxt);
+                TextView txtSecondLine = view.findViewById(R.id.MarkaUredjajaTxt);
+
+                UpitiResultVM.Row x = podaci.rows.get(position);
+
+                txtFirstLine.setText(x.Naslov);
+                txtSecondLine.setText(x.MarkaUredjaja);
+                return view;
+            }
+        };
+
+        lvUpiti.setAdapter(adapter);
+
+    }
+
+    /* private void initializeData(){
+         persons = new ArrayList<>();
+         persons.add(new Person("Naslov upita", "Model mobilnog uredjaja"));
+         persons.add(new Person("Popravak displeya", "Samsung Galaxy s4"));
+         persons.add(new Person("Zamjena baterije", "Sony xperia Z2"));
+         persons.add(new Person("Nedefinisan problem", "text text text text text text text text"));
+         persons.add(new Person("Utor za punjenje neispravan", "text text text text text text text text"));
+         persons.add(new Person("Upit 1", "text text text text text text text text"));
+         persons.add(new Person("Upit 1", "text text text text text text text text"));
+         persons.add(new Person("Upit 1", "text text text text text text text text"));
+         persons.add(new Person("Upit 1", "text text text text text text text text"));
+         persons.add(new Person("Upit 1", "text text text text text text text texttext text texttext text text text text text text texttext text text text text text text texttext text text text text text text texttext text text text text text text texttext text text text text text text texttext text text text text text text texttext text text text text text text texttext text text text text text text texttext text text text text text text texttext text text text text text text texttext text text text text text text texttext text text text text text text texttext text text text text text text texttext text text text text text text texttext text text text text text text texttext text text text text text text texttext text text text text text text texttext text text text text text text texttext text text text text text text texttext text text text text text text texttext text text text text text text texttext text text text text text text texttext text text text text text text texttext text text text text text text text texttext text text text text text text texttext text text text text text text texttext text text text text text text texttext text text text text text text texttext text text text text text text texttext text text text text text text texttext text text text text text text texttext text text text text text text texttext text text text text text texttext text text text text text text text"));
+
+     }
+
+     private void initializeAdapter(){
+         RVAdapterUpiti adapter = new RVAdapterUpiti(persons);
+         rv.setAdapter(adapter);
+     }*/
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:

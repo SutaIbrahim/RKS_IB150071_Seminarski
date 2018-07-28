@@ -12,6 +12,7 @@ import com.example.ibrahim.servisinfo_ib150071.Helper.MyApiRequest;
 import com.example.ibrahim.servisinfo_ib150071.Helper.MyRunnable;
 import com.example.ibrahim.servisinfo_ib150071.data.AutentifikacijaLoginPostVM;
 import com.example.ibrahim.servisinfo_ib150071.data.AutentifikacijaResultVM;
+import com.example.ibrahim.servisinfo_ib150071.data.Global;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -80,6 +81,8 @@ public class LoginActivity extends AppCompatActivity {
         else
         {
           // MySession.setKorisnik(x);
+            Global.prijavljeniKlijent=x;
+
            startActivity(new Intent(this, MainActivity.class));
         }
     }
