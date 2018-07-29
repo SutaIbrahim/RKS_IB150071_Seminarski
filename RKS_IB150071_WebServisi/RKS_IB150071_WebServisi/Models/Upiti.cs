@@ -23,12 +23,12 @@ namespace RKS_IB150071_WebServisi.Models
     
         public int UpitID { get; set; }
         public string MarkaUredjaja { get; set; }
-        public string ModelUredjaja { get; set; }
         public string OpisKvara { get; set; }
         public byte[] Slika { get; set; }
         public Nullable<System.DateTime> ZeljeniDatumPrijemaOd { get; set; }
         public Nullable<System.DateTime> ZeljeniDatumPrijemaDo { get; set; }
         public int KlijentID { get; set; }
+        public string Naslov { get; set; }
     
         public virtual Klijenti Klijenti { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

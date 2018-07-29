@@ -104,10 +104,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\AutentifikacijaController.cs" />
     <Compile Include="Controllers\GradoviController.cs" />
+    <Compile Include="Controllers\KlijentiController.cs" />
+    <Compile Include="Controllers\KompanijeController.cs" />
+    <Compile Include="Controllers\UpitiController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Model2\AutentifikacijaResultVM.cs" />
+    <Compile Include="Model2\GradoviResultVM.cs" />
+    <Compile Include="Model2\KompanijePregledVM.cs" />
+    <Compile Include="Model2\UpitiResultVM.cs" />
     <Compile Include="Models\Gradovi.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>

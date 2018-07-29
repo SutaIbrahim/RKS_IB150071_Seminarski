@@ -19,7 +19,6 @@ namespace RKS_IB150071_WebServisi.Models
             : base("name=RKS_150071Entities")
         {
             this.Configuration.LazyLoadingEnabled = false;
-
         }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

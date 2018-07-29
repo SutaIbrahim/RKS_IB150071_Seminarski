@@ -101,9 +101,9 @@
     <EntitySetMapping Name="Upiti">
       <EntityTypeMapping TypeName="RKS_150071Model.Upiti">
         <MappingFragment StoreEntitySet="Upiti">
+          <ScalarProperty Name="Naslov" ColumnName="Naslov" />
           <ScalarProperty Name="UpitID" ColumnName="UpitID" />
           <ScalarProperty Name="MarkaUredjaja" ColumnName="MarkaUredjaja" />
-          <ScalarProperty Name="ModelUredjaja" ColumnName="ModelUredjaja" />
           <ScalarProperty Name="OpisKvara" ColumnName="OpisKvara" />
           <ScalarProperty Name="Slika" ColumnName="Slika" />
           <ScalarProperty Name="ZeljeniDatumPrijemaOd" ColumnName="ZeljeniDatumPrijemaOd" />

@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="RKS_150071Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="RKS_150071Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Gradovi">
           <Key>
             <PropertyRef Name="GradID" />
@@ -100,7 +100,7 @@
           </Key>
           <Property Name="UpitID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="MarkaUredjaja" Type="nvarchar" MaxLength="50" />
-          <Property Name="ModelUredjaja" Type="nvarchar" MaxLength="50" />
+          <Property Name="Naslov" Type="nvarchar" MaxLength="50" />
           <Property Name="OpisKvara" Type="nvarchar(max)" Nullable="false" />
           <Property Name="Slika" Type="varbinary(max)" />
           <Property Name="ZeljeniDatumPrijemaOd" Type="datetime" />
@@ -310,8 +310,7 @@
             <End Role="Upiti" EntitySet="Upiti" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="RKS_150071Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -431,7 +430,6 @@
           </Key>
           <Property Name="UpitID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="MarkaUredjaja" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="ModelUredjaja" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="OpisKvara" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Slika" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="ZeljeniDatumPrijemaOd" Type="DateTime" Precision="3" />
@@ -440,6 +438,7 @@
           <NavigationProperty Name="Klijenti" Relationship="Self.FK__Upiti__KlijentID__300424B4" FromRole="Upiti" ToRole="Klijenti" />
           <NavigationProperty Name="KompanijeUpiti" Relationship="Self.FK__Kompanije__UpitI__33D4B598" FromRole="Upiti" ToRole="KompanijeUpiti" />
           <NavigationProperty Name="Ponude" Relationship="Self.FK__Ponude__UpitID__3F466844" FromRole="Upiti" ToRole="Ponude" />
+          <Property Name="Naslov" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <Association Name="FK__Klijenti__GradID__286302EC">
           <End Role="Gradovi" Type="Self.Gradovi" Multiplicity="0..1" />
@@ -750,9 +749,9 @@
           <EntitySetMapping Name="Upiti">
             <EntityTypeMapping TypeName="RKS_150071Model.Upiti">
               <MappingFragment StoreEntitySet="Upiti">
+                <ScalarProperty Name="Naslov" ColumnName="Naslov" />
                 <ScalarProperty Name="UpitID" ColumnName="UpitID" />
                 <ScalarProperty Name="MarkaUredjaja" ColumnName="MarkaUredjaja" />
-                <ScalarProperty Name="ModelUredjaja" ColumnName="ModelUredjaja" />
                 <ScalarProperty Name="OpisKvara" ColumnName="OpisKvara" />
                 <ScalarProperty Name="Slika" ColumnName="Slika" />
                 <ScalarProperty Name="ZeljeniDatumPrijemaOd" ColumnName="ZeljeniDatumPrijemaOd" />

@@ -13,56 +13,66 @@ using RKS_IB150071_WebServisi.Models;
 
 namespace RKS_IB150071_WebServisi.Controllers
 {
-    public class GradoviController : ApiController
+    public class UpitiController : ApiController
     {
         private RKS_150071Entities db = new RKS_150071Entities();
 
-        // GET: api/Gradovi
-        public IHttpActionResult GetGradovi()
+        // GET: api/Upiti
+        [HttpGet]
+        [Route("api/upiti/getUpitiByKlijentID/{id}")]
+        public IHttpActionResult GetUpiti(string id)
         {
 
-            var model = new GradoviResultVM
+            int IDint = Convert.ToInt32(id);
+
+            var model = new UpitiResultVM
             {
-                rows = db.Gradovi.OrderBy(x => x.Naziv).Select(s => new GradoviResultVM.Row
+                rows = db.Upiti.Where(k=>k.KlijentID==IDint).Select(s => new UpitiResultVM.Row
                 {
-                    GradID = s.GradID,
-                    Naziv = s.Naziv
+
+                    UpitID=s.UpitID,
+                    Naslov=s.Naslov,
+                    OpisKvara=s.OpisKvara,
+                    Slika=s.Slika,
+                    MarkaUredjaja=s.MarkaUredjaja,
+                    KlijentID=s.KlijentID
+
 
                 }).ToList()
             };
-
             return Ok(model);
+
 
         }
 
-        // GET: api/Gradovi/5
-        [ResponseType(typeof(Gradovi))]
-        public IHttpActionResult GetGradovi(int id)
+        // GET: api/Upiti/5
+        [ResponseType(typeof(Upiti))]
+        public IHttpActionResult GetUpiti(int id)
         {
-            Gradovi gradovi = db.Gradovi.Find(id);
-            if (gradovi == null)
+            Upiti upiti = db.Upiti.Find(id);
+            if (upiti == null)
             {
                 return NotFound();
             }
 
-            return Ok(gradovi);
+            return Ok(upiti);
         }
 
-        // PUT: api/Gradovi/5
+        // PUT: api/Upiti/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutGradovi(int id, Gradovi gradovi)
+        public IHttpActionResult PutUpiti(int id, Upiti upiti)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != gradovi.GradID)
+            if (id != upiti.UpitID)
             {
                 return BadRequest();
             }
 
-            db.Entry(gradovi).State = EntityState.Modified;
+            db.Entry(upiti).State = EntityState.Modified;
 
             try
             {
@@ -70,7 +80,7 @@ namespace RKS_IB150071_WebServisi.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!GradoviExists(id))
+                if (!UpitiExists(id))
                 {
                     return NotFound();
                 }
@@ -83,35 +93,35 @@ namespace RKS_IB150071_WebServisi.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: api/Gradovi
-        [ResponseType(typeof(Gradovi))]
-        public IHttpActionResult PostGradovi(Gradovi gradovi)
+        // POST: api/Upiti
+        [ResponseType(typeof(Upiti))]
+        public IHttpActionResult PostUpiti(Upiti upiti)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            db.Gradovi.Add(gradovi);
+            db.Upiti.Add(upiti);
             db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = gradovi.GradID }, gradovi);
+            return CreatedAtRoute("DefaultApi", new { id = upiti.UpitID }, upiti);
         }
 
-        // DELETE: api/Gradovi/5
-        [ResponseType(typeof(Gradovi))]
-        public IHttpActionResult DeleteGradovi(int id)
+        // DELETE: api/Upiti/5
+        [ResponseType(typeof(Upiti))]
+        public IHttpActionResult DeleteUpiti(int id)
         {
-            Gradovi gradovi = db.Gradovi.Find(id);
-            if (gradovi == null)
+            Upiti upiti = db.Upiti.Find(id);
+            if (upiti == null)
             {
                 return NotFound();
             }
 
-            db.Gradovi.Remove(gradovi);
+            db.Upiti.Remove(upiti);
             db.SaveChanges();
 
-            return Ok(gradovi);
+            return Ok(upiti);
         }
 
         protected override void Dispose(bool disposing)
@@ -123,9 +133,9 @@ namespace RKS_IB150071_WebServisi.Controllers
             base.Dispose(disposing);
         }
 
-        private bool GradoviExists(int id)
+        private bool UpitiExists(int id)
         {
-            return db.Gradovi.Count(e => e.GradID == id) > 0;
+            return db.Upiti.Count(e => e.UpitID == id) > 0;
         }
     }
 }

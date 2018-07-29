@@ -116,7 +116,6 @@
     </Key>
     <Property Name="UpitID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="MarkaUredjaja" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="ModelUredjaja" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="OpisKvara" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="Slika" Type="Binary" MaxLength="Max" FixedLength="false" />
     <Property Name="ZeljeniDatumPrijemaOd" Type="DateTime" Precision="3" />
@@ -125,6 +124,7 @@
     <NavigationProperty Name="Klijenti" Relationship="Self.FK__Upiti__KlijentID__300424B4" FromRole="Upiti" ToRole="Klijenti" />
     <NavigationProperty Name="KompanijeUpiti" Relationship="Self.FK__Kompanije__UpitI__33D4B598" FromRole="Upiti" ToRole="KompanijeUpiti" />
     <NavigationProperty Name="Ponude" Relationship="Self.FK__Ponude__UpitID__3F466844" FromRole="Upiti" ToRole="Ponude" />
+    <Property Name="Naslov" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
   </EntityType>
   <Association Name="FK__Klijenti__GradID__286302EC">
     <End Role="Gradovi" Type="Self.Gradovi" Multiplicity="0..1" />

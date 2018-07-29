@@ -95,7 +95,7 @@
     </Key>
     <Property Name="UpitID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="MarkaUredjaja" Type="nvarchar" MaxLength="50" />
-    <Property Name="ModelUredjaja" Type="nvarchar" MaxLength="50" />
+    <Property Name="Naslov" Type="nvarchar" MaxLength="50" />
     <Property Name="OpisKvara" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Slika" Type="varbinary(max)" />
     <Property Name="ZeljeniDatumPrijemaOd" Type="datetime" />
