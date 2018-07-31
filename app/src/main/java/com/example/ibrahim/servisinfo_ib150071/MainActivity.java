@@ -1,7 +1,6 @@
 package com.example.ibrahim.servisinfo_ib150071;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -26,6 +25,7 @@ import android.widget.TextView;
 
 import com.example.ibrahim.servisinfo_ib150071.Helper.MyApiRequest;
 import com.example.ibrahim.servisinfo_ib150071.Helper.MyRunnable;
+import com.example.ibrahim.servisinfo_ib150071.Util.Util;
 import com.example.ibrahim.servisinfo_ib150071.data.GradoviResultVM;
 import com.example.ibrahim.servisinfo_ib150071.data.KompanijePregledVM;
 
@@ -109,7 +109,14 @@ public class MainActivity extends AppCompatActivity
 
     private void do_item_Click() {
         AlertDialog alertDialog = new AlertDialog.Builder(MainActivity.this).create();
-        alertDialog.setTitle("Alert");
+
+
+        Util.otvoriFragmentKaoDijalog(this,DetaljiKompanijeFragment.newInstance());
+
+        //Util.otvoriFragmentKaoReplace(this,R.id.mjestoFragment,DetaljiKompanijeFragment.newInstance());
+
+
+       /* alertDialog.setTitle("Alert");
         alertDialog.setMessage("Alert message to be shown");
         alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
                 new DialogInterface.OnClickListener() {
@@ -117,7 +124,7 @@ public class MainActivity extends AppCompatActivity
                         dialog.dismiss();
                     }
                 });
-        alertDialog.show();
+        alertDialog.show();*/
     }
 
     private void doSpinnerItemClick() {
