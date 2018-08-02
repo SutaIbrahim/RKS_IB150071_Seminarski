@@ -23,6 +23,7 @@ import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.example.ibrahim.servisinfo_ib150071.Fragments.DetaljiKompanijeDialogFragment;
 import com.example.ibrahim.servisinfo_ib150071.Helper.MyApiRequest;
 import com.example.ibrahim.servisinfo_ib150071.Helper.MyRunnable;
 import com.example.ibrahim.servisinfo_ib150071.Util.Util;
@@ -111,7 +112,7 @@ public class MainActivity extends AppCompatActivity
         AlertDialog alertDialog = new AlertDialog.Builder(MainActivity.this).create();
 
 
-        Util.otvoriFragmentKaoDijalog(this,DetaljiKompanijeFragment.newInstance());
+        Util.otvoriFragmentKaoDijalog(this, DetaljiKompanijeDialogFragment.newInstance());
 
         //Util.otvoriFragmentKaoReplace(this,R.id.mjestoFragment,DetaljiKompanijeFragment.newInstance());
 

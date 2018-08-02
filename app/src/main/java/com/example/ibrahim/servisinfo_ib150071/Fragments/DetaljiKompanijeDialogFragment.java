@@ -1,4 +1,4 @@
-package com.example.ibrahim.servisinfo_ib150071;
+package com.example.ibrahim.servisinfo_ib150071.Fragments;
 
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
@@ -7,8 +7,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.example.ibrahim.servisinfo_ib150071.R;
 
-public class DetaljiKompanijeFragment extends DialogFragment {
+
+public class DetaljiKompanijeDialogFragment extends DialogFragment {
     Button nazadBtn;
 
 
@@ -23,14 +25,14 @@ public class DetaljiKompanijeFragment extends DialogFragment {
     private String mParam2;
 
 
-    public DetaljiKompanijeFragment() {
+    public DetaljiKompanijeDialogFragment() {
         // Required empty public constructor
     }
 
 
     // TODO: Rename and change types and number of parameters
-    public static DetaljiKompanijeFragment newInstance() {
-        DetaljiKompanijeFragment fragment = new DetaljiKompanijeFragment();
+    public static DetaljiKompanijeDialogFragment newInstance() {
+        DetaljiKompanijeDialogFragment fragment = new DetaljiKompanijeDialogFragment();
        /* Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -46,6 +48,10 @@ public class DetaljiKompanijeFragment extends DialogFragment {
         View view = inflater.inflate(R.layout.fragment_detalji_kompanije, container, false);
 
 
+
+
+
+
         nazadBtn =(Button) view.findViewById(R.id.nazadBtn);
 
         nazadBtn.setOnClickListener(new View.OnClickListener() {
@@ -54,6 +60,7 @@ public class DetaljiKompanijeFragment extends DialogFragment {
                 dismiss();
             }
         });
+
 
 
         return view;

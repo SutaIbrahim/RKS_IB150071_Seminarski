@@ -29,56 +29,151 @@
         </android.support.design.widget.AppBarLayout>-->
 
 
-        <EditText
-            android:id="@+id/NaslovTxt"
-            style="@android:style/Widget.Material.Light.EditText"
-            android:layout_width="312dp"
-            android:layout_height="56dp"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="213dp"
-            android:ems="10"
-            android:hint="Naslov"
-            android:inputType="textPersonName" />
-
-        <EditText
-            android:id="@+id/ModelTxt"
-            style="@android:style/Widget.Material.Light.EditText"
-            android:layout_width="312dp"
-            android:layout_height="56dp"
-            android:layout_alignLeft="@+id/DodajSlikuBtn"
-            android:layout_alignStart="@+id/DodajSlikuBtn"
-            android:layout_below="@+id/NaslovTxt"
-            android:ems="10"
-            android:hint="Unesite marku i model uredjaja"
-            android:inputType="textPersonName" />
-
-        <EditText
-            android:id="@+id/opisTxt"
+        <TextView
+            android:id="@+id/naslovTxt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/PosaljiUpitBtn"
-            android:layout_alignStart="@+id/PosaljiUpitBtn"
-            android:layout_below="@+id/ModelTxt"
-            android:width="312dp"
-            android:height="116dp"
-            android:ems="10"
-            android:hint="Unesite opis kvara"
-            android:inputType="textMultiLine" />
+            android:layout_below="@+id/view"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="31dp"
+            android:text="Naslov"
+            android:textSize="30sp"
+            android:textStyle="bold" />
 
 
-        <Button
-            android:id="@+id/DodajSlikuBtn"
-            android:layout_width="310dp"
+        <TextView
+            android:id="@+id/TelefonLbl"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/NaslovTxt"
-            android:layout_alignStart="@+id/NaslovTxt"
-            android:layout_below="@+id/opisTxt"
-            android:backgroundTint="@color/colorPrimary"
-            android:drawablePadding="30dp"
-            android:paddingLeft="12dp"
-            android:text="Dodaj sliku"
-            android:textColor="#FFFFFF" />
+            android:layout_marginTop="20dp"
+            android:layout_below="@+id/naslovTxt"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="22dp"
+            android:text="Datum:"
+            android:textStyle="bold"
+            android:layout_gravity="center"
+
+
+
+            />
+
+        <TextView
+            android:id="@+id/skillsLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_below="@+id/TelefonLbl"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="22dp"
+
+            android:layout_gravity="center"
+
+            android:text="Kompanija:"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/emailLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_below="@+id/skillsLabel"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="22dp"
+
+            android:text="Uredjaj:"
+            android:textStyle="bold"
+            android:layout_gravity="center"
+            />
+
+        <TextView
+            android:id="@+id/opisLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_below="@+id/emailLabel"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="22dp"
+
+            android:text="Opis kvara:"
+            android:textStyle="bold"
+            android:layout_gravity="center"
+            />
+
+
+        //
+
+        <TextView
+            android:id="@+id/kompanijaUpitaTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="asd"
+            android:layout_toRightOf="@id/skillsLabel"
+            android:layout_below="@id/datumTxt"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="15dp"
+            />
+
+        <TextView
+            android:id="@+id/datumTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:layout_toRightOf="@id/skillsLabel"
+            android:layout_below="@id/naslovTxt"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="15dp"
+            android:text="061/123-456" />
+
+        <TextView
+            android:id="@+id/uredjaUpitaTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:ems="10"
+            android:text="korisnik@gmail.com"
+            android:inputType="textPersonName"
+
+            android:layout_toRightOf="@id/skillsLabel"
+            android:layout_below="@id/skillsLabel"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="15dp"/>
+
+        <TextView
+            android:id="@+id/opisKvaraTxt"
+
+
+            android:layout_width="240dp"
+            android:layout_height="250dp"
+            android:layout_alignBaseline="@+id/opisLabel"
+
+            android:layout_alignBottom="@+id/opisLabel"
+            android:layout_alignLeft="@+id/uredjaUpitaTxt"
+
+            android:layout_alignStart="@+id/uredjaUpitaTxt"
+            android:ems="10"
+            android:inputType="textMultiLine"
+            android:lines="4"
+            android:maxLines="4"
+            android:text="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat." />
+
+
+
+
+
+
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/nazivKompanijeTxt"
+            android:background="@android:color/darker_gray" />
+
 
         <Button
             android:id="@+id/PosaljiUpitBtn"
@@ -91,18 +186,6 @@
             android:backgroundTint="@color/colorPrimaryDark"
             android:text="Posalji upit"
             android:textColor="#FFFFFF" />
-
-        <ImageView
-            android:id="@+id/imageView2"
-            android:layout_width="155dp"
-            android:layout_height="139dp"
-            android:layout_below="@+id/appBarLayout"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="19dp"
-            app:srcCompat="@drawable/ic_dodaj_upit"
-            android:tint="@color/colorPrimaryDark"
-
-            />
 
 
     </RelativeLayout>
