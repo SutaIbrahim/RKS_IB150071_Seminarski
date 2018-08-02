@@ -1,7 +1,6 @@
 package com.example.ibrahim.servisinfo_ib150071;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -10,7 +9,6 @@ import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
@@ -24,6 +22,7 @@ import android.widget.TextView;
 
 import com.example.ibrahim.servisinfo_ib150071.Helper.MyApiRequest;
 import com.example.ibrahim.servisinfo_ib150071.Helper.MyRunnable;
+import com.example.ibrahim.servisinfo_ib150071.Util.Util;
 import com.example.ibrahim.servisinfo_ib150071.data.Global;
 import com.example.ibrahim.servisinfo_ib150071.data.UpitiResultVM;
 
@@ -109,7 +108,7 @@ lvUpiti.setOnItemClickListener(new AdapterView.OnItemClickListener() {
     }
 
     private void do_item_Click() {
-        AlertDialog alertDialog = new AlertDialog.Builder(UpitiActivity.this).create();
+/*        AlertDialog alertDialog = new AlertDialog.Builder(UpitiActivity.this).create();
         alertDialog.setTitle("Alert");
         alertDialog.setMessage("Alert message to be shown");
         alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
@@ -118,7 +117,10 @@ lvUpiti.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                         dialog.dismiss();
                     }
                 });
-        alertDialog.show();
+        alertDialog.show();*/
+
+        startActivity(new Intent(this, ZaFragmentActivity.class));
+
     }
 
     private void popuniPodatkeTask() {
@@ -174,25 +176,8 @@ lvUpiti.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
     }
 
-    /* private void initializeData(){
-         persons = new ArrayList<>();
-         persons.add(new Person("Naslov upita", "Model mobilnog uredjaja"));
-         persons.add(new Person("Popravak displeya", "Samsung Galaxy s4"));
-         persons.add(new Person("Zamjena baterije", "Sony xperia Z2"));
-         persons.add(new Person("Nedefinisan problem", "text text text text text text text text"));
-         persons.add(new Person("Utor za punjenje neispravan", "text text text text text text text text"));
-         persons.add(new Person("Upit 1", "text text text text text text text text"));
-         persons.add(new Person("Upit 1", "text text text text text text text text"));
-         persons.add(new Person("Upit 1", "text text text text text text text text"));
-         persons.add(new Person("Upit 1", "text text text text text text text text"));
-         persons.add(new Person("Upit 1", "text text text text text text text texttext text texttext text text text text text text texttext text text text text text text texttext text text text text text text texttext text text text text text text texttext text text text text text text texttext text text text text text text texttext text text text text text text texttext text text text text text text texttext text text text text text text texttext text text text text text text texttext text text text text text text texttext text text text text text text texttext text text text text text text texttext text text text text text text texttext text text text text text text texttext text text text text text text texttext text text text text text text texttext text text text text text text texttext text text text text text text texttext text text text text text text texttext text text text text text text texttext text text text text text text texttext text text text text text text texttext text text text text text text text texttext text text text text text text texttext text text text text text text texttext text text text text text text texttext text text text text text text texttext text text text text text text texttext text text text text text text texttext text text text text text text texttext text text text text text text texttext text text text text text texttext text text text text text text text"));
 
-     }
 
-     private void initializeAdapter(){
-         RVAdapterUpiti adapter = new RVAdapterUpiti(persons);
-         rv.setAdapter(adapter);
-     }*/
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:

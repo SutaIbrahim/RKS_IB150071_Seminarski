@@ -84,6 +84,7 @@ public class LoginActivity extends AppCompatActivity {
             Global.prijavljeniKlijent=x;
 
            startActivity(new Intent(this, MainActivity.class));
+
         }
     }
 }

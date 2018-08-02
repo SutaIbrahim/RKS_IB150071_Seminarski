@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.DrawerLayout
+    android:id="@+id/drawer_layout"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:theme="@style/AppTheme.NoActionBar"
+
+    >
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+       <!-- <android.support.design.widget.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:theme="@style/AppTheme.AppBarOverlay"
+            android:id="@+id/appBarLayout">
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbarAdd"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/colorPrimary"
+
+                app:title="Detalji upita"
+                app:titleTextColor="#ffffff" />
+        </android.support.design.widget.AppBarLayout>-->
+
+
+        <EditText
+            android:id="@+id/NaslovTxt"
+            style="@android:style/Widget.Material.Light.EditText"
+            android:layout_width="312dp"
+            android:layout_height="56dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="213dp"
+            android:ems="10"
+            android:hint="Naslov"
+            android:inputType="textPersonName" />
+
+        <EditText
+            android:id="@+id/ModelTxt"
+            style="@android:style/Widget.Material.Light.EditText"
+            android:layout_width="312dp"
+            android:layout_height="56dp"
+            android:layout_alignLeft="@+id/DodajSlikuBtn"
+            android:layout_alignStart="@+id/DodajSlikuBtn"
+            android:layout_below="@+id/NaslovTxt"
+            android:ems="10"
+            android:hint="Unesite marku i model uredjaja"
+            android:inputType="textPersonName" />
+
+        <EditText
+            android:id="@+id/opisTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/PosaljiUpitBtn"
+            android:layout_alignStart="@+id/PosaljiUpitBtn"
+            android:layout_below="@+id/ModelTxt"
+            android:width="312dp"
+            android:height="116dp"
+            android:ems="10"
+            android:hint="Unesite opis kvara"
+            android:inputType="textMultiLine" />
+
+
+        <Button
+            android:id="@+id/DodajSlikuBtn"
+            android:layout_width="310dp"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/NaslovTxt"
+            android:layout_alignStart="@+id/NaslovTxt"
+            android:layout_below="@+id/opisTxt"
+            android:backgroundTint="@color/colorPrimary"
+            android:drawablePadding="30dp"
+            android:paddingLeft="12dp"
+            android:text="Dodaj sliku"
+            android:textColor="#FFFFFF" />
+
+        <Button
+            android:id="@+id/PosaljiUpitBtn"
+            android:layout_width="310dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="20dp"
+            android:paddingLeft="12dp"
+            android:backgroundTint="@color/colorPrimaryDark"
+            android:text="Posalji upit"
+            android:textColor="#FFFFFF" />
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="155dp"
+            android:layout_height="139dp"
+            android:layout_below="@+id/appBarLayout"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="19dp"
+            app:srcCompat="@drawable/ic_dodaj_upit"
+            android:tint="@color/colorPrimaryDark"
+
+            />
+
+
+    </RelativeLayout>
+</android.support.v4.widget.DrawerLayout>
+
