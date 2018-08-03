@@ -7,7 +7,6 @@ import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -27,6 +26,7 @@ import com.example.ibrahim.servisinfo_ib150071.Fragments.DetaljiKompanijeDialogF
 import com.example.ibrahim.servisinfo_ib150071.Helper.MyApiRequest;
 import com.example.ibrahim.servisinfo_ib150071.Helper.MyRunnable;
 import com.example.ibrahim.servisinfo_ib150071.Util.Util;
+import com.example.ibrahim.servisinfo_ib150071.data.Global;
 import com.example.ibrahim.servisinfo_ib150071.data.GradoviResultVM;
 import com.example.ibrahim.servisinfo_ib150071.data.KompanijePregledVM;
 
@@ -76,12 +76,7 @@ public class MainActivity extends AppCompatActivity
 
         lvKompanije=(ListView) findViewById(R.id.rv);
 
-        lvKompanije.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                                               @Override
-                                               public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                                                   do_item_Click();
-                                               }
-                                           });
+
 
 
 
@@ -106,26 +101,27 @@ public class MainActivity extends AppCompatActivity
         popuniGradoveTask();
         popuniPodatkeTask("0");
 
+
+        lvKompanije.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+
+                 String selected = ((TextView) view.findViewById(R.id.KompanijaIDHiddenTxt)).getText().toString();
+                Global.izabranaKompanijaID=selected;
+
+                do_item_Click();
+            }
+        });
+
     }
 
     private void do_item_Click() {
-        AlertDialog alertDialog = new AlertDialog.Builder(MainActivity.this).create();
-
 
         Util.otvoriFragmentKaoDijalog(this, DetaljiKompanijeDialogFragment.newInstance());
 
         //Util.otvoriFragmentKaoReplace(this,R.id.mjestoFragment,DetaljiKompanijeFragment.newInstance());
 
-
-       /* alertDialog.setTitle("Alert");
-        alertDialog.setMessage("Alert message to be shown");
-        alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
-                new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                    }
-                });
-        alertDialog.show();*/
     }
 
     private void doSpinnerItemClick() {
@@ -226,7 +222,7 @@ private void popuniPodatke() {
         }
 
         @Override
-        public View getView(int position, View view, ViewGroup parent) {
+        public View getView(int position, View view, final ViewGroup parent) {
 
             if (view == null) {
                 LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -234,16 +230,27 @@ private void popuniPodatke() {
             }
             TextView txtFirstLine = view.findViewById(R.id.NazivKompanijeTxt);
             TextView txtSecondLine = view.findViewById(R.id.AdresaKompanijeTxt);
+            TextView txtKID = view.findViewById(R.id.KompanijaIDHiddenTxt);
 
             KompanijePregledVM.Row x = podaci.rows.get(position);
 
             txtFirstLine.setText(x.Naziv);
             txtSecondLine.setText(x.Adresa + ", " + x.Grad);
+            txtKID.setText( String.valueOf(x.KompanijaID));
+
+
+
+
             return view;
         }
     };
 
     lvKompanije.setAdapter(adapter);
+
+
+
+
+
 
     }
 

@@ -8,4 +8,8 @@ public class Global {
 
     public static AutentifikacijaResultVM prijavljeniKlijent;
 
+    public static String izabranaKompanijaID;
+
+    //public static Kompanije izabranaKompanija;
+
 }

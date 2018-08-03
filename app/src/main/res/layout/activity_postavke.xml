@@ -100,19 +100,19 @@
 
 
         <EditText
-            android:id="@+id/kompanijaUpitaTxt"
+            android:id="@+id/adresaKTxt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignBaseline="@+id/skillsLabel"
             android:layout_alignBottom="@+id/skillsLabel"
-            android:layout_alignLeft="@+id/datumTxt"
-            android:layout_alignStart="@+id/datumTxt"
+            android:layout_alignLeft="@+id/telefonKTxt"
+            android:layout_alignStart="@+id/telefonKTxt"
             android:ems="10"
             android:inputType="textPersonName"
             android:text="korisnik" />
 
         <EditText
-            android:id="@+id/datumTxt"
+            android:id="@+id/telefonKTxt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignBaseline="@+id/TelefonLbl"
@@ -126,11 +126,11 @@
             android:text="061/123-456" />
 
         <EditText
-            android:id="@+id/uredjaUpitaTxt"
+            android:id="@+id/emailKTxt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignBaseline="@+id/emailLabel"
-            android:layout_alignStart="@+id/kompanijaUpitaTxt"
+            android:layout_alignStart="@+id/adresaKTxt"
             android:ems="10"
             android:text="korisnik@gmail.com"
             android:inputType="textPersonName" />
@@ -151,7 +151,7 @@
             style="@android:style/Widget.Material.Button.Colored"
             android:layout_width="279dp"
             android:layout_height="46dp"
-            android:layout_below="@+id/uredjaUpitaTxt"
+            android:layout_below="@+id/emailKTxt"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="42dp"
             android:backgroundTint="@color/colorPrimaryDark"

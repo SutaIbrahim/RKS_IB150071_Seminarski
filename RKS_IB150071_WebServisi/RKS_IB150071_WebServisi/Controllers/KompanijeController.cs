@@ -97,6 +97,18 @@ namespace RKS_IB150071_WebServisi.Controllers
 
         }
 
+
+        [HttpGet]
+        [Route("api/Kompanije/GetKompanijaByID/{id}")]
+        public IHttpActionResult GetKompanijaByID(string id)
+        {
+            int ID = Convert.ToInt32(id);
+
+            Kompanije k = db.Kompanije.Where(x => x.KompanijaID == ID).FirstOrDefault();
+
+
+            return Ok(k);
+        }
         //// GET: api/Kompanije/5
         //[ResponseType(typeof(Kompanije))]
         //public IHttpActionResult GetKompanije(int id)
@@ -107,10 +119,10 @@ namespace RKS_IB150071_WebServisi.Controllers
         //        return NotFound();
         //    }
 
-        //    return Ok(kompanije);
-        //}
+            //    return Ok(kompanije);
+            //}
 
-        // PUT: api/Kompanije/5
+            // PUT: api/Kompanije/5
         [ResponseType(typeof(void))]
         public IHttpActionResult PutKompanije(int id, Kompanije kompanije)
         {
@@ -144,6 +156,9 @@ namespace RKS_IB150071_WebServisi.Controllers
 
             return StatusCode(HttpStatusCode.NoContent);
         }
+
+
+
 
         // POST: api/Kompanije
         [ResponseType(typeof(Kompanije))]

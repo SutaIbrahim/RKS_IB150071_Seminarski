@@ -30,7 +30,7 @@
 
 
         <TextView
-            android:id="@+id/naslovTxt"
+            android:id="@+id/NazivKTxt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/view"
@@ -46,7 +46,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:layout_below="@+id/naslovTxt"
+            android:layout_below="@+id/NazivKTxt"
             android:layout_alignParentLeft="true"
             android:layout_marginLeft="22dp"
             android:text="Datum:"
@@ -103,32 +103,32 @@
         //
 
         <TextView
-            android:id="@+id/kompanijaUpitaTxt"
+            android:id="@+id/adresaKTxt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="textPersonName"
             android:text="asd"
             android:layout_toRightOf="@id/skillsLabel"
-            android:layout_below="@id/datumTxt"
+            android:layout_below="@id/telefonKTxt"
             android:layout_marginTop="20dp"
             android:layout_marginLeft="15dp"
             />
 
         <TextView
-            android:id="@+id/datumTxt"
+            android:id="@+id/telefonKTxt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="textPersonName"
             android:layout_toRightOf="@id/skillsLabel"
-            android:layout_below="@id/naslovTxt"
+            android:layout_below="@id/NazivKTxt"
             android:layout_marginTop="20dp"
             android:layout_marginLeft="15dp"
             android:text="061/123-456" />
 
         <TextView
-            android:id="@+id/uredjaUpitaTxt"
+            android:id="@+id/emailKTxt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
 
@@ -150,9 +150,9 @@
             android:layout_alignBaseline="@+id/opisLabel"
 
             android:layout_alignBottom="@+id/opisLabel"
-            android:layout_alignLeft="@+id/uredjaUpitaTxt"
+            android:layout_alignLeft="@+id/emailKTxt"
 
-            android:layout_alignStart="@+id/uredjaUpitaTxt"
+            android:layout_alignStart="@+id/emailKTxt"
             android:ems="10"
             android:inputType="textMultiLine"
             android:lines="4"

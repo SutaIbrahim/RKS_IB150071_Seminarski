@@ -46,7 +46,7 @@
                     app:civ_border_width="0dp" />-->
 
         <TextView
-            android:id="@+id/naslovTxt"
+            android:id="@+id/NazivKTxt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
@@ -61,7 +61,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
       android:layout_marginTop="20dp"
-            android:layout_below="@+id/naslovTxt"
+            android:layout_below="@+id/NazivKTxt"
                 android:layout_marginLeft="22dp"
             android:text="Telefon:"
             android:textStyle="bold"
@@ -99,32 +99,32 @@
 
 
         <TextView
-            android:id="@+id/kompanijaUpitaTxt"
+            android:id="@+id/adresaKTxt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="textPersonName"
             android:text="Kompanija"
             android:layout_toRightOf="@id/skillsLabel"
-            android:layout_below="@id/datumTxt"
+            android:layout_below="@id/telefonKTxt"
             android:layout_marginTop="20dp"
             android:layout_marginLeft="15dp"
             />
 
         <TextView
-            android:id="@+id/datumTxt"
+            android:id="@+id/telefonKTxt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="textPersonName"
             android:layout_toRightOf="@id/TelefonLbl"
-            android:layout_below="@id/naslovTxt"
+            android:layout_below="@id/NazivKTxt"
             android:layout_marginTop="20dp"
             android:layout_marginLeft="15dp"
             android:text="061/123-456" />
 
         <TextView
-            android:id="@+id/uredjaUpitaTxt"
+            android:id="@+id/emailKTxt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
 
@@ -133,7 +133,7 @@
             android:inputType="textPersonName"
 
             android:layout_toRightOf="@id/emailLabel"
-            android:layout_below="@id/kompanijaUpitaTxt"
+            android:layout_below="@id/adresaKTxt"
             android:layout_marginTop="20dp"
             android:layout_marginLeft="15dp"/>
 
@@ -151,7 +151,7 @@
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/uredjaUpitaTxt"
+            android:layout_below="@id/emailKTxt"
             android:layout_margin="20dp"
             >
 

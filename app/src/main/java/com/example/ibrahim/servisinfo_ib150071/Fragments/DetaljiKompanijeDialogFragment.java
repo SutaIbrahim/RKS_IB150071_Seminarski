@@ -1,18 +1,33 @@
 package com.example.ibrahim.servisinfo_ib150071.Fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
+import com.example.ibrahim.servisinfo_ib150071.DodajUpitActivity;
+import com.example.ibrahim.servisinfo_ib150071.Helper.MyApiRequest;
+import com.example.ibrahim.servisinfo_ib150071.Helper.MyRunnable;
 import com.example.ibrahim.servisinfo_ib150071.R;
+import com.example.ibrahim.servisinfo_ib150071.data.Global;
+import com.example.ibrahim.servisinfo_ib150071.data.Kompanije;
 
 
 public class DetaljiKompanijeDialogFragment extends DialogFragment {
-    Button nazadBtn;
 
+    Kompanije k;
+
+    Button nazadBtn;
+    Button posaljiBtn;
+
+TextView naziv;
+TextView telefon;
+TextView adresa;
+TextView email;
 
 
     // TODO: Rename parameter arguments, choose names that match
@@ -48,11 +63,30 @@ public class DetaljiKompanijeDialogFragment extends DialogFragment {
         View view = inflater.inflate(R.layout.fragment_detalji_kompanije, container, false);
 
 
+        popuniPodatkeTask();
+
+
+        naziv=(TextView) view.findViewById(R.id.NazivKTxt);
+        telefon=(TextView) view.findViewById(R.id.telefonKTxt);
+        adresa=(TextView) view.findViewById(R.id.adresaKTxt);
+        email=(TextView) view.findViewById(R.id.emailKTxt);
 
 
 
 
+
+        posaljiBtn=(Button) view.findViewById(R.id.PosaljiUpitDBtn);
         nazadBtn =(Button) view.findViewById(R.id.nazadBtn);
+
+
+        posaljiBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getActivity(), DodajUpitActivity.class));
+                dismiss();
+            }
+        });
+
 
         nazadBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -66,4 +100,25 @@ public class DetaljiKompanijeDialogFragment extends DialogFragment {
         return view;
     }
 
-}
+
+
+    private void popuniPodatkeTask( ) {
+
+            MyApiRequest.get(getActivity(), "/api/kompanije/GetKompanijaByID/" + Global.izabranaKompanijaID, new MyRunnable<Kompanije>() {
+                @Override
+                public void run(Kompanije x) {
+                    k = x; //postavljeno kao field radi    adapter.notifyDataSetChanged(); za brisanje posiljke iz ListView
+                    popuniPodatke();
+                }
+            });
+
+    }
+
+    private void popuniPodatke() {
+
+        naziv.setText(k.Naziv);
+        telefon.setText(k.Telefon);
+        adresa.setText(k.Adresa);
+        email.setText(k.Email);
+    }
+    }

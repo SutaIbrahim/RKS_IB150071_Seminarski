@@ -66,9 +66,9 @@ Global.prijavljeniKlijent.Email=email.getText().toString();
 
 
     private void Incijalizacija() {
-        tel = (TextView)findViewById(R.id.datumTxt);
-        email = (TextView)findViewById(R.id.uredjaUpitaTxt);
-        user = (TextView)findViewById(R.id.kompanijaUpitaTxt);
+        tel = (TextView)findViewById(R.id.telefonKTxt);
+        email = (TextView)findViewById(R.id.emailKTxt);
+        user = (TextView)findViewById(R.id.adresaKTxt);
 
         tel.setText( Global.prijavljeniKlijent.Telefon);
         email.setText(Global.prijavljeniKlijent.Email);
