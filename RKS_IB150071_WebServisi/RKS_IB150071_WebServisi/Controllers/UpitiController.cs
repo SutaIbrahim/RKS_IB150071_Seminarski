@@ -95,7 +95,7 @@ namespace RKS_IB150071_WebServisi.Controllers
 
         // POST: api/Upiti
         [ResponseType(typeof(Upiti))]
-        public IHttpActionResult PostUpiti(Upiti upiti)
+        public IHttpActionResult PostUpiti([FromBody]Upiti upiti)
         {
             if (!ModelState.IsValid)
             {
@@ -105,7 +105,10 @@ namespace RKS_IB150071_WebServisi.Controllers
             db.Upiti.Add(upiti);
             db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = upiti.UpitID }, upiti);
+
+            return Ok();
+
+           // return CreatedAtRoute("DefaultApi", new { id = upiti.UpitID }, upiti);
         }
 
         // DELETE: api/Upiti/5

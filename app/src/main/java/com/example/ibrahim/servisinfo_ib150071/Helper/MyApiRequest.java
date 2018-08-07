@@ -19,7 +19,7 @@ import java.lang.reflect.Type;
 public class MyApiRequest {
     private static <T> void request(final Activity activity, final String urlAction, final MyUrlConnection.HttpMethod httpMethod, final Object postObject, final MyRunnable<T> myCallback) {
         new AsyncTask<Void, Void, MyApiResult>() {
-            private ProgressDialog progressDialog;
+           private ProgressDialog progressDialog;
 
             @Override
             protected void onPreExecute() {
@@ -36,7 +36,7 @@ public class MyApiRequest {
             @Override
             protected void onPostExecute(MyApiResult result) {
 
-                progressDialog.dismiss();
+               progressDialog.dismiss();
 
                 if (result.isException)
                 {

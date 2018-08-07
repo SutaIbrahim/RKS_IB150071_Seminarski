@@ -61,7 +61,7 @@ public class RegistrationActivity extends AppCompatActivity {
         model.Telefon=telefon.getText().toString();
         model.KorisickoIme=username.getText().toString();
         model.LozinkaSalt=pass.getText().toString();
-        model.Adresa="Test";
+        model.Adresa="x";
         model.GradID=2;
 
         MyApiRequest.post(this, "api/Klijenti", model, new MyRunnable<KlijentPostVM>() {

@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'C:\Users\Ibrahim\source\repos\RKS_IB150071_WebServisi\RKS_IB150071_WebServisi\Models\Model.edmx'. 
+﻿// T4 code generation is enabled for model 'C:\FIT_VI_semestar\RKS\Seminarski\RKS_IB150071_WebServisi\RKS_IB150071_WebServisi\Models\Model.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.

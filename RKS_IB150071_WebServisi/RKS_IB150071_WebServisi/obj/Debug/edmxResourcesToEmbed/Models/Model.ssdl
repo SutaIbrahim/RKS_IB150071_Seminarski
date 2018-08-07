@@ -101,6 +101,7 @@
     <Property Name="ZeljeniDatumPrijemaOd" Type="datetime" />
     <Property Name="ZeljeniDatumPrijemaDo" Type="datetime" />
     <Property Name="KlijentID" Type="int" Nullable="false" />
+    <Property Name="Datum" Type="datetime" />
   </EntityType>
   <Association Name="FK__Klijenti__GradID__286302EC">
     <End Role="Gradovi" Type="Self.Gradovi" Multiplicity="0..1" />

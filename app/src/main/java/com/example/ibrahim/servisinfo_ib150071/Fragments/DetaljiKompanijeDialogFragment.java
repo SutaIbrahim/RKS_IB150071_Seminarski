@@ -84,6 +84,7 @@ TextView email;
             public void onClick(View view) {
                 startActivity(new Intent(getActivity(), DodajUpitActivity.class));
                 dismiss();
+
             }
         });
 

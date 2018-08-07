@@ -106,6 +106,7 @@
           <Property Name="ZeljeniDatumPrijemaOd" Type="datetime" />
           <Property Name="ZeljeniDatumPrijemaDo" Type="datetime" />
           <Property Name="KlijentID" Type="int" Nullable="false" />
+          <Property Name="Datum" Type="datetime" />
         </EntityType>
         <Association Name="FK__Klijenti__GradID__286302EC">
           <End Role="Gradovi" Type="Self.Gradovi" Multiplicity="0..1" />
@@ -439,6 +440,7 @@
           <NavigationProperty Name="KompanijeUpiti" Relationship="Self.FK__Kompanije__UpitI__33D4B598" FromRole="Upiti" ToRole="KompanijeUpiti" />
           <NavigationProperty Name="Ponude" Relationship="Self.FK__Ponude__UpitID__3F466844" FromRole="Upiti" ToRole="Ponude" />
           <Property Name="Naslov" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Datum" Type="DateTime" Precision="3" />
         </EntityType>
         <Association Name="FK__Klijenti__GradID__286302EC">
           <End Role="Gradovi" Type="Self.Gradovi" Multiplicity="0..1" />
@@ -749,6 +751,7 @@
           <EntitySetMapping Name="Upiti">
             <EntityTypeMapping TypeName="RKS_150071Model.Upiti">
               <MappingFragment StoreEntitySet="Upiti">
+                <ScalarProperty Name="Datum" ColumnName="Datum" />
                 <ScalarProperty Name="Naslov" ColumnName="Naslov" />
                 <ScalarProperty Name="UpitID" ColumnName="UpitID" />
                 <ScalarProperty Name="MarkaUredjaja" ColumnName="MarkaUredjaja" />

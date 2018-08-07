@@ -14,8 +14,15 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.ibrahim.servisinfo_ib150071.Helper.MyApiRequest;
+import com.example.ibrahim.servisinfo_ib150071.Helper.MyRunnable;
+import com.example.ibrahim.servisinfo_ib150071.data.Global;
+import com.example.ibrahim.servisinfo_ib150071.data.UpitPostVM;
+
+import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
+import java.util.Calendar;
 
 public class DodajUpitActivity extends AppCompatActivity {
 
@@ -92,16 +99,43 @@ public class DodajUpitActivity extends AppCompatActivity {
 
     private void posaljiBtn_click() {
             String naslov=naslovTxt.getText().toString();
-            String model=modelTxt.getText().toString();
+            String marka=modelTxt.getText().toString();
             String opis=opisTxt.getText().toString();
             //slika vec postavljena u onActivityResult
 
+        UpitPostVM model=new UpitPostVM();
+
+        model.MarkaUredjaja=marka;
+        model.OpisKvara=opis;
+        model.Naslov=naslov;
+        model.KlijentID= Global.prijavljeniKlijent.KlijentID;
+        model.ZeljeniDatumPrijemaOd=null;
+        model.ZeljeniDatumPrijemaDo=null;
+        model.Datum= Calendar.getInstance().getTime();
 
 
+        //slika bitmap to byte[]
+        if(slika != null) {
+            ByteArrayOutputStream stream = new ByteArrayOutputStream();
+            slika.compress(Bitmap.CompressFormat.JPEG, 100, stream);
+            byte[] byteArray = stream.toByteArray();
+            // Bitmap bitmap = BitmapFactory.decodeByteArray(byteArray , 0, byteArray.length); - obrnuto
 
+            model.Slika = byteArray;
+        }
+        else {
+            model.Slika=null;
+        }
+
+        MyApiRequest.post(this, "api/Upiti", model, new MyRunnable<UpitPostVM>() {
+            @Override
+            public void run(UpitPostVM x) {
+                Toast.makeText(DodajUpitActivity.this,"Upit uspjesno poslan",Toast.LENGTH_SHORT).show();
+                finish();
+            }
+        });
 
     }
-
 
 
 

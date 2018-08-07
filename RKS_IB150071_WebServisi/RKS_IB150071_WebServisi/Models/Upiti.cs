@@ -29,6 +29,7 @@ namespace RKS_IB150071_WebServisi.Models
         public Nullable<System.DateTime> ZeljeniDatumPrijemaDo { get; set; }
         public int KlijentID { get; set; }
         public string Naslov { get; set; }
+        public Nullable<System.DateTime> Datum { get; set; }
     
         public virtual Klijenti Klijenti { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
