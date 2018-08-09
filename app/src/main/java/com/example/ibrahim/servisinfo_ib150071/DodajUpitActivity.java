@@ -18,7 +18,7 @@ import android.widget.Toast;
 import com.example.ibrahim.servisinfo_ib150071.Helper.MyApiRequest;
 import com.example.ibrahim.servisinfo_ib150071.Helper.MyRunnable;
 import com.example.ibrahim.servisinfo_ib150071.data.Global;
-import com.example.ibrahim.servisinfo_ib150071.data.UpitPostVM;
+import com.example.ibrahim.servisinfo_ib150071.data.UpitiVM;
 
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
@@ -106,7 +106,7 @@ public class DodajUpitActivity extends AppCompatActivity {
             String opis=opisTxt.getText().toString();
             //slika vec postavljena u onActivityResult
 
-        UpitPostVM model=new UpitPostVM();
+        UpitiVM model=new UpitiVM();
 
         model.MarkaUredjaja=marka;
         model.OpisKvara=opis;
@@ -136,9 +136,9 @@ public class DodajUpitActivity extends AppCompatActivity {
             model.EncodedImage="0";
         }
 
-        MyApiRequest.post(this, "api/Upiti", model, new MyRunnable<UpitPostVM>() {
+        MyApiRequest.post(this, "api/Upiti", model, new MyRunnable<UpitiVM>() {
             @Override
-            public void run(UpitPostVM x) {
+            public void run(UpitiVM x) {
                 Toast.makeText(DodajUpitActivity.this,"Upit uspjesno poslan",Toast.LENGTH_SHORT).show();
                 finish();
             }

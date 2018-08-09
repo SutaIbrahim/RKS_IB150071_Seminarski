@@ -10,6 +10,8 @@ public class Global {
 
     public static String izabranaKompanijaID;
 
+    public static int izabraniUpitID;
+
     //public static Kompanije izabranaKompanija;
 
 }

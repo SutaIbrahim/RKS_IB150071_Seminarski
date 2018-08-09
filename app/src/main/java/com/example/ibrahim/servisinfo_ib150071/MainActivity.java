@@ -106,7 +106,7 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
-
+//pohrani izabranu kompaniju
                  String selected = ((TextView) view.findViewById(R.id.KompanijaIDHiddenTxt)).getText().toString();
                 Global.izabranaKompanijaID=selected;
 

@@ -58,6 +58,24 @@ namespace RKS_IB150071_WebServisi.Controllers
             return Ok(upiti);
         }
 
+
+        [HttpGet]
+        [Route("api/Upiti/GetUpitByID/{id}")]
+        public IHttpActionResult GetUpitByID(int id)
+        {
+            int ID = Convert.ToInt32(id);
+
+            Upiti u = db.Upiti.Where(x => x.UpitID == ID).FirstOrDefault();
+
+
+            return Ok(u);
+
+
+
+        }
+
+
+
         // PUT: api/Upiti/5
         [ResponseType(typeof(void))]
         public IHttpActionResult PutUpiti(int id, Upiti upiti)

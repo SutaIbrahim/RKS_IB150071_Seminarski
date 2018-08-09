@@ -63,15 +63,15 @@ TextView email;
         View view = inflater.inflate(R.layout.fragment_detalji_kompanije, container, false);
 
 
+
+
+        naziv=(TextView) view.findViewById(R.id.NazivUTxt);
+        telefon=(TextView) view.findViewById(R.id.telefonTxt);
+        adresa=(TextView) view.findViewById(R.id.usernameTxt);
+        email=(TextView) view.findViewById(R.id.emailTxt);
+
+
         popuniPodatkeTask();
-
-
-        naziv=(TextView) view.findViewById(R.id.NazivKTxt);
-        telefon=(TextView) view.findViewById(R.id.telefonKTxt);
-        adresa=(TextView) view.findViewById(R.id.adresaKTxt);
-        email=(TextView) view.findViewById(R.id.emailKTxt);
-
-
 
 
 

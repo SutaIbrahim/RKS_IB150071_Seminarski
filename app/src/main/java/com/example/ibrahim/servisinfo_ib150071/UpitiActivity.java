@@ -22,7 +22,6 @@ import android.widget.TextView;
 
 import com.example.ibrahim.servisinfo_ib150071.Helper.MyApiRequest;
 import com.example.ibrahim.servisinfo_ib150071.Helper.MyRunnable;
-import com.example.ibrahim.servisinfo_ib150071.Util.Util;
 import com.example.ibrahim.servisinfo_ib150071.data.Global;
 import com.example.ibrahim.servisinfo_ib150071.data.UpitiResultVM;
 
@@ -95,7 +94,12 @@ public class UpitiActivity extends AppCompatActivity {
 lvUpiti.setOnItemClickListener(new AdapterView.OnItemClickListener() {
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-   do_item_Click();
+
+        //pohrani izabrani upit
+        String selected = ((TextView) view.findViewById(R.id.UpitIDHiddenTxt)).getText().toString();
+        Global.izabraniUpitID= Integer.parseInt(selected);
+
+        do_item_Click();
     }
 });
 
@@ -128,7 +132,7 @@ lvUpiti.setOnItemClickListener(new AdapterView.OnItemClickListener() {
         MyApiRequest.get(this, "/api/upiti/getUpitiByKlijentID/" + String.valueOf(Global.prijavljeniKlijent.KlijentID), new MyRunnable<UpitiResultVM>() {
             @Override
             public void run(UpitiResultVM x) {
-                podaci = x; //postavljeno kao field radi    adapter.notifyDataSetChanged(); za brisanje posiljke iz ListView
+                podaci = x; //postavljeno kao field radi    adapter.notifyDataSetChanged();
                 popuniPodatke();
             }
         });
@@ -163,11 +167,14 @@ lvUpiti.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 }
                 TextView txtFirstLine = view.findViewById(R.id.NaslovUpitaTxt);
                 TextView txtSecondLine = view.findViewById(R.id.MarkaUredjajaTxt);
+               TextView txtHidden = view.findViewById(R.id.UpitIDHiddenTxt);
 
                 UpitiResultVM.Row x = podaci.rows.get(position);
 
                 txtFirstLine.setText(x.Naslov);
                 txtSecondLine.setText(x.MarkaUredjaja);
+                txtHidden.setText(String.valueOf(x.UpitID));
+
                 return view;
             }
         };

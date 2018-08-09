@@ -10,5 +10,5 @@ import android.net.Uri;
 public class MyConfig {
 
     // public static Uri baseUrl  = Uri.parse("https://df1bc9b9.eu.ngrok.io/api/");
-    public static Uri baseUrl  = Uri.parse("http://31808335.eu.ngrok.io");
+    public static Uri baseUrl  = Uri.parse("http://40976089.eu.ngrok.io");
         }

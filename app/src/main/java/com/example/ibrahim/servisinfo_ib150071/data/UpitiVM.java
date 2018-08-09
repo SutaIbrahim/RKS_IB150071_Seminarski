@@ -8,7 +8,7 @@ import java.util.Date;
  * Created by Ibrahim on 7.8.2018..
  */
 
-public class UpitPostVM {
+public class UpitiVM {
 
 
     public int UpitID ;

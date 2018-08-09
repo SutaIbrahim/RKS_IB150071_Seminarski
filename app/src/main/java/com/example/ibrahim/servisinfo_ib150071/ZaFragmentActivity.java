@@ -6,6 +6,7 @@ import android.support.v7.widget.Toolbar;
 
 import com.example.ibrahim.servisinfo_ib150071.Fragments.DetaljiUpitaFragment;
 import com.example.ibrahim.servisinfo_ib150071.Util.Util;
+import com.example.ibrahim.servisinfo_ib150071.data.Global;
 
 public class ZaFragmentActivity extends AppCompatActivity {
 
@@ -25,7 +26,7 @@ public class ZaFragmentActivity extends AppCompatActivity {
             }
         });*/
 
-        Util.otvoriFragmentKaoReplace(this,R.id.mjestoFragment2, DetaljiUpitaFragment.newInstance(2));
+        Util.otvoriFragmentKaoReplace(this,R.id.mjestoFragment2, DetaljiUpitaFragment.newInstance(Global.izabraniUpitID));
 
        // startActivity(new Intent(this, MainActivity.class));
 
