@@ -57,16 +57,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="KompanijeUpiti">
-      <EntityTypeMapping TypeName="RKS_150071Model.KompanijeUpiti">
-        <MappingFragment StoreEntitySet="KompanijeUpiti">
-          <ScalarProperty Name="KompanijaUpitID" ColumnName="KompanijaUpitID" />
-          <ScalarProperty Name="KompanijaID" ColumnName="KompanijaID" />
-          <ScalarProperty Name="UpitID" ColumnName="UpitID" />
-          <ScalarProperty Name="Odgovoreno" ColumnName="Odgovoreno" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="Ponude">
       <EntityTypeMapping TypeName="RKS_150071Model.Ponude">
         <MappingFragment StoreEntitySet="Ponude">
@@ -101,6 +91,8 @@
     <EntitySetMapping Name="Upiti">
       <EntityTypeMapping TypeName="RKS_150071Model.Upiti">
         <MappingFragment StoreEntitySet="Upiti">
+          <ScalarProperty Name="Odgovoreno" ColumnName="Odgovoreno" />
+          <ScalarProperty Name="KompanijaID" ColumnName="KompanijaID" />
           <ScalarProperty Name="Datum" ColumnName="Datum" />
           <ScalarProperty Name="Naslov" ColumnName="Naslov" />
           <ScalarProperty Name="UpitID" ColumnName="UpitID" />

@@ -117,6 +117,7 @@
     <Compile Include="Model2\KompanijePregledVM.cs" />
     <Compile Include="Model2\KompanijeVM.cs" />
     <Compile Include="Model2\UpitiResultVM.cs" />
+    <Compile Include="Model2\UpitPostVM.cs" />
     <Compile Include="Models\Gradovi.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
@@ -130,9 +131,6 @@
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\KompanijeKategorije.cs">
-      <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\KompanijeUpiti.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Model.Context.cs">

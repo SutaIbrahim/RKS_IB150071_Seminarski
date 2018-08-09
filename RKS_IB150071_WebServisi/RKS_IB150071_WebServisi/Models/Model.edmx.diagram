@@ -10,7 +10,6 @@
         <EntityTypeShape EntityType="RKS_150071Model.Klijenti" Width="1.5" PointX="3" PointY="3.625" IsExpanded="true" />
         <EntityTypeShape EntityType="RKS_150071Model.Kompanije" Width="1.5" PointX="3" PointY="7.875" IsExpanded="true" />
         <EntityTypeShape EntityType="RKS_150071Model.KompanijeKategorije" Width="1.5" PointX="5.25" PointY="5.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="RKS_150071Model.KompanijeUpiti" Width="1.5" PointX="7.5" PointY="10.625" IsExpanded="true" />
         <EntityTypeShape EntityType="RKS_150071Model.Ponude" Width="1.5" PointX="7.5" PointY="5.625" IsExpanded="true" />
         <EntityTypeShape EntityType="RKS_150071Model.Servisi" Width="1.5" PointX="9.75" PointY="7.125" IsExpanded="true" />
         <EntityTypeShape EntityType="RKS_150071Model.Upiti" Width="1.5" PointX="5.25" PointY="8.375" IsExpanded="true" />
@@ -19,13 +18,12 @@
         <AssociationConnector Association="RKS_150071Model.FK__Kompanije__Kateg__398D8EEE" ManuallyRouted="false" />
         <AssociationConnector Association="RKS_150071Model.FK__Ponude__KlijentI__3E52440B" ManuallyRouted="false" />
         <AssociationConnector Association="RKS_150071Model.FK__Upiti__KlijentID__300424B4" ManuallyRouted="false" />
-        <AssociationConnector Association="RKS_150071Model.FK__Kompanije__Kompa__32E0915F" ManuallyRouted="false" />
         <AssociationConnector Association="RKS_150071Model.FK__Kompanije__Kompa__3A81B327" ManuallyRouted="false" />
         <AssociationConnector Association="RKS_150071Model.FK__Ponude__Kompanij__3D5E1FD2" ManuallyRouted="false" />
         <AssociationConnector Association="RKS_150071Model.FK__Servisi__Kompani__4222D4EF" ManuallyRouted="false" />
-        <AssociationConnector Association="RKS_150071Model.FK__Kompanije__UpitI__33D4B598" ManuallyRouted="false" />
         <AssociationConnector Association="RKS_150071Model.FK__Ponude__UpitID__3F466844" ManuallyRouted="false" />
         <AssociationConnector Association="RKS_150071Model.FK__Servisi__PonudaI__4316F928" ManuallyRouted="false" />
+        <AssociationConnector Association="RKS_150071Model.FK__Upiti__Kompanija__5AEE82B9" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

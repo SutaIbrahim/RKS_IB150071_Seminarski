@@ -27,15 +27,15 @@ namespace RKS_IB150071_WebServisi.Controllers
 
             var model = new UpitiResultVM
             {
-                rows = db.Upiti.Where(k=>k.KlijentID==IDint).Select(s => new UpitiResultVM.Row
+                rows = db.Upiti.Where(k => k.KlijentID == IDint).Select(s => new UpitiResultVM.Row
                 {
 
-                    UpitID=s.UpitID,
-                    Naslov=s.Naslov,
-                    OpisKvara=s.OpisKvara,
-                    Slika=s.Slika,
-                    MarkaUredjaja=s.MarkaUredjaja,
-                    KlijentID=s.KlijentID
+                    UpitID = s.UpitID,
+                    Naslov = s.Naslov,
+                    OpisKvara = s.OpisKvara,
+                    Slika = s.Slika,
+                    MarkaUredjaja = s.MarkaUredjaja,
+                    KlijentID = s.KlijentID
 
 
                 }).ToList()
@@ -95,20 +95,43 @@ namespace RKS_IB150071_WebServisi.Controllers
 
         // POST: api/Upiti
         [ResponseType(typeof(Upiti))]
-        public IHttpActionResult PostUpiti([FromBody]Upiti upiti)
+        public IHttpActionResult PostUpiti([FromBody]UpitPostVM upiti)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            db.Upiti.Add(upiti);
+            Upiti u = new Upiti();
+
+            u.MarkaUredjaja = upiti.MarkaUredjaja;
+            u.OpisKvara = upiti.OpisKvara;
+            u.ZeljeniDatumPrijemaDo = upiti.ZeljeniDatumPrijemaDo;
+            u.ZeljeniDatumPrijemaOd = upiti.ZeljeniDatumPrijemaOd;
+            u.KlijentID = upiti.KlijentID;
+            u.Naslov = upiti.Naslov;
+            u.Datum = upiti.Datum;
+            u.Odgovoreno = upiti.Odgovoreno;
+            u.KompanijaID = upiti.KompanijaID;
+
+            if (upiti.EncodedImage != null && upiti.EncodedImage != "0")
+            {
+                byte[] imageBytes = Convert.FromBase64String(upiti.EncodedImage);
+                u.Slika = imageBytes;
+            }
+            else
+            {
+                u.Slika = null;
+            }
+
+
+            db.Upiti.Add(u);
             db.SaveChanges();
 
 
             return Ok();
 
-           // return CreatedAtRoute("DefaultApi", new { id = upiti.UpitID }, upiti);
+            // return CreatedAtRoute("DefaultApi", new { id = upiti.UpitID }, upiti);
         }
 
         // DELETE: api/Upiti/5

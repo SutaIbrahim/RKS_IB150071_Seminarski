@@ -51,15 +51,6 @@
     <Property Name="KategorijaID" Type="int" Nullable="false" />
     <Property Name="KompanijaID" Type="int" Nullable="false" />
   </EntityType>
-  <EntityType Name="KompanijeUpiti">
-    <Key>
-      <PropertyRef Name="KompanijaUpitID" />
-    </Key>
-    <Property Name="KompanijaUpitID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="KompanijaID" Type="int" Nullable="false" />
-    <Property Name="UpitID" Type="int" Nullable="false" />
-    <Property Name="Odgovoreno" Type="bit" Nullable="false" />
-  </EntityType>
   <EntityType Name="Ponude">
     <Key>
       <PropertyRef Name="PonudaID" />
@@ -102,6 +93,8 @@
     <Property Name="ZeljeniDatumPrijemaDo" Type="datetime" />
     <Property Name="KlijentID" Type="int" Nullable="false" />
     <Property Name="Datum" Type="datetime" />
+    <Property Name="KompanijaID" Type="int" />
+    <Property Name="Odgovoreno" Type="bit" />
   </EntityType>
   <Association Name="FK__Klijenti__GradID__286302EC">
     <End Role="Gradovi" Type="Self.Gradovi" Multiplicity="0..1" />
@@ -139,18 +132,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Kompanije__Kompa__32E0915F">
-    <End Role="Kompanije" Type="Self.Kompanije" Multiplicity="1" />
-    <End Role="KompanijeUpiti" Type="Self.KompanijeUpiti" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Kompanije">
-        <PropertyRef Name="KompanijaID" />
-      </Principal>
-      <Dependent Role="KompanijeUpiti">
-        <PropertyRef Name="KompanijaID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK__Kompanije__Kompa__3A81B327">
     <End Role="Kompanije" Type="Self.Kompanije" Multiplicity="1" />
     <End Role="KompanijeKategorije" Type="Self.KompanijeKategorije" Multiplicity="*" />
@@ -160,18 +141,6 @@
       </Principal>
       <Dependent Role="KompanijeKategorije">
         <PropertyRef Name="KompanijaID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK__Kompanije__UpitI__33D4B598">
-    <End Role="Upiti" Type="Self.Upiti" Multiplicity="1" />
-    <End Role="KompanijeUpiti" Type="Self.KompanijeUpiti" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Upiti">
-        <PropertyRef Name="UpitID" />
-      </Principal>
-      <Dependent Role="KompanijeUpiti">
-        <PropertyRef Name="UpitID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -247,13 +216,24 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK__Upiti__Kompanija__5AEE82B9">
+    <End Role="Kompanije" Type="Self.Kompanije" Multiplicity="0..1" />
+    <End Role="Upiti" Type="Self.Upiti" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Kompanije">
+        <PropertyRef Name="KompanijaID" />
+      </Principal>
+      <Dependent Role="Upiti">
+        <PropertyRef Name="KompanijaID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <EntityContainer Name="RKS_150071ModelStoreContainer">
     <EntitySet Name="Gradovi" EntityType="Self.Gradovi" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Kategorije" EntityType="Self.Kategorije" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Klijenti" EntityType="Self.Klijenti" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Kompanije" EntityType="Self.Kompanije" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="KompanijeKategorije" EntityType="Self.KompanijeKategorije" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="KompanijeUpiti" EntityType="Self.KompanijeUpiti" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Ponude" EntityType="Self.Ponude" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Servisi" EntityType="Self.Servisi" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Upiti" EntityType="Self.Upiti" Schema="dbo" store:Type="Tables" />
@@ -269,17 +249,9 @@
       <End Role="Kategorije" EntitySet="Kategorije" />
       <End Role="KompanijeKategorije" EntitySet="KompanijeKategorije" />
     </AssociationSet>
-    <AssociationSet Name="FK__Kompanije__Kompa__32E0915F" Association="Self.FK__Kompanije__Kompa__32E0915F">
-      <End Role="Kompanije" EntitySet="Kompanije" />
-      <End Role="KompanijeUpiti" EntitySet="KompanijeUpiti" />
-    </AssociationSet>
     <AssociationSet Name="FK__Kompanije__Kompa__3A81B327" Association="Self.FK__Kompanije__Kompa__3A81B327">
       <End Role="Kompanije" EntitySet="Kompanije" />
       <End Role="KompanijeKategorije" EntitySet="KompanijeKategorije" />
-    </AssociationSet>
-    <AssociationSet Name="FK__Kompanije__UpitI__33D4B598" Association="Self.FK__Kompanije__UpitI__33D4B598">
-      <End Role="Upiti" EntitySet="Upiti" />
-      <End Role="KompanijeUpiti" EntitySet="KompanijeUpiti" />
     </AssociationSet>
     <AssociationSet Name="FK__Ponude__KlijentI__3E52440B" Association="Self.FK__Ponude__KlijentI__3E52440B">
       <End Role="Klijenti" EntitySet="Klijenti" />
@@ -303,6 +275,10 @@
     </AssociationSet>
     <AssociationSet Name="FK__Upiti__KlijentID__300424B4" Association="Self.FK__Upiti__KlijentID__300424B4">
       <End Role="Klijenti" EntitySet="Klijenti" />
+      <End Role="Upiti" EntitySet="Upiti" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Upiti__Kompanija__5AEE82B9" Association="Self.FK__Upiti__Kompanija__5AEE82B9">
+      <End Role="Kompanije" EntitySet="Kompanije" />
       <End Role="Upiti" EntitySet="Upiti" />
     </AssociationSet>
   </EntityContainer>

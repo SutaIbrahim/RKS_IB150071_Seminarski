@@ -17,7 +17,6 @@ namespace RKS_IB150071_WebServisi.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Upiti()
         {
-            this.KompanijeUpiti = new HashSet<KompanijeUpiti>();
             this.Ponude = new HashSet<Ponude>();
         }
     
@@ -30,11 +29,12 @@ namespace RKS_IB150071_WebServisi.Models
         public int KlijentID { get; set; }
         public string Naslov { get; set; }
         public Nullable<System.DateTime> Datum { get; set; }
+        public Nullable<int> KompanijaID { get; set; }
+        public Nullable<bool> Odgovoreno { get; set; }
     
         public virtual Klijenti Klijenti { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<KompanijeUpiti> KompanijeUpiti { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Ponude> Ponude { get; set; }
+        public virtual Kompanije Kompanije { get; set; }
     }
 }

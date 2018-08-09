@@ -9,6 +9,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Base64;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -40,6 +41,8 @@ public class DodajUpitActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dodaj_upit);
+
+        slika=null;
 
         naslovTxt = (EditText) findViewById(R.id.NaslovTxt);
         modelTxt = (EditText) findViewById(R.id.ModelTxt);
@@ -112,19 +115,25 @@ public class DodajUpitActivity extends AppCompatActivity {
         model.ZeljeniDatumPrijemaOd=null;
         model.ZeljeniDatumPrijemaDo=null;
         model.Datum= Calendar.getInstance().getTime();
-
+        model.Odgovoreno=false;
+        model.KompanijaID= Integer.parseInt(Global.izabranaKompanijaID);
 
         //slika bitmap to byte[]
         if(slika != null) {
             ByteArrayOutputStream stream = new ByteArrayOutputStream();
-            slika.compress(Bitmap.CompressFormat.JPEG, 100, stream);
+            slika.compress(Bitmap.CompressFormat.JPEG, 20, stream);
             byte[] byteArray = stream.toByteArray();
+
             // Bitmap bitmap = BitmapFactory.decodeByteArray(byteArray , 0, byteArray.length); - obrnuto
 
-            model.Slika = byteArray;
+            // na apiju se opet prevodi u byte[]
+            String encodedImage = Base64.encodeToString(byteArray, Base64.DEFAULT);
+
+
+            model.EncodedImage = encodedImage;
         }
         else {
-            model.Slika=null;
+            model.EncodedImage="0";
         }
 
         MyApiRequest.post(this, "api/Upiti", model, new MyRunnable<UpitPostVM>() {

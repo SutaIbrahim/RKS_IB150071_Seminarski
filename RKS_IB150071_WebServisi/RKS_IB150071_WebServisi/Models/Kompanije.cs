@@ -17,10 +17,10 @@ namespace RKS_IB150071_WebServisi.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Kompanije()
         {
-            this.KompanijeUpiti = new HashSet<KompanijeUpiti>();
             this.KompanijeKategorije = new HashSet<KompanijeKategorije>();
             this.Ponude = new HashSet<Ponude>();
             this.Servisi = new HashSet<Servisi>();
+            this.Upiti = new HashSet<Upiti>();
         }
     
         public int KompanijaID { get; set; }
@@ -35,12 +35,12 @@ namespace RKS_IB150071_WebServisi.Models
     
         public virtual Gradovi Gradovi { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<KompanijeUpiti> KompanijeUpiti { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<KompanijeKategorije> KompanijeKategorije { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Ponude> Ponude { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Servisi> Servisi { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Upiti> Upiti { get; set; }
     }
 }

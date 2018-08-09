@@ -18,10 +18,8 @@ namespace RKS_IB150071_WebServisi.Models
         public RKS_150071Entities()
             : base("name=RKS_150071Entities")
         {
-            this.Configuration.LazyLoadingEnabled = false;
-
         }
-
+    
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             throw new UnintentionalCodeFirstException();
@@ -32,7 +30,6 @@ namespace RKS_IB150071_WebServisi.Models
         public virtual DbSet<Klijenti> Klijenti { get; set; }
         public virtual DbSet<Kompanije> Kompanije { get; set; }
         public virtual DbSet<KompanijeKategorije> KompanijeKategorije { get; set; }
-        public virtual DbSet<KompanijeUpiti> KompanijeUpiti { get; set; }
         public virtual DbSet<Ponude> Ponude { get; set; }
         public virtual DbSet<Servisi> Servisi { get; set; }
         public virtual DbSet<Upiti> Upiti { get; set; }

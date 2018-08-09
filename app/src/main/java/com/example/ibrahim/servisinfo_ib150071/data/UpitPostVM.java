@@ -14,12 +14,15 @@ public class UpitPostVM {
     public int UpitID ;
     public String MarkaUredjaja ;
     public String OpisKvara ;
-    public byte[] Slika ;
+    //public byte[] Slika ;
+    public String EncodedImage;
     public @Nullable Date ZeljeniDatumPrijemaOd ;
     public @Nullable Date ZeljeniDatumPrijemaDo ;
     public int KlijentID ;
     public String Naslov ;
     public @Nullable Date Datum ;
+    public int KompanijaID ;
+    public Boolean Odgovoreno ;
 
 
 
