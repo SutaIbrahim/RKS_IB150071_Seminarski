@@ -23,6 +23,7 @@ public class UpitiVM {
     public @Nullable Date Datum ;
     public int KompanijaID ;
     public Boolean Odgovoreno ;
+    public String Kompanija;
 
 
 

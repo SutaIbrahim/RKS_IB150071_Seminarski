@@ -33,7 +33,6 @@ namespace RKS_IB150071_WebServisi.Controllers
                     UpitID = s.UpitID,
                     Naslov = s.Naslov,
                     OpisKvara = s.OpisKvara,
-                    Slika = s.Slika,
                     MarkaUredjaja = s.MarkaUredjaja,
                     KlijentID = s.KlijentID
 
@@ -65,10 +64,27 @@ namespace RKS_IB150071_WebServisi.Controllers
         {
             int ID = Convert.ToInt32(id);
 
-            Upiti u = db.Upiti.Where(x => x.UpitID == ID).FirstOrDefault();
+            Upiti u = db.Upiti.Include(p=>p.Kompanije).Where(x => x.UpitID == ID).FirstOrDefault();
+
+            UpitPostVM up = new UpitPostVM();
+
+            up.Kompanija = u.Kompanije.Naziv;
+            up.MarkaUredjaja = u.MarkaUredjaja;
+            up.OpisKvara = u.OpisKvara;
+            up.Naslov = u.Naslov;
+            up.Datum = u.Datum;
+
+            if (u.Slika != null)
+            {
+                up.EncodedImage = Convert.ToBase64String(u.Slika);
+            }
+            else
+            {
+                up.EncodedImage = "x";
+            }
 
 
-            return Ok(u);
+            return Ok(up);
 
 
 

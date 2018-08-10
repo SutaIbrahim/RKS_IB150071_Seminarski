@@ -35,7 +35,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/view"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="31dp"
+            android:layout_marginTop="23dp"
             android:text="Naslov"
             android:textSize="30sp"
             android:textStyle="bold" />
@@ -141,23 +141,23 @@
             android:layout_marginTop="20dp"
             android:layout_marginLeft="15dp"/>
 
-        <TextView
-            android:id="@+id/opisKvaraTxt"
+     <TextView
+         android:id="@+id/opisKvaraTxt"
 
 
-            android:layout_width="240dp"
-            android:layout_height="250dp"
-            android:layout_alignBaseline="@+id/opisLabel"
+         android:layout_width="240dp"
+         android:layout_height="90dp"
+         android:layout_alignBaseline="@+id/opisLabel"
 
-            android:layout_alignBottom="@+id/opisLabel"
-            android:layout_alignLeft="@+id/uredjaUTxt"
+         android:layout_alignBottom="@+id/opisLabel"
+         android:layout_alignLeft="@+id/uredjaUTxt"
 
-            android:layout_alignStart="@+id/uredjaUTxt"
-            android:ems="10"
-            android:inputType="textMultiLine"
-            android:lines="4"
-            android:maxLines="4"
-            android:text="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat." />
+         android:layout_alignStart="@+id/uredjaUTxt"
+         android:ems="10"
+         android:inputType="textMultiLine"
+         android:lines="4"
+         android:maxLines="4"
+         android:text="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat." />
 
 
 
@@ -175,17 +175,47 @@
             android:background="@android:color/darker_gray" />
 
 
-        <Button
+       <!-- <Button
             android:id="@+id/PosaljiUpitBtn"
             android:layout_width="310dp"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="20dp"
-            android:paddingLeft="12dp"
             android:backgroundTint="@color/colorPrimaryDark"
+            android:paddingLeft="12dp"
             android:text="Posalji upit"
-            android:textColor="#FFFFFF" />
+            android:textColor="#FFFFFF" />-->
+
+        <TextView
+            android:id="@+id/slikaLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:layout_below="@+id/opisKvaraTxt"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="22dp"
+
+            android:text="Slika:"
+            android:textStyle="bold"
+            android:layout_gravity="center"
+            />
+
+        <ImageView
+            android:id="@+id/slikaKvaraIMG"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/slikaLabel"
+
+            android:layout_alignBottom="@+id/slikaLabel"
+            android:layout_alignLeft="@+id/opisKvaraTxt"
+
+            android:layout_alignStart="@+id/opisKvaraTxt"
+            android:adjustViewBounds="true"
+            android:maxHeight="350dp"
+            android:maxWidth="180dp"
+            app:srcCompat="@drawable/gradient"
+            />
 
 
     </RelativeLayout>

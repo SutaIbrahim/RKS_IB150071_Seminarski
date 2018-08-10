@@ -14,7 +14,6 @@ public class UpitiResultVM implements Serializable{
         public String OpisKvara;
         public String MarkaUredjaja; // atribut marka je i za model i marku
         public String Naslov;
-        public byte[] Slika;
         public String KlijentID;
     }
     public List<UpitiResultVM.Row> rows;

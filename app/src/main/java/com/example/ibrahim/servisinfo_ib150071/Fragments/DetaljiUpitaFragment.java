@@ -2,11 +2,14 @@ package com.example.ibrahim.servisinfo_ib150071.Fragments;
 
 
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.ibrahim.servisinfo_ib150071.Helper.MyApiRequest;
@@ -24,7 +27,9 @@ public class DetaljiUpitaFragment extends Fragment {
     TextView kompanija;
     TextView uredjaj;
     TextView opis;
+    ImageView img;
     Bitmap slika;
+    TextView slikaLbl;
 
 
     private static final String ARG_PARAM1 = "param1";
@@ -67,6 +72,9 @@ public class DetaljiUpitaFragment extends Fragment {
         kompanija=(TextView) view.findViewById(R.id.kompanijaUTxt);
         uredjaj=(TextView) view.findViewById(R.id.uredjaUTxt);
         opis=(TextView) view.findViewById(R.id.opisKvaraTxt);
+        img=(ImageView) view.findViewById(R.id.slikaKvaraIMG);
+        slikaLbl=(TextView) view.findViewById(R.id.slikaLabel);
+
 
         popuniPodatkeTask();
 
@@ -100,10 +108,35 @@ public class DetaljiUpitaFragment extends Fragment {
 
         naslov.setText(u.Naslov);
         datum.setText(u.Datum.toString());
-        kompanija.setText(u.Datum.toString());
+        kompanija.setText(u.Kompanija);
         uredjaj.setText(u.MarkaUredjaja);
         opis.setText(u.OpisKvara);
 
+
+        if(StringToBitMap(u.EncodedImage) !=null){
+            img.setImageBitmap(StringToBitMap(u.EncodedImage));
+        }
+        else{
+            img.setImageBitmap(StringToBitMap(u.EncodedImage));
+            slikaLbl.setText("");
+        }
+
+        // image_view.setImageBitmap(selectedImage); //pregled izabrane slike
+
+
+
+
+    }
+
+    public Bitmap StringToBitMap(String strng){
+        try{
+            byte [] encodeByte= Base64.decode(strng,Base64.DEFAULT);
+            Bitmap bitmap= BitmapFactory.decodeByteArray(encodeByte, 0, encodeByte.length);
+            return bitmap;
+        }catch(Exception e){
+            e.getMessage();
+            return null;
+        }
     }
 
 }
