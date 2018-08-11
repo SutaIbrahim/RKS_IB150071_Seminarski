@@ -25,11 +25,8 @@ import com.example.ibrahim.servisinfo_ib150071.Helper.MyRunnable;
 import com.example.ibrahim.servisinfo_ib150071.data.Global;
 import com.example.ibrahim.servisinfo_ib150071.data.UpitiResultVM;
 
-import java.util.List;
-
 public class UpitiActivity extends AppCompatActivity {
     private DrawerLayout drawer;
-    private List<Person> persons;
     private ListView rv;
     private UpitiResultVM podaci;
     private BaseAdapter adapter;
@@ -60,7 +57,16 @@ public class UpitiActivity extends AppCompatActivity {
         toggle.syncState();
 
 
-        NavigationView navigationView = findViewById(R.id.nav_view);
+
+        NavigationView navigationView =(NavigationView) findViewById(R.id.nav_view);
+
+
+        //postavljanje username-a
+        View headerView = navigationView.inflateHeaderView(R.layout.nav_header_main);
+        TextView t= (TextView) headerView.findViewById(R.id.korisnikTxt);
+        t.setText(Global.prijavljeniKlijent.Ime +" " +Global.prijavljeniKlijent.Prezime);
+
+
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -72,10 +78,17 @@ public class UpitiActivity extends AppCompatActivity {
                 } else if (id == R.id.nav_upiti) {
 
                 } else if (id == R.id.nav_postavke) {
+                    startActivity(new Intent(UpitiActivity.this, PostavkeActivity.class));
 
                 } else if (id == R.id.nav_odjava) {
-                    finish();
+                    Global.prijavljeniKlijent=null;
+                    startActivity(new Intent(UpitiActivity.this, LoginActivity.class));
+
                 }
+
+
+
+
 
 
                 DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -193,6 +206,18 @@ lvUpiti.setOnItemClickListener(new AdapterView.OnItemClickListener() {
         }
         return super.onOptionsItemSelected(item);
     }
+
+@Override
+    public void onBackPressed() {
+    DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+    if (drawer.isDrawerOpen(GravityCompat.START)) {
+        drawer.closeDrawer(GravityCompat.START);
+    } else {
+        startActivity(new Intent(UpitiActivity.this, MainActivity.class));
+    }
+    }
+
+
 
     }
 

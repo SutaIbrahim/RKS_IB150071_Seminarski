@@ -20,19 +20,15 @@
             android:id="@+id/nav_odjava"
             android:icon="@drawable/ic_menu_manage"
             android:title="Odjava" />-->
-    </group>
+        <item
+            android:id="@+id/nav_postavke"
+            android:icon="@drawable/ic_action_settings"
+            android:title="Postavke" />
 
-    <item android:title="Communicate">
-        <menu>
-            <item
-                android:id="@+id/nav_postavke"
-                android:icon="@drawable/ic_action_settings"
-                android:title="Postavke" />
-            <item
-                android:id="@+id/nav_odjava"
-                android:icon="@drawable/ic_action_logout"
-                android:title="Odjava" />
-        </menu>
-    </item>
+        <item
+            android:id="@+id/nav_odjava"
+            android:icon="@drawable/ic_action_logout"
+            android:title="Odjava" />
+    </group>
 
 </menu>

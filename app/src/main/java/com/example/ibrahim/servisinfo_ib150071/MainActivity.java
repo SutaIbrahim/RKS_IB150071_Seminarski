@@ -37,7 +37,6 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    private List<Person> persons;
     private RecyclerView rv;
     private KompanijePregledVM podaci;
     private GradoviResultVM gradovi;
@@ -74,9 +73,17 @@ public class MainActivity extends AppCompatActivity
 
 // moje->
 
+
+        //postavljanje username-a
+        View headerView = navigationView.inflateHeaderView(R.layout.nav_header_main);
+       TextView t= (TextView) headerView.findViewById(R.id.korisnikTxt);
+        t.setText(Global.prijavljeniKlijent.Ime +" " +Global.prijavljeniKlijent.Prezime);
+
+
+
+
+
         lvKompanije=(ListView) findViewById(R.id.rv);
-
-
 
 
 
@@ -260,7 +267,13 @@ private void popuniPodatke() {
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            super.onBackPressed();
+
+            //izadji iz app
+
+            Intent homeIntent = new Intent(Intent.ACTION_MAIN);
+            homeIntent.addCategory( Intent.CATEGORY_HOME );
+            homeIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(homeIntent);
         }
     }
 
@@ -301,8 +314,9 @@ private void popuniPodatke() {
             startActivity(new Intent(MainActivity.this,PostavkeActivity.class));
 
         } else if (id == R.id.nav_odjava) {
-          /*finish();*/
-            startActivity(new Intent(MainActivity.this,PonudeActivity.class));
+            Global.prijavljeniKlijent=null;
+            finish();
+            startActivity(new Intent(MainActivity.this,LoginActivity.class));
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

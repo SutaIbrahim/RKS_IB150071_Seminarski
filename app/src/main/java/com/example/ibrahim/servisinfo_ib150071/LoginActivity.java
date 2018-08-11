@@ -87,4 +87,15 @@ public class LoginActivity extends AppCompatActivity {
 
         }
     }
+
+    @Override
+    public void onBackPressed() {
+        //ako se klijent odjavi da se ne moze vratiti u aplikaciju vec pritiskom na back izlazi se iz aplikacije
+
+        Intent homeIntent = new Intent(Intent.ACTION_MAIN);
+        homeIntent.addCategory( Intent.CATEGORY_HOME );
+        homeIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(homeIntent);
+
+    }
 }

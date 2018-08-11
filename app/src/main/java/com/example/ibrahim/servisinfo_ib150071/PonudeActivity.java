@@ -15,13 +15,10 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 
-import java.util.List;
-
 
 
 
 public class PonudeActivity extends AppCompatActivity {
-    private List<Person> persons;
     private RecyclerView rv;
     private DrawerLayout drawer;
 
