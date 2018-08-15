@@ -6,9 +6,11 @@ package com.example.ibrahim.servisinfo_ib150071.Helper;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.design.widget.Snackbar;
+import android.support.v7.app.AlertDialog;
 import android.view.View;
 import android.widget.Toast;
 
@@ -23,7 +25,7 @@ public class MyApiRequest {
 
             @Override
             protected void onPreExecute() {
-                progressDialog = ProgressDialog.show(activity, "Loading", "Sačekajte...");
+                progressDialog = ProgressDialog.show(activity, "Učitavanje", "Sačekajte...");
             }
 
             @Override
@@ -42,7 +44,7 @@ public class MyApiRequest {
                 {
                     if (result.resultCode == 401)
                     {
-                        Toast.makeText(activity, "Niste logirani", Toast.LENGTH_LONG).show();
+                        Toast.makeText(activity, "Niste prijavljeni", Toast.LENGTH_LONG).show();
                         activity.startActivity(new Intent(activity, LoginActivity.class));
                     }
                     else {
@@ -50,17 +52,47 @@ public class MyApiRequest {
                         Snackbar snackbar;
                         if (result.resultCode == 0) {
                             snackbar = Snackbar.make(parentLayout, "Greška u komunikaciji sa serverom.", Snackbar.LENGTH_LONG);
-                        } else {
-                            snackbar = Snackbar.make(parentLayout, "Greška " + result.resultCode + ": " + result.errorMessage, Snackbar.LENGTH_LONG);
-                        }
-
-                        snackbar.setAction("Ponovi", new View.OnClickListener() {
+                                snackbar.setAction("Ponovi", new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
                                 MyApiRequest.get(activity, urlAction, myCallback);
                             }
                         });
                         snackbar.show();
+                        } else {
+
+                           /* snackbar = Snackbar.make(parentLayout, "Došlo je do greške, pokušajte opet",Snackbar.LENGTH_LONG);*/
+
+                            /*snackbar = Snackbar.make(parentLayout, "Greška " + result.resultCode + ": " + result.errorMessage, Snackbar.LENGTH_LONG);*/
+                            AlertDialog alertDialog = new AlertDialog.Builder(activity).create();
+                            alertDialog.setTitle("Greška");
+                            alertDialog.setMessage("Doslo je do greške");
+                            alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "Pokušaj opet",
+                                    new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            MyApiRequest.get(activity, urlAction, myCallback);
+                                        }
+                                    });
+
+                            alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "Nazad",
+                                    new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            dialog.dismiss();
+                                        }
+                                    });
+
+
+                            alertDialog.show();
+
+                        }
+
+                    /*    snackbar.setAction("Ponovi", new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                MyApiRequest.get(activity, urlAction, myCallback);
+                            }
+                        });
+                        snackbar.show();*/
                     }
                 }
                 else
@@ -85,7 +117,7 @@ public class MyApiRequest {
 
                             } catch (Exception ee) {*/
                                 View parentLayout = activity.findViewById(android.R.id.content);
-                                Snackbar.make(parentLayout, "Greška u aplikaciji. ", Snackbar.LENGTH_LONG).show();
+                                Snackbar.make(parentLayout, "Doslo je do greske unutar aplikacije!", Snackbar.LENGTH_LONG).show();
                             }
                         //}
                         myCallback.run(x);

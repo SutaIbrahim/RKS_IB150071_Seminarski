@@ -1,12 +1,14 @@
 package com.example.ibrahim.servisinfo_ib150071;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -212,52 +214,62 @@ public class MainActivity extends AppCompatActivity
 
 private void popuniPodatke() {
 
-        adapter = new BaseAdapter() {
-        @Override
-        public int getCount() {
-            return podaci.rows.size();
+
+        if(podaci.rows.size()==0) {
+
+            AlertDialog alertDialog = new AlertDialog.Builder(MainActivity.this).create();
+            alertDialog.setTitle("Info");
+            alertDialog.setMessage("Nije pronadjen nijedan servis u izabranom gradu");
+            alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            popuniPodatkeTask("0");
+                            dialog.dismiss();
+                        }
+                    });
+            alertDialog.show();
+
         }
 
-        @Override
-        public Object getItem(int position) {
-            return null;
-        }
+            adapter = new BaseAdapter() {
+                @Override
+                public int getCount() {
+                    return podaci.rows.size();
+                }
 
-        @Override
-        public long getItemId(int position) {
-            return 0;
-        }
+                @Override
+                public Object getItem(int position) {
+                    return null;
+                }
 
-        @Override
-        public View getView(int position, View view, final ViewGroup parent) {
+                @Override
+                public long getItemId(int position) {
+                    return 0;
+                }
 
-            if (view == null) {
-                LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                view = inflater.inflate(R.layout.item, parent, false);
-            }
-            TextView txtFirstLine = view.findViewById(R.id.NazivKompanijeTxt);
-            TextView txtSecondLine = view.findViewById(R.id.AdresaKompanijeTxt);
-            TextView txtKID = view.findViewById(R.id.KompanijaIDHiddenTxt);
+                @Override
+                public View getView(int position, View view, final ViewGroup parent) {
 
-            KompanijePregledVM.Row x = podaci.rows.get(position);
+                    if (view == null) {
+                        LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                        view = inflater.inflate(R.layout.item, parent, false);
+                    }
+                    TextView txtFirstLine = view.findViewById(R.id.NazivKompanijeTxt);
+                    TextView txtSecondLine = view.findViewById(R.id.AdresaKompanijeTxt);
+                    TextView txtKID = view.findViewById(R.id.KompanijaIDHiddenTxt);
 
-            txtFirstLine.setText(x.Naziv);
-            txtSecondLine.setText(x.Adresa + ", " + x.Grad);
-            txtKID.setText( String.valueOf(x.KompanijaID));
+                    KompanijePregledVM.Row x = podaci.rows.get(position);
 
-
-
-
-            return view;
-        }
-    };
-
-    lvKompanije.setAdapter(adapter);
+                    txtFirstLine.setText(x.Naziv);
+                    txtSecondLine.setText(x.Adresa + ", " + x.Grad);
+                    txtKID.setText(String.valueOf(x.KompanijaID));
 
 
+                    return view;
+                }
+            };
 
-
-
+            lvKompanije.setAdapter(adapter);
 
     }
 
@@ -289,12 +301,20 @@ private void popuniPodatke() {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
+
+
+
+        startActivity(new Intent(MainActivity.this,PostavkeActivity.class));
+
+
         int id = item.getItemId();
+/*
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
         }
+*/
 
         return super.onOptionsItemSelected(item);
     }
@@ -318,6 +338,8 @@ private void popuniPodatke() {
             finish();
             startActivity(new Intent(MainActivity.this,LoginActivity.class));
         }
+
+
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);

@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -39,16 +38,16 @@ public class UpitiActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbarAdd);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+       /* FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(UpitiActivity.this, DodajUpitActivity.class));
 
-               /* Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();*/
+               *//* Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();*//*
             }
-        });
+        });*/
 
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -155,45 +154,52 @@ lvUpiti.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
     private void popuniPodatke() {
 
-        adapter = new BaseAdapter() {
-            @Override
-            public int getCount() {
-                return podaci.rows.size();
-            }
+        if(podaci.rows.size()>0) {
 
-            @Override
-            public Object getItem(int position) {
-                return null;
-            }
-
-            @Override
-            public long getItemId(int position) {
-                return 0;
-            }
-
-            @Override
-            public View getView(int position, View view, ViewGroup parent) {
-
-                if (view == null) {
-                    LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                    view = inflater.inflate(R.layout.itemupiti, parent, false);
+            adapter = new BaseAdapter() {
+                @Override
+                public int getCount() {
+                    return podaci.rows.size();
                 }
-                TextView txtFirstLine = view.findViewById(R.id.NaslovUpitaTxt);
-                TextView txtSecondLine = view.findViewById(R.id.MarkaUredjajaTxt);
-               TextView txtHidden = view.findViewById(R.id.UpitIDHiddenTxt);
 
-                UpitiResultVM.Row x = podaci.rows.get(position);
+                @Override
+                public Object getItem(int position) {
+                    return null;
+                }
 
-                txtFirstLine.setText(x.Naslov);
-                txtSecondLine.setText(x.MarkaUredjaja);
-                txtHidden.setText(String.valueOf(x.UpitID));
+                @Override
+                public long getItemId(int position) {
+                    return 0;
+                }
 
-                return view;
-            }
-        };
+                @Override
+                public View getView(int position, View view, ViewGroup parent) {
 
-        lvUpiti.setAdapter(adapter);
+                    if (view == null) {
+                        LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                        view = inflater.inflate(R.layout.itemupiti, parent, false);
+                    }
+                    TextView txtFirstLine = view.findViewById(R.id.NaslovUpitaTxt);
+                    TextView txtSecondLine = view.findViewById(R.id.MarkaUredjajaTxt);
+                    TextView txtHidden = view.findViewById(R.id.UpitIDHiddenTxt);
 
+                    UpitiResultVM.Row x = podaci.rows.get(position);
+
+                    txtFirstLine.setText(x.Naslov);
+                    txtSecondLine.setText(x.MarkaUredjaja);
+                    txtHidden.setText(String.valueOf(x.UpitID));
+
+                    return view;
+                }
+            };
+
+            lvUpiti.setAdapter(adapter);
+        }
+
+        else {
+            TextView u=(TextView) findViewById(R.id.textView3);
+            u.setText("Nije pronadjen nijedan upit");
+        }
     }
 
 

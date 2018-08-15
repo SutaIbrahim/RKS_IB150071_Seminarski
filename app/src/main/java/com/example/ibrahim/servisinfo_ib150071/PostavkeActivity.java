@@ -36,32 +36,34 @@ public class PostavkeActivity extends AppCompatActivity {
             }
         });
 
-
     }
 
     private void do_btn_clicl() {
 
-        Global.prijavljeniKlijent.KorisickoIme=user.getText().toString();
-Global.prijavljeniKlijent.Email=email.getText().toString();
-        Global.prijavljeniKlijent.Telefon=tel.getText().toString();
-        MyApiRequest.put(this, "api/Klijenti/",Global.prijavljeniKlijent, new MyRunnable<AutentifikacijaResultVM>() {
-            @Override
-            public void run(AutentifikacijaResultVM x) {
-                AlertDialog alertDialog = new AlertDialog.Builder(PostavkeActivity.this).create();
-                alertDialog.setTitle("Info");
-                alertDialog.setMessage("Uspjesno ste uredili profil");
-                alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
-                        new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int which) {
-                                Incijalizacija(); // refresh
-                                dialog.dismiss();
-                            }
-                        });
-                alertDialog.show();
-            }
-        });
+        if(validacija()) {
 
 
+            Global.prijavljeniKlijent.KorisickoIme = user.getText().toString();
+            Global.prijavljeniKlijent.Email = email.getText().toString();
+            Global.prijavljeniKlijent.Telefon = tel.getText().toString();
+            MyApiRequest.put(this, "api/Klijenti/", Global.prijavljeniKlijent, new MyRunnable<AutentifikacijaResultVM>() {
+                @Override
+                public void run(AutentifikacijaResultVM x) {
+                    AlertDialog alertDialog = new AlertDialog.Builder(PostavkeActivity.this).create();
+                    alertDialog.setTitle("Info");
+                    alertDialog.setMessage("Uspjesno ste uredili profil");
+                    alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    Incijalizacija(); // refresh
+                                    dialog.dismiss();
+                                }
+                            });
+                    alertDialog.show();
+                }
+            });
+
+        }
     }
 
 
@@ -75,7 +77,42 @@ Global.prijavljeniKlijent.Email=email.getText().toString();
         user.setText(Global.prijavljeniKlijent.KorisickoIme);
     }
 
+    private boolean validacija() {
 
+        AlertDialog alertDialog = new AlertDialog.Builder(PostavkeActivity.this).create();
+        alertDialog.setTitle("Greška");
+        alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+
+
+        if( android.util.Patterns.EMAIL_ADDRESS.matcher(email.getText().toString()).matches()==false) {
+            alertDialog.setMessage("Email nije u ispravnom formatu");
+            alertDialog.show();
+
+            return false;
+        }
+
+        if( tel.getText().toString().length()<6) {
+            alertDialog.setMessage("Telefon treba sadrzavati najmanje 6 brojeva");
+            alertDialog.show();
+
+            return false;
+        }
+
+        if( user.getText().toString().length()<4) {
+            alertDialog.setMessage("Korisnicko treba sadrzavati vise od 3 karaktera");
+            alertDialog.show();
+
+            return false;
+        }
+
+
+        return true;
+    }
 
 
 }

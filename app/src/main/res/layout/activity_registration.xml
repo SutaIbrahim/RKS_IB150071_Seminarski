@@ -70,7 +70,7 @@
         android:layout_below="@+id/EmailTxt"
         android:ems="10"
         android:hint="Telefon"
-        android:inputType="textPersonName" />
+        android:inputType="phone" />
 
     <EditText
         android:id="@+id/EmailTxt"
