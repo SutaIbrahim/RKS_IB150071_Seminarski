@@ -1,8 +1,10 @@
 package com.example.ibrahim.servisinfo_ib150071;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
@@ -57,20 +59,45 @@ public class LoginActivity extends AppCompatActivity {
     }
 
         private void do_btn_Click () {
+
+        if(validacija()) {
+
+
             String strUsername = txtUsername.getText().toString();
             String strPassword = txtPassword.getText().toString();
 
 
             AutentifikacijaLoginPostVM model = new AutentifikacijaLoginPostVM(strUsername, strPassword);
 
-            MyApiRequest.get(this, "api/Autentifikacija/LoginCheck/"+strUsername+"/"+strPassword, new MyRunnable<AutentifikacijaResultVM>() {
+            MyApiRequest.get(this, "api/Autentifikacija/LoginCheck/" + strUsername + "/" + strPassword, new MyRunnable<AutentifikacijaResultVM>() {
                 @Override
                 public void run(AutentifikacijaResultVM x) {
                     checkLogin(x);
                 }
             });
-
         }
+        else{
+            AlertDialog alertDialog = new AlertDialog.Builder(LoginActivity.this).create();
+            alertDialog.setTitle("Greska");
+            alertDialog.setMessage("Polje username i/ili password je prazno");
+            alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    });
+            alertDialog.show();
+        }
+        }
+
+    private boolean validacija() {
+        if(txtUsername.getText().toString().isEmpty())
+            return false;
+        if(txtPassword.getText().toString().isEmpty())
+            return false;
+        return true;
+    }
+
 
     private void checkLogin(AutentifikacijaResultVM x) {
         if (x==null)

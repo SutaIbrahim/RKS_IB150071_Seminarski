@@ -151,9 +151,9 @@
             style="@android:style/Widget.Material.Button.Colored"
             android:layout_width="279dp"
             android:layout_height="46dp"
-            android:layout_below="@+id/emailTxt"
+            android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="42dp"
+            android:layout_marginBottom="20dp"
             android:backgroundTint="@color/colorPrimaryDark"
             android:text="Spasi izmjene"
             android:textColor="#ffffff" />

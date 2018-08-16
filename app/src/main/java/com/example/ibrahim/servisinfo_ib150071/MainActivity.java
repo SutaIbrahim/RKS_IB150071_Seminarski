@@ -108,7 +108,7 @@ public class MainActivity extends AppCompatActivity
 
 
         popuniGradoveTask();
-        popuniPodatkeTask("0");
+       // popuniPodatkeTask("0");
 
 
         lvKompanije.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -176,7 +176,7 @@ public class MainActivity extends AppCompatActivity
     private void popuniGradove(){
 
         List<String> gradList = new ArrayList<String>();
-        gradList.add("---");
+        gradList.add("All");
 
         for(GradoviResultVM.Row x :gradovi.rows){
             gradList.add(x.Naziv);
@@ -191,7 +191,7 @@ public class MainActivity extends AppCompatActivity
 
     private void popuniPodatkeTask( String grad) {
 
-        if(grad!="0") {
+        if(grad!="0" && grad!="All") {
             MyApiRequest.get(this, "/api/kompanije/GetKompanije/"+ grad, new MyRunnable<KompanijePregledVM>() {
                 @Override
                 public void run(KompanijePregledVM x) {
@@ -219,11 +219,10 @@ private void popuniPodatke() {
 
             AlertDialog alertDialog = new AlertDialog.Builder(MainActivity.this).create();
             alertDialog.setTitle("Info");
-            alertDialog.setMessage("Nije pronadjen nijedan servis u izabranom gradu");
+            alertDialog.setMessage("Nije pronadjen nijedna kompanija u izabranom gradu");
             alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
                     new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int which) {
-                            popuniPodatkeTask("0");
                             dialog.dismiss();
                         }
                     });

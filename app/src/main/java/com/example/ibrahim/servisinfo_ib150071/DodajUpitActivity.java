@@ -123,7 +123,7 @@ public class DodajUpitActivity extends AppCompatActivity {
             //slika bitmap to byte[]
             if (slika != null) {
                 ByteArrayOutputStream stream = new ByteArrayOutputStream();
-                slika.compress(Bitmap.CompressFormat.JPEG, 20, stream);
+                slika.compress(Bitmap.CompressFormat.JPEG, 10, stream);
                 byte[] byteArray = stream.toByteArray();
 
                 // Bitmap bitmap = BitmapFactory.decodeByteArray(byteArray , 0, byteArray.length); - obrnuto
@@ -140,7 +140,7 @@ public class DodajUpitActivity extends AppCompatActivity {
             MyApiRequest.post(this, "api/Upiti", model, new MyRunnable<UpitiVM>() {
                 @Override
                 public void run(UpitiVM x) {
-                    Toast.makeText(DodajUpitActivity.this, "Upit uspjesno poslan", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(DodajUpitActivity.this, "Upit uspjesno poslan, odgovor ce biti poslan na vasu email adresu", Toast.LENGTH_SHORT).show();
                     finish();
                 }
             });

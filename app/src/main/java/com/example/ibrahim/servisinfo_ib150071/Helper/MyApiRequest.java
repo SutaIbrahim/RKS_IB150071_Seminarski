@@ -51,7 +51,7 @@ public class MyApiRequest {
                         View parentLayout = activity.findViewById(android.R.id.content);
                         Snackbar snackbar;
                         if (result.resultCode == 0) {
-                            snackbar = Snackbar.make(parentLayout, "Greška u komunikaciji sa serverom.", Snackbar.LENGTH_LONG);
+                            snackbar = Snackbar.make(parentLayout, "Greška u komunikaciji sa serverom, pokusajte kasnije", Snackbar.LENGTH_LONG);
                                 snackbar.setAction("Ponovi", new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
@@ -66,7 +66,7 @@ public class MyApiRequest {
                             /*snackbar = Snackbar.make(parentLayout, "Greška " + result.resultCode + ": " + result.errorMessage, Snackbar.LENGTH_LONG);*/
                             AlertDialog alertDialog = new AlertDialog.Builder(activity).create();
                             alertDialog.setTitle("Greška");
-                            alertDialog.setMessage("Doslo je do greške");
+                            alertDialog.setMessage("Doslo je do greške, provjerite internet vezu ili pokusajte kasnije");
                             alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "Pokušaj opet",
                                     new DialogInterface.OnClickListener() {
                                         public void onClick(DialogInterface dialog, int which) {

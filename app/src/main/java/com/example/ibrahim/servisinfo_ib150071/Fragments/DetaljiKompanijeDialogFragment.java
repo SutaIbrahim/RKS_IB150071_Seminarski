@@ -83,8 +83,7 @@ TextView email;
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(getActivity(), DodajUpitActivity.class));
-                dismiss();
-
+                getDialog().dismiss();
             }
         });
 
@@ -92,7 +91,8 @@ TextView email;
         nazadBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                dismiss();
+                getDialog().dismiss();
+
             }
         });
 

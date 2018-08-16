@@ -10,7 +10,8 @@
     >
     <RelativeLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        >
 
        <!-- <android.support.design.widget.AppBarLayout
             android:layout_width="match_parent"
@@ -217,10 +218,22 @@
 
             android:layout_alignStart="@+id/opisKvaraTxt"
             android:adjustViewBounds="true"
-            android:maxHeight="350dp"
+            android:maxHeight="260dp"
             android:maxWidth="180dp"
             app:srcCompat="@drawable/gradient"
             />
+        <Button
+            android:id="@+id/izbrisiUpitBtn"
+            style="@android:style/Widget.Material.Button.Colored"
+            android:layout_width="279dp"
+            android:layout_height="46dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="20dp"
+            android:backgroundTint="@color/colorAccent"
+            android:text="Izbrisi upit"
+            android:textColor="#ffffff" />
+
 
 
     </RelativeLayout>
