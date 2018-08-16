@@ -75,24 +75,23 @@ public class DetaljiUpitaFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view=inflater.inflate(R.layout.fragment_detalji_upita, container, false);
+        View view = inflater.inflate(R.layout.fragment_detalji_upita, container, false);
 
 
+        naslov = (TextView) view.findViewById(R.id.NazivUTxt);
+        datum = (TextView) view.findViewById(R.id.datumUTxt);
+        kompanija = (TextView) view.findViewById(R.id.kompanijaUTxt);
+        uredjaj = (TextView) view.findViewById(R.id.uredjaUTxt);
+        opis = (TextView) view.findViewById(R.id.opisKvaraTxt);
+        img = (ImageView) view.findViewById(R.id.slikaKvaraIMG);
+        slikaLbl = (TextView) view.findViewById(R.id.slikaLabel);
 
-        naslov=(TextView) view.findViewById(R.id.NazivUTxt);
-        datum=(TextView) view.findViewById(R.id.datumUTxt);
-        kompanija=(TextView) view.findViewById(R.id.kompanijaUTxt);
-        uredjaj=(TextView) view.findViewById(R.id.uredjaUTxt);
-        opis=(TextView) view.findViewById(R.id.opisKvaraTxt);
-        img=(ImageView) view.findViewById(R.id.slikaKvaraIMG);
-        slikaLbl=(TextView) view.findViewById(R.id.slikaLabel);
-
-        izbrisiButton=(Button) view.findViewById(R.id.izbrisiUpitBtn);
+        izbrisiButton = (Button) view.findViewById(R.id.izbrisiUpitBtn);
 
         popuniPodatkeTask();
 
         img.buildDrawingCache();
-        bm=img.getDrawingCache();
+        bm = img.getDrawingCache();
 
         img.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -108,10 +107,9 @@ public class DetaljiUpitaFragment extends Fragment {
                     @Override
                     public void run(UpitiVM x) {
                         Toast.makeText(getActivity(), "Upit uspjesno izbrisan", Toast.LENGTH_SHORT).show();
-                        startActivity(new Intent(getActivity(),UpitiActivity.class));
+                        startActivity(new Intent(getActivity(), UpitiActivity.class));
                     }
                 });
-
             }
         });
 
@@ -135,16 +133,14 @@ public class DetaljiUpitaFragment extends Fragment {
     private void popuniPodatke() {
 
         naslov.setText(u.Naslov);
-        datum.setText(u.Datum.toString());
+        datum.setText(u.Datum.toLocaleString().toString());
         kompanija.setText(u.Kompanija);
         uredjaj.setText(u.MarkaUredjaja);
         opis.setText(u.OpisKvara);
 
-
-        if(StringToBitMap(u.EncodedImage) !=null){
+        if (StringToBitMap(u.EncodedImage) != null) {
             img.setImageBitmap(StringToBitMap(u.EncodedImage));
-        }
-        else{
+        } else {
             img.setImageBitmap(StringToBitMap(u.EncodedImage));
             slikaLbl.setText("");
         }
@@ -152,28 +148,26 @@ public class DetaljiUpitaFragment extends Fragment {
         // image_view.setImageBitmap(selectedImage); //pregled izabrane slike
 
 
-
-
     }
 
-    public Bitmap StringToBitMap(String strng){
-        try{
-            byte [] encodeByte= Base64.decode(strng,Base64.DEFAULT);
-            Bitmap bitmap= BitmapFactory.decodeByteArray(encodeByte, 0, encodeByte.length);
+    public Bitmap StringToBitMap(String strng) { //nakon klika
+        try {
+            byte[] encodeByte = Base64.decode(strng, Base64.DEFAULT);
+            Bitmap bitmap = BitmapFactory.decodeByteArray(encodeByte, 0, encodeByte.length);
             return bitmap;
-        }catch(Exception e){
+        } catch (Exception e) {
             e.getMessage();
             return null;
         }
     }
 
 
-    private void preuzmiSlikuNaUredjaj(){
+    private void preuzmiSlikuNaUredjaj() {
         OutputStream fOut = null;
         Uri outputFileUri;
         try {
             File root = new File(Environment.getExternalStorageDirectory()
-                    + File.separator + "Phone/dcim/Auto" + File.separator);
+                    + File.separator + "/media/external/images/" + File.separator);
             root.mkdirs();
             File sdImageMainDirectory = new File(root, "ServisInfo.jpg");
             outputFileUri = Uri.fromFile(sdImageMainDirectory);

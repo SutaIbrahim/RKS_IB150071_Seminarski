@@ -26,9 +26,10 @@ public class ZaFragmentActivity extends AppCompatActivity {
             }
         });*/
 
-        Util.otvoriFragmentKaoReplace(this,R.id.mjestoFragment2, DetaljiUpitaFragment.newInstance(Global.izabraniUpitID));
 
-       // startActivity(new Intent(this, MainActivity.class));
+
+        Util.otvoriFragmentKaoReplace(this, R.id.mjestoFragment2, DetaljiUpitaFragment.newInstance(Global.izabraniUpitID));
+
 
     }
 

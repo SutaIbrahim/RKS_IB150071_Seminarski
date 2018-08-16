@@ -27,7 +27,7 @@ public class PostavkeActivity extends AppCompatActivity {
         //
 
         Incijalizacija();
-        SpasiBtn=(Button) findViewById(R.id.spasiProfilBtn);
+        SpasiBtn = (Button) findViewById(R.id.spasiProfilBtn);
 
         SpasiBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -40,7 +40,7 @@ public class PostavkeActivity extends AppCompatActivity {
 
     private void do_btn_clicl() {
 
-        if(validacija()) {
+        if (validacija()) {
 
 
             Global.prijavljeniKlijent.KorisickoIme = user.getText().toString();
@@ -68,11 +68,11 @@ public class PostavkeActivity extends AppCompatActivity {
 
 
     private void Incijalizacija() {
-        tel = (TextView)findViewById(R.id.telefonTxt);
-        email = (TextView)findViewById(R.id.emailTxt);
-        user = (TextView)findViewById(R.id.usernameTxt);
+        tel = (TextView) findViewById(R.id.telefonTxt);
+        email = (TextView) findViewById(R.id.emailTxt);
+        user = (TextView) findViewById(R.id.usernameTxt);
 
-        tel.setText( Global.prijavljeniKlijent.Telefon);
+        tel.setText(Global.prijavljeniKlijent.Telefon);
         email.setText(Global.prijavljeniKlijent.Email);
         user.setText(Global.prijavljeniKlijent.KorisickoIme);
     }
@@ -89,21 +89,21 @@ public class PostavkeActivity extends AppCompatActivity {
                 });
 
 
-        if( android.util.Patterns.EMAIL_ADDRESS.matcher(email.getText().toString()).matches()==false) {
+        if (android.util.Patterns.EMAIL_ADDRESS.matcher(email.getText().toString()).matches() == false) {
             alertDialog.setMessage("Email nije u ispravnom formatu");
             alertDialog.show();
 
             return false;
         }
 
-        if( tel.getText().toString().length()<6) {
+        if (tel.getText().toString().length() < 6) {
             alertDialog.setMessage("Telefon treba sadrzavati najmanje 6 brojeva");
             alertDialog.show();
 
             return false;
         }
 
-        if( user.getText().toString().length()<4) {
+        if (user.getText().toString().length() < 4) {
             alertDialog.setMessage("Korisnicko treba sadrzavati vise od 3 karaktera");
             alertDialog.show();
 

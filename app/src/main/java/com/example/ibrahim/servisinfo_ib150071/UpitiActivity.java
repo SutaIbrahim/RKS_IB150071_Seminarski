@@ -56,14 +56,13 @@ public class UpitiActivity extends AppCompatActivity {
         toggle.syncState();
 
 
-
-        NavigationView navigationView =(NavigationView) findViewById(R.id.nav_view);
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
 
 
         //postavljanje username-a
         View headerView = navigationView.inflateHeaderView(R.layout.nav_header_main);
-        TextView t= (TextView) headerView.findViewById(R.id.korisnikTxt);
-        t.setText(Global.prijavljeniKlijent.Ime +" " +Global.prijavljeniKlijent.Prezime);
+        TextView t = (TextView) headerView.findViewById(R.id.korisnikTxt);
+        t.setText(Global.prijavljeniKlijent.Ime + " " + Global.prijavljeniKlijent.Prezime);
 
 
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
@@ -80,14 +79,10 @@ public class UpitiActivity extends AppCompatActivity {
                     startActivity(new Intent(UpitiActivity.this, PostavkeActivity.class));
 
                 } else if (id == R.id.nav_odjava) {
-                    Global.prijavljeniKlijent=null;
+                    Global.prijavljeniKlijent = null;
                     startActivity(new Intent(UpitiActivity.this, LoginActivity.class));
 
                 }
-
-
-
-
 
 
                 DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -97,46 +92,27 @@ public class UpitiActivity extends AppCompatActivity {
         });
 
 
-   /*     LinearLayoutManager llm = new LinearLayoutManager(this);
-        rv.setLayoutManager(llm);*/
 
+        lvUpiti = (ListView) findViewById(R.id.lvUpiti);
 
-        lvUpiti=(ListView) findViewById(R.id.lvUpiti);
+        lvUpiti.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
-lvUpiti.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-    @Override
-    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                //pohrani izabrani upit
+                String selected = ((TextView) view.findViewById(R.id.UpitIDHiddenTxt)).getText().toString();
+                Global.izabraniUpitID = Integer.parseInt(selected);
 
-        //pohrani izabrani upit
-        String selected = ((TextView) view.findViewById(R.id.UpitIDHiddenTxt)).getText().toString();
-        Global.izabraniUpitID= Integer.parseInt(selected);
-
-        do_item_Click();
-    }
-});
+                do_item_Click();
+            }
+        });
 
         popuniPodatkeTask();
-
-
-
-
 
     }
 
     private void do_item_Click() {
-/*        AlertDialog alertDialog = new AlertDialog.Builder(UpitiActivity.this).create();
-        alertDialog.setTitle("Alert");
-        alertDialog.setMessage("Alert message to be shown");
-        alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
-                new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                    }
-                });
-        alertDialog.show();*/
-
         startActivity(new Intent(this, ZaFragmentActivity.class));
-
     }
 
     private void popuniPodatkeTask() {
@@ -144,17 +120,16 @@ lvUpiti.setOnItemClickListener(new AdapterView.OnItemClickListener() {
         MyApiRequest.get(this, "/api/upiti/getUpitiByKlijentID/" + String.valueOf(Global.prijavljeniKlijent.KlijentID), new MyRunnable<UpitiResultVM>() {
             @Override
             public void run(UpitiResultVM x) {
-                podaci = x; //postavljeno kao field radi    adapter.notifyDataSetChanged();
+                podaci = x;
                 popuniPodatke();
             }
         });
     }
 
 
-
     private void popuniPodatke() {
 
-        if(podaci.rows.size()>0) {
+        if (podaci.rows.size() > 0) {
 
             adapter = new BaseAdapter() {
                 @Override
@@ -194,14 +169,11 @@ lvUpiti.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             };
 
             lvUpiti.setAdapter(adapter);
-        }
-
-        else {
-            TextView u=(TextView) findViewById(R.id.textView3);
+        } else {
+            TextView u = (TextView) findViewById(R.id.textView3);
             u.setText("Nije pronadjen nijedan upit");
         }
     }
-
 
 
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -213,17 +185,16 @@ lvUpiti.setOnItemClickListener(new AdapterView.OnItemClickListener() {
         return super.onOptionsItemSelected(item);
     }
 
-@Override
+    @Override
     public void onBackPressed() {
-    DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-    if (drawer.isDrawerOpen(GravityCompat.START)) {
-        drawer.closeDrawer(GravityCompat.START);
-    } else {
-        startActivity(new Intent(UpitiActivity.this, MainActivity.class));
-    }
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
+            drawer.closeDrawer(GravityCompat.START);
+        } else {
+            startActivity(new Intent(UpitiActivity.this, MainActivity.class));
+        }
     }
 
 
-
-    }
+}
 

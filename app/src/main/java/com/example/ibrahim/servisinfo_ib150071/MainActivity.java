@@ -47,7 +47,6 @@ public class MainActivity extends AppCompatActivity
     private ListView lvKompanije;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,23 +72,18 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-// moje->
 
 
         //postavljanje username-a
         View headerView = navigationView.inflateHeaderView(R.layout.nav_header_main);
-       TextView t= (TextView) headerView.findViewById(R.id.korisnikTxt);
-        t.setText(Global.prijavljeniKlijent.Ime +" " +Global.prijavljeniKlijent.Prezime);
+        TextView t = (TextView) headerView.findViewById(R.id.korisnikTxt);
+        t.setText(Global.prijavljeniKlijent.Ime + " " + Global.prijavljeniKlijent.Prezime);
 
 
+        lvKompanije = (ListView) findViewById(R.id.rv);
 
 
-
-        lvKompanije=(ListView) findViewById(R.id.rv);
-
-
-
-        gradSpinner=findViewById(R.id.gradIzbor);
+        gradSpinner = findViewById(R.id.gradIzbor);
         postaviDimenzijeSpinnera();
 
 
@@ -106,9 +100,8 @@ public class MainActivity extends AppCompatActivity
         });
 
 
-
         popuniGradoveTask();
-       // popuniPodatkeTask("0");
+        // popuniPodatkeTask("0"); jer nakon popunjavanja grada aktivira se onItemSelected
 
 
         lvKompanije.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -116,8 +109,8 @@ public class MainActivity extends AppCompatActivity
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
 //pohrani izabranu kompaniju
-                 String selected = ((TextView) view.findViewById(R.id.KompanijaIDHiddenTxt)).getText().toString();
-                Global.izabranaKompanijaID=selected;
+                String selected = ((TextView) view.findViewById(R.id.KompanijaIDHiddenTxt)).getText().toString();
+                Global.izabranaKompanijaID = selected;
 
                 do_item_Click();
             }
@@ -150,8 +143,7 @@ public class MainActivity extends AppCompatActivity
 
             // Set popupWindow height to 500px
             popupWindow.setHeight(550);
-        }
-        catch (NoClassDefFoundError | ClassCastException | NoSuchFieldException | IllegalAccessException e) {
+        } catch (NoClassDefFoundError | ClassCastException | NoSuchFieldException | IllegalAccessException e) {
             // silently fail...
         }
 
@@ -164,7 +156,7 @@ public class MainActivity extends AppCompatActivity
     private void popuniGradoveTask() {
 
         gradSpinner.setClickable(true);
-        MyApiRequest.get(this,"/api/gradovi", new MyRunnable<GradoviResultVM>() {
+        MyApiRequest.get(this, "/api/gradovi", new MyRunnable<GradoviResultVM>() {
             @Override
             public void run(GradoviResultVM x) {
                 gradovi = x;
@@ -173,38 +165,36 @@ public class MainActivity extends AppCompatActivity
         });
     }
 
-    private void popuniGradove(){
+    private void popuniGradove() {
 
         List<String> gradList = new ArrayList<String>();
         gradList.add("All");
 
-        for(GradoviResultVM.Row x :gradovi.rows){
+        for (GradoviResultVM.Row x : gradovi.rows) {
             gradList.add(x.Naziv);
         }
 
-        ArrayAdapter<String> adapter2 = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, gradList);
+        ArrayAdapter<String> adapter2 = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, gradList);
         gradSpinner.setAdapter(adapter2);
 
     }
 
 
+    private void popuniPodatkeTask(String grad) {
 
-    private void popuniPodatkeTask( String grad) {
-
-        if(grad!="0" && grad!="All") {
-            MyApiRequest.get(this, "/api/kompanije/GetKompanije/"+ grad, new MyRunnable<KompanijePregledVM>() {
+        if (grad != "0" && grad != "All") {
+            MyApiRequest.get(this, "/api/kompanije/GetKompanije/" + grad, new MyRunnable<KompanijePregledVM>() {
                 @Override
                 public void run(KompanijePregledVM x) {
-                    podaci = x; //postavljeno kao field radi    adapter.notifyDataSetChanged(); za brisanje posiljke iz ListView
+                    podaci = x;
                     popuniPodatke();
                 }
             });
-        }
-        else {
+        } else {
             MyApiRequest.get(this, "/api/kompanije/GetKompanije/---", new MyRunnable<KompanijePregledVM>() {
                 @Override
                 public void run(KompanijePregledVM x) {
-                    podaci = x; //postavljeno kao field radi    adapter.notifyDataSetChanged(); za brisanje posiljke iz ListView
+                    podaci = x;
                     popuniPodatke();
                 }
             });
@@ -212,10 +202,9 @@ public class MainActivity extends AppCompatActivity
     }
 
 
-private void popuniPodatke() {
+    private void popuniPodatke() {
 
-
-        if(podaci.rows.size()==0) {
+        if (podaci.rows.size() == 0) {
 
             AlertDialog alertDialog = new AlertDialog.Builder(MainActivity.this).create();
             alertDialog.setTitle("Info");
@@ -230,45 +219,45 @@ private void popuniPodatke() {
 
         }
 
-            adapter = new BaseAdapter() {
-                @Override
-                public int getCount() {
-                    return podaci.rows.size();
+        adapter = new BaseAdapter() {
+            @Override
+            public int getCount() {
+                return podaci.rows.size();
+            }
+
+            @Override
+            public Object getItem(int position) {
+                return null;
+            }
+
+            @Override
+            public long getItemId(int position) {
+                return 0;
+            }
+
+            @Override
+            public View getView(int position, View view, final ViewGroup parent) {
+
+                if (view == null) {
+                    LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                    view = inflater.inflate(R.layout.item, parent, false);
                 }
+                TextView txtFirstLine = view.findViewById(R.id.NazivKompanijeTxt);
+                TextView txtSecondLine = view.findViewById(R.id.AdresaKompanijeTxt);
+                TextView txtKID = view.findViewById(R.id.KompanijaIDHiddenTxt);
 
-                @Override
-                public Object getItem(int position) {
-                    return null;
-                }
+                KompanijePregledVM.Row x = podaci.rows.get(position);
 
-                @Override
-                public long getItemId(int position) {
-                    return 0;
-                }
-
-                @Override
-                public View getView(int position, View view, final ViewGroup parent) {
-
-                    if (view == null) {
-                        LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                        view = inflater.inflate(R.layout.item, parent, false);
-                    }
-                    TextView txtFirstLine = view.findViewById(R.id.NazivKompanijeTxt);
-                    TextView txtSecondLine = view.findViewById(R.id.AdresaKompanijeTxt);
-                    TextView txtKID = view.findViewById(R.id.KompanijaIDHiddenTxt);
-
-                    KompanijePregledVM.Row x = podaci.rows.get(position);
-
-                    txtFirstLine.setText(x.Naziv);
-                    txtSecondLine.setText(x.Adresa + ", " + x.Grad);
-                    txtKID.setText(String.valueOf(x.KompanijaID));
+                txtFirstLine.setText(x.Naziv);
+                txtSecondLine.setText(x.Adresa + ", " + x.Grad);
+                txtKID.setText(String.valueOf(x.KompanijaID));
 
 
-                    return view;
-                }
-            };
+                return view;
+            }
+        };
 
-            lvKompanije.setAdapter(adapter);
+        lvKompanije.setAdapter(adapter);
 
     }
 
@@ -282,7 +271,7 @@ private void popuniPodatke() {
             //izadji iz app
 
             Intent homeIntent = new Intent(Intent.ACTION_MAIN);
-            homeIntent.addCategory( Intent.CATEGORY_HOME );
+            homeIntent.addCategory(Intent.CATEGORY_HOME);
             homeIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(homeIntent);
         }
@@ -302,8 +291,7 @@ private void popuniPodatke() {
         // as you specify a parent activity in AndroidManifest.xml.
 
 
-
-        startActivity(new Intent(MainActivity.this,PostavkeActivity.class));
+        startActivity(new Intent(MainActivity.this, PostavkeActivity.class));
 
 
         int id = item.getItemId();
@@ -328,23 +316,21 @@ private void popuniPodatke() {
         if (id == R.id.nav_pocetna) {
             // Handle the camera action
         } else if (id == R.id.nav_upiti) {
-            startActivity(new Intent(MainActivity.this,UpitiActivity.class));
+            startActivity(new Intent(MainActivity.this, UpitiActivity.class));
         } else if (id == R.id.nav_postavke) {
-            startActivity(new Intent(MainActivity.this,PostavkeActivity.class));
+            startActivity(new Intent(MainActivity.this, PostavkeActivity.class));
 
         } else if (id == R.id.nav_odjava) {
-            Global.prijavljeniKlijent=null;
+            Global.prijavljeniKlijent = null;
             finish();
-            startActivity(new Intent(MainActivity.this,LoginActivity.class));
+            startActivity(new Intent(MainActivity.this, LoginActivity.class));
         }
-
 
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
-
 
 
 }

@@ -32,35 +32,30 @@ public class RegistrationActivity extends AppCompatActivity {
         setContentView(R.layout.activity_registration);
 
 
+        ime = (EditText) findViewById(R.id.ImeTxt);
+        prezime = (EditText) findViewById(R.id.PrezimeTxt);
+        email = (EditText) findViewById(R.id.EmailTxt);
+        telefon = (EditText) findViewById(R.id.telefonTxt);
+        username = (EditText) findViewById(R.id.KorisnickoImeTxt);
+        pass = (EditText) findViewById(R.id.passwordTxt);
 
-        ime=(EditText)findViewById(R.id.ImeTxt) ;
-        prezime=(EditText)findViewById(R.id.PrezimeTxt) ;
-        email=(EditText)findViewById(R.id.EmailTxt) ;
-        telefon=(EditText)findViewById(R.id.telefonTxt) ;
-        username=(EditText)findViewById(R.id.KorisnickoImeTxt) ;
-        pass=(EditText)findViewById(R.id.passwordTxt) ;
-
-        Button regBtn=(Button) findViewById(R.id.registrujSeBtn);
+        Button regBtn = (Button) findViewById(R.id.registrujSeBtn);
 
 
         regBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                    do_btn_Click();
+                do_btn_Click();
 
-
-                //startActivity(new Intent(RegistrationActivity.this, LoginActivity.class));
             }
         });
-
 
 
     }
 
     private void do_btn_Click() {
 
-        if(validacija()) {
-
+        if (validacija()) {
 
             KlijentPostVM model = new KlijentPostVM();
             model.Ime = ime.getText().toString();
@@ -82,19 +77,6 @@ public class RegistrationActivity extends AppCompatActivity {
 
 
         }
-       /* else{
-            AlertDialog alertDialog = new AlertDialog.Builder(RegistrationActivity.this).create();
-            alertDialog.setTitle("Greška");
-            alertDialog.setMessage("Niste unijeli sve potrebne podatke");
-            alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
-                    new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-                            dialog.dismiss();
-                        }
-                    });
-            alertDialog.show();
-
-        }*/
 
     }
 
@@ -110,55 +92,51 @@ public class RegistrationActivity extends AppCompatActivity {
                 });
 
 
-        if( ime.getText().toString().length()<3) {
+        if (ime.getText().toString().length() < 3) {
             alertDialog.setMessage("Ime treba sadrzavati vise od 2 karaktera");
             alertDialog.show();
 
             return false;
         }
 
-        if( prezime.getText().toString().length()<3) {
+        if (prezime.getText().toString().length() < 3) {
             alertDialog.setMessage("Prezime treba sadrzavati vise od 2 karaktera");
             alertDialog.show();
 
             return false;
         }
 
-        if( android.util.Patterns.EMAIL_ADDRESS.matcher(email.getText().toString()).matches()==false) {
+        if (android.util.Patterns.EMAIL_ADDRESS.matcher(email.getText().toString()).matches() == false) {
             alertDialog.setMessage("Email nije u ispravnom formatu");
             alertDialog.show();
 
             return false;
         }
 
-        if( telefon.getText().toString().length()<6) {
+        if (telefon.getText().toString().length() < 6) {
             alertDialog.setMessage("Telefon treba sadrzavati najmanje 6 brojeva");
             alertDialog.show();
 
             return false;
         }
 
-        if( username.getText().toString().length()<4) {
-            alertDialog.setMessage("Korisnicko treba sadrzavati vise od 3 karaktera");
+        if (username.getText().toString().length() < 4) {
+            alertDialog.setMessage("Korisnicko ime treba sadrzavati vise od 3 karaktera");
             alertDialog.show();
 
             return false;
         }
 
-        if( true ) { // pass
+        if (true) { // pass
             Pattern pattern;
             Matcher matcher;
 
             final String PASSWORD_PATTERN = "(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{4,}$";
 
-
-
-            alertDialog.setMessage("Ime treba sadrzavati vise od 2 karaktera");
-
             pattern = Pattern.compile(PASSWORD_PATTERN);
             matcher = pattern.matcher(pass.getText().toString());
 
-            if(matcher.matches() ==false ) {
+            if (matcher.matches() == false) {
                 alertDialog.setMessage("Password treba sadrzavati minimalno 6 karaktera: \n -najmanje jedan broj \n -kombinaciju malih/velikih slova");
                 alertDialog.show();
 

@@ -23,11 +23,10 @@ public class DetaljiKompanijeDialogFragment extends DialogFragment {
 
     Button nazadBtn;
     Button posaljiBtn;
-
-TextView naziv;
-TextView telefon;
-TextView adresa;
-TextView email;
+    TextView naziv;
+    TextView telefon;
+    TextView adresa;
+    TextView email;
 
 
     // TODO: Rename parameter arguments, choose names that match
@@ -63,20 +62,15 @@ TextView email;
         View view = inflater.inflate(R.layout.fragment_detalji_kompanije, container, false);
 
 
-
-
-        naziv=(TextView) view.findViewById(R.id.NazivUTxt);
-        telefon=(TextView) view.findViewById(R.id.telefonTxt);
-        adresa=(TextView) view.findViewById(R.id.usernameTxt);
-        email=(TextView) view.findViewById(R.id.emailTxt);
-
+        naziv = (TextView) view.findViewById(R.id.NazivUTxt);
+        telefon = (TextView) view.findViewById(R.id.telefonTxt);
+        adresa = (TextView) view.findViewById(R.id.usernameTxt);
+        email = (TextView) view.findViewById(R.id.emailTxt);
 
         popuniPodatkeTask();
 
-
-
-        posaljiBtn=(Button) view.findViewById(R.id.PosaljiUpitDBtn);
-        nazadBtn =(Button) view.findViewById(R.id.nazadBtn);
+        posaljiBtn = (Button) view.findViewById(R.id.PosaljiUpitDBtn);
+        nazadBtn = (Button) view.findViewById(R.id.nazadBtn);
 
 
         posaljiBtn.setOnClickListener(new View.OnClickListener() {
@@ -96,22 +90,19 @@ TextView email;
             }
         });
 
-
-
         return view;
-    }
+    } //end
 
 
+    private void popuniPodatkeTask() {
 
-    private void popuniPodatkeTask( ) {
-
-            MyApiRequest.get(getActivity(), "/api/kompanije/GetKompanijaByID/" + Global.izabranaKompanijaID, new MyRunnable<Kompanije>() {
-                @Override
-                public void run(Kompanije x) {
-                    k = x; //postavljeno kao field radi    adapter.notifyDataSetChanged(); za brisanje posiljke iz ListView
-                    popuniPodatke();
-                }
-            });
+        MyApiRequest.get(getActivity(), "/api/kompanije/GetKompanijaByID/" + Global.izabranaKompanijaID, new MyRunnable<Kompanije>() {
+            @Override
+            public void run(Kompanije x) {
+                k = x; //postavljeno kao field radi    adapter.notifyDataSetChanged(); za brisanje posiljke iz ListView
+                popuniPodatke();
+            }
+        });
 
     }
 
@@ -121,5 +112,7 @@ TextView email;
         telefon.setText(k.Telefon);
         adresa.setText(k.Adresa);
         email.setText(k.Email);
+
     }
-    }
+
+}

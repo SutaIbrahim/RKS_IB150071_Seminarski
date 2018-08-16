@@ -44,13 +44,13 @@ public class DodajUpitActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dodaj_upit);
 
-        slika=null;
+        slika = null;
 
         naslovTxt = (EditText) findViewById(R.id.NaslovTxt);
         modelTxt = (EditText) findViewById(R.id.ModelTxt);
         opisTxt = (EditText) findViewById(R.id.opisTxt);
-        dodajSlikuBtn =(Button) findViewById(R.id.DodajSlikuBtn);
-        posaljiUpitBtn=(Button) findViewById(R.id.PosaljiUpitBtn);
+        dodajSlikuBtn = (Button) findViewById(R.id.DodajSlikuBtn);
+        posaljiUpitBtn = (Button) findViewById(R.id.PosaljiUpitBtn);
 
         dodajSlikuBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -73,7 +73,6 @@ public class DodajUpitActivity extends AppCompatActivity {
 
 
     } //end onCreate
-
 
 
     private void dodajSliku_click() {
@@ -101,7 +100,7 @@ public class DodajUpitActivity extends AppCompatActivity {
     private void posaljiBtn_click() {
 
 
-        if(validacija()) {
+        if (validacija()) {
 
             String naslov = naslovTxt.getText().toString();
             String marka = modelTxt.getText().toString();
@@ -123,14 +122,12 @@ public class DodajUpitActivity extends AppCompatActivity {
             //slika bitmap to byte[]
             if (slika != null) {
                 ByteArrayOutputStream stream = new ByteArrayOutputStream();
-                slika.compress(Bitmap.CompressFormat.JPEG, 10, stream);
+                slika.compress(Bitmap.CompressFormat.JPEG, 5, stream);
                 byte[] byteArray = stream.toByteArray();
-
                 // Bitmap bitmap = BitmapFactory.decodeByteArray(byteArray , 0, byteArray.length); - obrnuto
 
                 // na apiju se opet prevodi u byte[]
                 String encodedImage = Base64.encodeToString(byteArray, Base64.DEFAULT);
-
 
                 model.EncodedImage = encodedImage;
             } else {
@@ -173,12 +170,12 @@ public class DodajUpitActivity extends AppCompatActivity {
                 final InputStream imageStream = getContentResolver().openInputStream(imageUri);
                 final Bitmap selectedImage = BitmapFactory.decodeStream(imageStream);
 
-                slika=selectedImage;
+                slika = selectedImage;
 
-               // image_view.setImageBitmap(selectedImage); //pregled izabrane slike
+                // image_view.setImageBitmap(selectedImage); //pregled izabrane slike
 
                 dodajSlikuBtn.setText("Ukloni sliku");
-                dodajSlikuBtn.setTextColor(Color.rgb(255,127,80));
+                dodajSlikuBtn.setTextColor(Color.rgb(255, 127, 80));
 
 
             } catch (FileNotFoundException e) {
@@ -186,8 +183,8 @@ public class DodajUpitActivity extends AppCompatActivity {
                 Toast.makeText(DodajUpitActivity.this, "Doslo je do greske", Toast.LENGTH_LONG).show();
             }
 
-        }else {
-            Toast.makeText(DodajUpitActivity.this, "Slika nije izabrana",Toast.LENGTH_LONG).show();
+        } else {
+            Toast.makeText(DodajUpitActivity.this, "Slika nije izabrana", Toast.LENGTH_LONG).show();
         }
     }
 
@@ -204,22 +201,21 @@ public class DodajUpitActivity extends AppCompatActivity {
                 });
 
 
-
-        if( naslovTxt.getText().toString().length()<5 || naslovTxt.getText().toString().length()>30) {
+        if (naslovTxt.getText().toString().length() < 5 || naslovTxt.getText().toString().length() > 30) {
             alertDialog.setMessage("Naslov treba sadrzavati  5 do 30 karaktera");
             alertDialog.show();
 
             return false;
         }
 
-        if( modelTxt.getText().toString().length()<5 || modelTxt.getText().toString().length()>20) {
+        if (modelTxt.getText().toString().length() < 5 || modelTxt.getText().toString().length() > 20) {
             alertDialog.setMessage("Model treba sadrzavati  5 do 20 karaktera");
             alertDialog.show();
 
             return false;
         }
 
-        if( opisTxt.getText().toString().length()<20 || opisTxt.getText().toString().length()>180) {
+        if (opisTxt.getText().toString().length() < 20 || opisTxt.getText().toString().length() > 180) {
             alertDialog.setMessage("Opis treba sadrzavati  20 do 180 karaktera");
             alertDialog.show();
 
@@ -228,8 +224,6 @@ public class DodajUpitActivity extends AppCompatActivity {
 
         return true;
     }
-
-
 
 
 }
