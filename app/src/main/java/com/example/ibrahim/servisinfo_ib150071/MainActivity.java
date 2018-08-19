@@ -183,7 +183,7 @@ public class MainActivity extends AppCompatActivity
     private void popuniPodatkeTask(String grad) {
 
         if (grad != "0" && grad != "All") {
-            MyApiRequest.get(this, "/api/kompanije/GetKompanije/" + grad, new MyRunnable<KompanijePregledVM>() {
+            MyApiRequest.get(this, "api/kompanije/GetKompanije/" + grad, new MyRunnable<KompanijePregledVM>() {
                 @Override
                 public void run(KompanijePregledVM x) {
                     podaci = x;
@@ -191,7 +191,7 @@ public class MainActivity extends AppCompatActivity
                 }
             });
         } else {
-            MyApiRequest.get(this, "/api/kompanije/GetKompanije/---", new MyRunnable<KompanijePregledVM>() {
+            MyApiRequest.get(this, "api/kompanije/GetKompanije/---", new MyRunnable<KompanijePregledVM>() {
                 @Override
                 public void run(KompanijePregledVM x) {
                     podaci = x;

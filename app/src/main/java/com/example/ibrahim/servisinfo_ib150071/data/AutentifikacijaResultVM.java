@@ -15,7 +15,7 @@ public class AutentifikacijaResultVM implements Serializable
     public String LozinkaSalt ;
     public String Telefon ;
     public String Email ;
-
+    public String Token;
 
 
 }

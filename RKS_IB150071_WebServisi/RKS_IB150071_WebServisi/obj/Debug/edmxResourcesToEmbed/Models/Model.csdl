@@ -34,6 +34,7 @@
     <NavigationProperty Name="Gradovi" Relationship="Self.FK__Klijenti__GradID__286302EC" FromRole="Klijenti" ToRole="Gradovi" />
     <NavigationProperty Name="Ponude" Relationship="Self.FK__Ponude__KlijentI__3E52440B" FromRole="Klijenti" ToRole="Ponude" />
     <NavigationProperty Name="Upiti" Relationship="Self.FK__Upiti__KlijentID__300424B4" FromRole="Klijenti" ToRole="Upiti" />
+    <NavigationProperty Name="AutorizacijskiToken" Relationship="RKS_150071Model.FK__Autorizac__Klije__6FE99F9F" FromRole="Klijenti" ToRole="AutorizacijskiToken" />
   </EntityType>
   <EntityType Name="Kompanije">
     <Key>
@@ -291,6 +292,11 @@
       <End Role="Kompanije" EntitySet="Kompanije" />
       <End Role="Upiti" EntitySet="Upiti" />
     </AssociationSet>
+    <EntitySet Name="AutorizacijskiToken" EntityType="RKS_150071Model.AutorizacijskiToken" />
+    <AssociationSet Name="FK__Autorizac__Klije__6FE99F9F" Association="RKS_150071Model.FK__Autorizac__Klije__6FE99F9F">
+      <End Role="Klijenti" EntitySet="Klijenti" />
+      <End Role="AutorizacijskiToken" EntitySet="AutorizacijskiToken" />
+    </AssociationSet>
   </EntityContainer>
   <Association Name="FK__Upiti__Kompanija__5AEE82B9">
     <End Type="RKS_150071Model.Kompanije" Role="Kompanije" Multiplicity="0..1" />
@@ -301,6 +307,30 @@
       </Principal>
       <Dependent Role="Upiti">
         <PropertyRef Name="KompanijaID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="AutorizacijskiToken">
+    <Key>
+      <PropertyRef Name="AutorizacijskiTokenID" />
+    </Key>
+    <Property Name="AutorizacijskiTokenID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Vrijednost" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="KlijentID" Type="Int32" />
+    <Property Name="VrijemeEvidentiranja" Type="DateTime" Precision="3" />
+    <Property Name="IpAdresa" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="deviceInfo" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Klijenti" Relationship="RKS_150071Model.FK__Autorizac__Klije__6FE99F9F" FromRole="AutorizacijskiToken" ToRole="Klijenti" />
+  </EntityType>
+  <Association Name="FK__Autorizac__Klije__6FE99F9F">
+    <End Type="RKS_150071Model.Klijenti" Role="Klijenti" Multiplicity="0..1" />
+    <End Type="RKS_150071Model.AutorizacijskiToken" Role="AutorizacijskiToken" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Klijenti">
+        <PropertyRef Name="KlijentID" />
+      </Principal>
+      <Dependent Role="AutorizacijskiToken">
+        <PropertyRef Name="KlijentID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

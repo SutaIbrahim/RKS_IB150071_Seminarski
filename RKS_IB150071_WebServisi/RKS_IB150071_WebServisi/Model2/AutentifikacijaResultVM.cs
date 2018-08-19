@@ -16,6 +16,7 @@ namespace RKS_IB150071_WebServisi.Model2
         public string LozinkaSalt { get; set; }
         public string Telefon { get; set; }
         public string Email { get; set; }
+        public string Token { get; set; }
 
 
     }

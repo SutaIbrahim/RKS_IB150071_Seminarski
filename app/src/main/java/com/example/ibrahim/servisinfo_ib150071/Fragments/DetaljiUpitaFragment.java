@@ -4,9 +4,7 @@ package com.example.ibrahim.servisinfo_ib150071.Fragments;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
 import android.support.v4.app.Fragment;
 import android.util.Base64;
 import android.view.LayoutInflater;
@@ -22,10 +20,6 @@ import com.example.ibrahim.servisinfo_ib150071.Helper.MyRunnable;
 import com.example.ibrahim.servisinfo_ib150071.R;
 import com.example.ibrahim.servisinfo_ib150071.UpitiActivity;
 import com.example.ibrahim.servisinfo_ib150071.data.UpitiVM;
-
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.OutputStream;
 
 
 public class DetaljiUpitaFragment extends Fragment {
@@ -163,7 +157,7 @@ public class DetaljiUpitaFragment extends Fragment {
 
 
     private void preuzmiSlikuNaUredjaj() {
-        OutputStream fOut = null;
+        /*OutputStream fOut = null;
         Uri outputFileUri;
         try {
             File root = new File(Environment.getExternalStorageDirectory()
@@ -180,7 +174,7 @@ public class DetaljiUpitaFragment extends Fragment {
             fOut.flush();
             fOut.close();
         } catch (Exception e) {
-        }
+        }*/
 
     }
 

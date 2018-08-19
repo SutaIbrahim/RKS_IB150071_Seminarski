@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Web;
 using System.Web.Http;
 
 namespace RKS_IB150071_WebServisi.Controllers
@@ -19,7 +20,11 @@ namespace RKS_IB150071_WebServisi.Controllers
         [Route("api/Autentifikacija/LoginCheck/{username}/{pass}")]
         public IHttpActionResult LoginCheck(string username, string pass)
         {
-            Klijenti k=db.Klijenti.Where(x => x.KorisickoIme == username && x.LozinkaSalt == pass).FirstOrDefault(); // unutar lozinkaSalt je smjesten string password
+
+            string token = Guid.NewGuid().ToString();
+
+            Klijenti k = db.Klijenti.Where(x => x.KorisickoIme == username && x.LozinkaSalt == pass).FirstOrDefault(); // unutar lozinkaSalt je smjesten string password
+
 
             if (k != null)
             {
@@ -31,6 +36,20 @@ namespace RKS_IB150071_WebServisi.Controllers
                 a.LozinkaSalt = k.LozinkaSalt;
                 a.Telefon = k.Telefon;
                 a.Email = k.Email;
+                a.Token = token;
+
+                db.AutorizacijskiToken.Add(new AutorizacijskiToken
+                {
+                    Vrijednost = a.Token,
+                    KlijentID = a.KlijentID,
+                    VrijemeEvidentiranja = DateTime.Now,
+                    deviceInfo = "Mobile app...",
+                    IpAdresa = "..."
+                });
+
+                db.SaveChanges();
+
+
                 return Ok(a);
 
             }
@@ -38,5 +57,20 @@ namespace RKS_IB150071_WebServisi.Controllers
         }
 
 
+
+        [HttpDelete]
+        [Route("api/Autentifikacija/Logout")]
+        public IHttpActionResult Logout()
+        {
+            //string tokenString = HttpContext.GetMyAuthToken();
+            //AutorizacijskiToken autorizacijskiToken = db.AutorizacijskiToken.Find(tokenString);
+            //if (autorizacijskiToken != null)
+            //{
+            //    db.AutorizacijskiToken.Remove(autorizacijskiToken);
+            //    db.SaveChanges();
+            //}
+            return Ok();
+
+        }
     }
 }

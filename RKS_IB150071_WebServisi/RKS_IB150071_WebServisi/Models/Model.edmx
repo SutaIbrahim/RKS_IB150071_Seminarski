@@ -5,6 +5,17 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="RKS_150071Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AutorizacijskiToken">
+          <Key>
+            <PropertyRef Name="AutorizacijskiTokenID" />
+          </Key>
+          <Property Name="AutorizacijskiTokenID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Vrijednost" Type="nvarchar(max)" />
+          <Property Name="KlijentID" Type="int" />
+          <Property Name="VrijemeEvidentiranja" Type="datetime" />
+          <Property Name="IpAdresa" Type="nvarchar" MaxLength="100" />
+          <Property Name="deviceInfo" Type="nvarchar" MaxLength="100" />
+        </EntityType>
         <EntityType Name="Gradovi">
           <Key>
             <PropertyRef Name="GradID" />
@@ -101,6 +112,18 @@
           <Property Name="KompanijaID" Type="int" />
           <Property Name="Odgovoreno" Type="bit" />
         </EntityType>
+        <Association Name="FK__Autorizac__Klije__6FE99F9F">
+          <End Role="Klijenti" Type="Self.Klijenti" Multiplicity="0..1" />
+          <End Role="AutorizacijskiToken" Type="Self.AutorizacijskiToken" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Klijenti">
+              <PropertyRef Name="KlijentID" />
+            </Principal>
+            <Dependent Role="AutorizacijskiToken">
+              <PropertyRef Name="KlijentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__Klijenti__GradID__286302EC">
           <End Role="Gradovi" Type="Self.Gradovi" Multiplicity="0..1" />
           <End Role="Klijenti" Type="Self.Klijenti" Multiplicity="*" />
@@ -234,6 +257,7 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="RKS_150071ModelStoreContainer">
+          <EntitySet Name="AutorizacijskiToken" EntityType="Self.AutorizacijskiToken" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Gradovi" EntityType="Self.Gradovi" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Kategorije" EntityType="Self.Kategorije" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Klijenti" EntityType="Self.Klijenti" Schema="dbo" store:Type="Tables" />
@@ -242,6 +266,10 @@
           <EntitySet Name="Ponude" EntityType="Self.Ponude" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Servisi" EntityType="Self.Servisi" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Upiti" EntityType="Self.Upiti" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Autorizac__Klije__6FE99F9F" Association="Self.FK__Autorizac__Klije__6FE99F9F">
+            <End Role="Klijenti" EntitySet="Klijenti" />
+            <End Role="AutorizacijskiToken" EntitySet="AutorizacijskiToken" />
+          </AssociationSet>
           <AssociationSet Name="FK__Klijenti__GradID__286302EC" Association="Self.FK__Klijenti__GradID__286302EC">
             <End Role="Gradovi" EntitySet="Gradovi" />
             <End Role="Klijenti" EntitySet="Klijenti" />
@@ -325,6 +353,7 @@
           <NavigationProperty Name="Gradovi" Relationship="Self.FK__Klijenti__GradID__286302EC" FromRole="Klijenti" ToRole="Gradovi" />
           <NavigationProperty Name="Ponude" Relationship="Self.FK__Ponude__KlijentI__3E52440B" FromRole="Klijenti" ToRole="Ponude" />
           <NavigationProperty Name="Upiti" Relationship="Self.FK__Upiti__KlijentID__300424B4" FromRole="Klijenti" ToRole="Upiti" />
+          <NavigationProperty Name="AutorizacijskiToken" Relationship="RKS_150071Model.FK__Autorizac__Klije__6FE99F9F" FromRole="Klijenti" ToRole="AutorizacijskiToken" />
         </EntityType>
         <EntityType Name="Kompanije">
           <Key>
@@ -582,6 +611,11 @@
             <End Role="Kompanije" EntitySet="Kompanije" />
             <End Role="Upiti" EntitySet="Upiti" />
           </AssociationSet>
+          <EntitySet Name="AutorizacijskiToken" EntityType="RKS_150071Model.AutorizacijskiToken" />
+          <AssociationSet Name="FK__Autorizac__Klije__6FE99F9F" Association="RKS_150071Model.FK__Autorizac__Klije__6FE99F9F">
+            <End Role="Klijenti" EntitySet="Klijenti" />
+            <End Role="AutorizacijskiToken" EntitySet="AutorizacijskiToken" />
+          </AssociationSet>
         </EntityContainer>
         <Association Name="FK__Upiti__Kompanija__5AEE82B9">
           <End Type="RKS_150071Model.Kompanije" Role="Kompanije" Multiplicity="0..1" />
@@ -592,6 +626,30 @@
             </Principal>
             <Dependent Role="Upiti">
               <PropertyRef Name="KompanijaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="AutorizacijskiToken">
+          <Key>
+            <PropertyRef Name="AutorizacijskiTokenID" />
+          </Key>
+          <Property Name="AutorizacijskiTokenID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Vrijednost" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="KlijentID" Type="Int32" />
+          <Property Name="VrijemeEvidentiranja" Type="DateTime" Precision="3" />
+          <Property Name="IpAdresa" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="deviceInfo" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Klijenti" Relationship="RKS_150071Model.FK__Autorizac__Klije__6FE99F9F" FromRole="AutorizacijskiToken" ToRole="Klijenti" />
+        </EntityType>
+        <Association Name="FK__Autorizac__Klije__6FE99F9F">
+          <End Type="RKS_150071Model.Klijenti" Role="Klijenti" Multiplicity="0..1" />
+          <End Type="RKS_150071Model.AutorizacijskiToken" Role="AutorizacijskiToken" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Klijenti">
+              <PropertyRef Name="KlijentID" />
+            </Principal>
+            <Dependent Role="AutorizacijskiToken">
+              <PropertyRef Name="KlijentID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -702,6 +760,18 @@
                 <ScalarProperty Name="ZeljeniDatumPrijemaOd" ColumnName="ZeljeniDatumPrijemaOd" />
                 <ScalarProperty Name="ZeljeniDatumPrijemaDo" ColumnName="ZeljeniDatumPrijemaDo" />
                 <ScalarProperty Name="KlijentID" ColumnName="KlijentID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AutorizacijskiToken">
+            <EntityTypeMapping TypeName="RKS_150071Model.AutorizacijskiToken">
+              <MappingFragment StoreEntitySet="AutorizacijskiToken">
+                <ScalarProperty Name="deviceInfo" ColumnName="deviceInfo" />
+                <ScalarProperty Name="IpAdresa" ColumnName="IpAdresa" />
+                <ScalarProperty Name="VrijemeEvidentiranja" ColumnName="VrijemeEvidentiranja" />
+                <ScalarProperty Name="KlijentID" ColumnName="KlijentID" />
+                <ScalarProperty Name="Vrijednost" ColumnName="Vrijednost" />
+                <ScalarProperty Name="AutorizacijskiTokenID" ColumnName="AutorizacijskiTokenID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

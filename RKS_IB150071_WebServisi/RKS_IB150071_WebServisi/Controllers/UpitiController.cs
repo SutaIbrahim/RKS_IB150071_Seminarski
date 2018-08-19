@@ -19,11 +19,29 @@ namespace RKS_IB150071_WebServisi.Controllers
 
         // GET: api/Upiti
         [HttpGet]
-        [Route("api/upiti/getUpitiByKlijentID/{id}")]
-        public IHttpActionResult GetUpiti(string id)
+        [Route("api/upiti/getUpitiByKlijentID/{id}/{token}")]
+        public IHttpActionResult GetUpiti(string id,string token)
         {
-
             int IDint = Convert.ToInt32(id);
+
+            List<AutorizacijskiToken> Tokens = db.AutorizacijskiToken.Where(x => x.KlijentID == IDint).ToList() ;
+            Tokens = Tokens.OrderBy(x => x.VrijemeEvidentiranja).ToList();
+
+            AutorizacijskiToken lastToken = Tokens.Last();
+
+            if (lastToken.Vrijednost == token)
+            {
+                //if (lastToken.VrijemeEvidentiranja < DateTime.Now.AddDays(-3))
+                //{ // token moze biti star 3 dana
+                //    return Unauthorized();
+                //}
+            }
+            else
+            {
+                return Unauthorized();
+            }
+
+
 
             var model = new UpitiResultVM
             {

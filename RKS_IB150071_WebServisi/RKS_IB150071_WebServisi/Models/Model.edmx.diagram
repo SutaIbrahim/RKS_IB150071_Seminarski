@@ -24,6 +24,8 @@
         <AssociationConnector Association="RKS_150071Model.FK__Ponude__UpitID__3F466844" ManuallyRouted="false" />
         <AssociationConnector Association="RKS_150071Model.FK__Servisi__PonudaI__4316F928" ManuallyRouted="false" />
         <AssociationConnector Association="RKS_150071Model.FK__Upiti__Kompanija__5AEE82B9" />
+        <EntityTypeShape EntityType="RKS_150071Model.AutorizacijskiToken" Width="1.5" PointX="5.25" PointY="2.25" />
+        <AssociationConnector Association="RKS_150071Model.FK__Autorizac__Klije__6FE99F9F" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

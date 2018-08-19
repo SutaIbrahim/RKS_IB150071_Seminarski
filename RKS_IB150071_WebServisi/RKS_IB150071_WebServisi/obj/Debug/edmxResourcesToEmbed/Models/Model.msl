@@ -105,5 +105,17 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="AutorizacijskiToken">
+      <EntityTypeMapping TypeName="RKS_150071Model.AutorizacijskiToken">
+        <MappingFragment StoreEntitySet="AutorizacijskiToken">
+          <ScalarProperty Name="deviceInfo" ColumnName="deviceInfo" />
+          <ScalarProperty Name="IpAdresa" ColumnName="IpAdresa" />
+          <ScalarProperty Name="VrijemeEvidentiranja" ColumnName="VrijemeEvidentiranja" />
+          <ScalarProperty Name="KlijentID" ColumnName="KlijentID" />
+          <ScalarProperty Name="Vrijednost" ColumnName="Vrijednost" />
+          <ScalarProperty Name="AutorizacijskiTokenID" ColumnName="AutorizacijskiTokenID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

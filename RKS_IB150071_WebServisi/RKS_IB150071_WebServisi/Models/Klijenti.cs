@@ -19,6 +19,7 @@ namespace RKS_IB150071_WebServisi.Models
         {
             this.Ponude = new HashSet<Ponude>();
             this.Upiti = new HashSet<Upiti>();
+            this.AutorizacijskiToken = new HashSet<AutorizacijskiToken>();
         }
     
         public int KlijentID { get; set; }
@@ -37,5 +38,7 @@ namespace RKS_IB150071_WebServisi.Models
         public virtual ICollection<Ponude> Ponude { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Upiti> Upiti { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<AutorizacijskiToken> AutorizacijskiToken { get; set; }
     }
 }

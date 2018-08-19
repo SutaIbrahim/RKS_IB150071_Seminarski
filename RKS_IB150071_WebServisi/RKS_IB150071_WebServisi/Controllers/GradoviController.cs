@@ -13,6 +13,7 @@ using RKS_IB150071_WebServisi.Models;
 
 namespace RKS_IB150071_WebServisi.Controllers
 {
+
     public class GradoviController : ApiController
     {
         private RKS_150071Entities db = new RKS_150071Entities();

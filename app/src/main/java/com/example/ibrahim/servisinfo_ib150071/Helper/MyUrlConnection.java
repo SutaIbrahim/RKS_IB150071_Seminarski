@@ -5,6 +5,9 @@ package com.example.ibrahim.servisinfo_ib150071.Helper;
  */
 
 
+import com.example.ibrahim.servisinfo_ib150071.data.AutentifikacijaResultVM;
+import com.example.ibrahim.servisinfo_ib150071.data.Global;
+
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -40,6 +43,10 @@ public class MyUrlConnection
 
           /*  AutentifikacijaResultVM korisnik = MySession.getKorisnik();
             connection.setRequestProperty("MyAuthToken", korisnik !=null? korisnik.token:"2"); // privremeno token na 2*/
+
+            AutentifikacijaResultVM korisnik = Global.prijavljeniKlijent;
+            connection.setRequestProperty("MyAuthToken", korisnik !=null? korisnik.Token:"");
+
 
             connection.setRequestMethod(httpMethod.toString());
             connection.setUseCaches(false);

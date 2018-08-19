@@ -117,7 +117,7 @@ public class UpitiActivity extends AppCompatActivity {
 
     private void popuniPodatkeTask() {
 
-        MyApiRequest.get(this, "/api/upiti/getUpitiByKlijentID/" + String.valueOf(Global.prijavljeniKlijent.KlijentID), new MyRunnable<UpitiResultVM>() {
+        MyApiRequest.get(this, "/api/upiti/getUpitiByKlijentID/" + String.valueOf(Global.prijavljeniKlijent.KlijentID) +"/"+ Global.prijavljeniKlijent.Token, new MyRunnable<UpitiResultVM>() {
             @Override
             public void run(UpitiResultVM x) {
                 podaci = x;
