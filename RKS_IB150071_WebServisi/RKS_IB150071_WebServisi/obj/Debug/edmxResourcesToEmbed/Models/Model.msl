@@ -117,5 +117,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="GetTokenPoVrijednosti" FunctionName="RKS_150071Model.Store.GetTokenPoVrijednosti" />
   </EntityContainerMapping>
 </Mapping>

@@ -1,4 +1,5 @@
-﻿using RKS_IB150071_WebServisi.Model2;
+﻿using RKS_IB150071_WebServisi.Helper;
+using RKS_IB150071_WebServisi.Model2;
 using RKS_IB150071_WebServisi.Models;
 using System;
 using System.Collections.Generic;
@@ -10,10 +11,9 @@ using System.Web.Http;
 
 namespace RKS_IB150071_WebServisi.Controllers
 {
-    public class AutentifikacijaController : ApiController
+    public class AutentifikacijaController : authToken // authToken nasljedjuje ApiController
     {
         private RKS_150071Entities db = new RKS_150071Entities();
-
 
 
         [HttpGet]
@@ -24,7 +24,6 @@ namespace RKS_IB150071_WebServisi.Controllers
             string token = Guid.NewGuid().ToString();
 
             Klijenti k = db.Klijenti.Where(x => x.KorisickoIme == username && x.LozinkaSalt == pass).FirstOrDefault(); // unutar lozinkaSalt je smjesten string password
-
 
             if (k != null)
             {
@@ -49,28 +48,21 @@ namespace RKS_IB150071_WebServisi.Controllers
 
                 db.SaveChanges();
 
-
                 return Ok(a);
 
             }
+
             return null;
         }
-
 
 
         [HttpDelete]
         [Route("api/Autentifikacija/Logout")]
         public IHttpActionResult Logout()
         {
-            //string tokenString = HttpContext.GetMyAuthToken();
-            //AutorizacijskiToken autorizacijskiToken = db.AutorizacijskiToken.Find(tokenString);
-            //if (autorizacijskiToken != null)
-            //{
-            //    db.AutorizacijskiToken.Remove(autorizacijskiToken);
-            //    db.SaveChanges();
-            //}
-            return Ok();
+            IzbrisiToken();
 
+            return Ok();
         }
     }
 }

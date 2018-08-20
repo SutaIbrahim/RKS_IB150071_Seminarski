@@ -251,6 +251,9 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Function Name="GetTokenPoVrijednosti" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="token" Type="nvarchar" Mode="In" />
+  </Function>
   <EntityContainer Name="RKS_150071ModelStoreContainer">
     <EntitySet Name="AutorizacijskiToken" EntityType="Self.AutorizacijskiToken" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Gradovi" EntityType="Self.Gradovi" Schema="dbo" store:Type="Tables" />

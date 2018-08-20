@@ -8,19 +8,22 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
+using RKS_IB150071_WebServisi.Helper;
 using RKS_IB150071_WebServisi.Model2;
 using RKS_IB150071_WebServisi.Models;
 
 namespace RKS_IB150071_WebServisi.Controllers
 {
 
-    public class GradoviController : ApiController
+    public class GradoviController  :  authToken // authToken nasljedjuje ApiController
     {
         private RKS_150071Entities db = new RKS_150071Entities();
 
         // GET: api/Gradovi
         public IHttpActionResult GetGradovi()
         {
+            if (ProvjeriValidnostTokena() == false)
+                return Unauthorized();
 
             var model = new GradoviResultVM
             {
@@ -40,6 +43,9 @@ namespace RKS_IB150071_WebServisi.Controllers
         [ResponseType(typeof(Gradovi))]
         public IHttpActionResult GetGradovi(int id)
         {
+            if (ProvjeriValidnostTokena() == false)
+                return Unauthorized();
+
             Gradovi gradovi = db.Gradovi.Find(id);
             if (gradovi == null)
             {
@@ -53,6 +59,9 @@ namespace RKS_IB150071_WebServisi.Controllers
         [ResponseType(typeof(void))]
         public IHttpActionResult PutGradovi(int id, Gradovi gradovi)
         {
+            if (ProvjeriValidnostTokena() == false)
+                return Unauthorized();
+
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
@@ -88,6 +97,9 @@ namespace RKS_IB150071_WebServisi.Controllers
         [ResponseType(typeof(Gradovi))]
         public IHttpActionResult PostGradovi(Gradovi gradovi)
         {
+            if (ProvjeriValidnostTokena() == false)
+                return Unauthorized();
+
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
@@ -103,6 +115,9 @@ namespace RKS_IB150071_WebServisi.Controllers
         [ResponseType(typeof(Gradovi))]
         public IHttpActionResult DeleteGradovi(int id)
         {
+            if (ProvjeriValidnostTokena() == false)
+                return Unauthorized();
+
             Gradovi gradovi = db.Gradovi.Find(id);
             if (gradovi == null)
             {

@@ -41,11 +41,10 @@ public class MyUrlConnection
             connection.setRequestProperty("Accept", contentType);
             connection.setRequestProperty("Accept-Charset", charset);
 
-          /*  AutentifikacijaResultVM korisnik = MySession.getKorisnik();
-            connection.setRequestProperty("MyAuthToken", korisnik !=null? korisnik.token:"2"); // privremeno token na 2*/
 
+          //slanje tokena apiju
             AutentifikacijaResultVM korisnik = Global.prijavljeniKlijent;
-            connection.setRequestProperty("MyAuthToken", korisnik !=null? korisnik.Token:"");
+            connection.setRequestProperty("authToken", korisnik !=null? korisnik.Token:"");
 
 
             connection.setRequestMethod(httpMethod.toString());
@@ -91,7 +90,6 @@ public class MyUrlConnection
             }
         }
     }
-
 
 
     private static String convertToString(InputStream in) throws IOException {

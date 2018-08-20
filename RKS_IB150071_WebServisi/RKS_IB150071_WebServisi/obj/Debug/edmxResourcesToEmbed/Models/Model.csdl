@@ -297,6 +297,9 @@
       <End Role="Klijenti" EntitySet="Klijenti" />
       <End Role="AutorizacijskiToken" EntitySet="AutorizacijskiToken" />
     </AssociationSet>
+    <FunctionImport Name="GetTokenPoVrijednosti" EntitySet="AutorizacijskiToken" ReturnType="Collection(RKS_150071Model.AutorizacijskiToken)">
+      <Parameter Name="token" Mode="In" Type="String" />
+    </FunctionImport>
   </EntityContainer>
   <Association Name="FK__Upiti__Kompanija__5AEE82B9">
     <End Type="RKS_150071Model.Kompanije" Role="Kompanije" Multiplicity="0..1" />

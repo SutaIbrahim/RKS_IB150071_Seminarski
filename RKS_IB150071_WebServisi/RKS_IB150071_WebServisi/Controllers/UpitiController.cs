@@ -1,47 +1,63 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Data;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Web;
 using System.Web.Http;
 using System.Web.Http.Description;
+using RKS_IB150071_WebServisi.Helper;
 using RKS_IB150071_WebServisi.Model2;
 using RKS_IB150071_WebServisi.Models;
 
 namespace RKS_IB150071_WebServisi.Controllers
 {
-    public class UpitiController : ApiController
+
+    
+    public class UpitiController :  authToken // authToken nasljedjuje ApiController
     {
         private RKS_150071Entities db = new RKS_150071Entities();
 
         // GET: api/Upiti
         [HttpGet]
-        [Route("api/upiti/getUpitiByKlijentID/{id}/{token}")]
-        public IHttpActionResult GetUpiti(string id,string token)
+        [Route("api/upiti/getUpitiByKlijentID/{id}")]
+        public IHttpActionResult GetUpiti(string id)
         {
+            if (ProvjeriValidnostTokena() == false)
+                return Unauthorized();
+
             int IDint = Convert.ToInt32(id);
 
-            List<AutorizacijskiToken> Tokens = db.AutorizacijskiToken.Where(x => x.KlijentID == IDint).ToList() ;
-            Tokens = Tokens.OrderBy(x => x.VrijemeEvidentiranja).ToList();
+            string Token = GetAuthToken();
 
-            AutorizacijskiToken lastToken = Tokens.Last();
-
-            if (lastToken.Vrijednost == token)
-            {
-                //if (lastToken.VrijemeEvidentiranja < DateTime.Now.AddDays(-3))
-                //{ // token moze biti star 3 dana
-                //    return Unauthorized();
-                //}
-            }
-            else
+            if (Token == null)
             {
                 return Unauthorized();
             }
+            else
+            {
+                List<AutorizacijskiToken> Tokens = db.AutorizacijskiToken.Where(x => x.KlijentID == IDint).ToList();
+                Tokens = Tokens.OrderBy(x => x.VrijemeEvidentiranja).ToList();
 
+                AutorizacijskiToken lastToken = Tokens.Last();
 
+                if (lastToken.Vrijednost == Token)
+                {
+                    //if (lastToken.VrijemeEvidentiranja < DateTime.Now.AddDays(-3))
+                    //{ // token moze biti star 3 dana
+                    //    return Unauthorized();
+                    //}
+                }
+                else
+                {
+                    return Unauthorized();
+                }
+
+            }
 
             var model = new UpitiResultVM
             {
@@ -66,6 +82,10 @@ namespace RKS_IB150071_WebServisi.Controllers
         [ResponseType(typeof(Upiti))]
         public IHttpActionResult GetUpiti(int id)
         {
+
+            if (ProvjeriValidnostTokena() == false)
+                return Unauthorized();
+
             Upiti upiti = db.Upiti.Find(id);
             if (upiti == null)
             {
@@ -80,6 +100,9 @@ namespace RKS_IB150071_WebServisi.Controllers
         [Route("api/Upiti/GetUpitByID/{id}")]
         public IHttpActionResult GetUpitByID(int id)
         {
+            if (ProvjeriValidnostTokena() == false)
+                return Unauthorized();
+
             int ID = Convert.ToInt32(id);
 
             Upiti u = db.Upiti.Include(p=>p.Kompanije).Where(x => x.UpitID == ID).FirstOrDefault();
@@ -114,6 +137,9 @@ namespace RKS_IB150071_WebServisi.Controllers
         [ResponseType(typeof(void))]
         public IHttpActionResult PutUpiti(int id, Upiti upiti)
         {
+            if (ProvjeriValidnostTokena() == false)
+                return Unauthorized();
+
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
@@ -149,6 +175,9 @@ namespace RKS_IB150071_WebServisi.Controllers
         [ResponseType(typeof(Upiti))]
         public IHttpActionResult PostUpiti([FromBody]UpitPostVM upiti)
         {
+            if (ProvjeriValidnostTokena() == false)
+                return Unauthorized();
+
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
@@ -190,6 +219,9 @@ namespace RKS_IB150071_WebServisi.Controllers
         [ResponseType(typeof(Upiti))]
         public IHttpActionResult DeleteUpiti(int id)
         {
+            if (ProvjeriValidnostTokena() == false)
+                return Unauthorized();
+
             Upiti upiti = db.Upiti.Find(id);
             if (upiti == null)
             {

@@ -1,24 +1,32 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Data;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Web;
 using System.Web.Http;
 using System.Web.Http.Description;
+using RKS_IB150071_WebServisi.Helper;
 using RKS_IB150071_WebServisi.Models;
 
 namespace RKS_IB150071_WebServisi.Controllers
 {
-    public class KlijentiController : ApiController
+    public class KlijentiController : authToken // authToken nasljedjuje ApiController
     {
         private RKS_150071Entities db = new RKS_150071Entities();
 
+
+       
         // GET: api/Klijenti
         public IQueryable<Klijenti> GetKlijenti()
         {
+            if (ProvjeriValidnostTokena() == false)
+                return null;
+
             return db.Klijenti;
         }
 
@@ -26,6 +34,9 @@ namespace RKS_IB150071_WebServisi.Controllers
         [ResponseType(typeof(Klijenti))]
         public IHttpActionResult GetKlijenti(int id)
         {
+            if (ProvjeriValidnostTokena() == false)
+                return Unauthorized();
+
             Klijenti klijenti = db.Klijenti.Find(id);
             if (klijenti == null)
             {
@@ -39,6 +50,9 @@ namespace RKS_IB150071_WebServisi.Controllers
         [ResponseType(typeof(void))]
         public IHttpActionResult PutKlijenti(Klijenti klijenti)
         {
+            if (ProvjeriValidnostTokena() == false)
+                return Unauthorized();
+
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
@@ -66,6 +80,9 @@ namespace RKS_IB150071_WebServisi.Controllers
         [ResponseType(typeof(Klijenti))]
         public IHttpActionResult PostKlijenti([FromBody] Klijenti klijenti)
         {
+            if (ProvjeriValidnostTokena() == false)
+                return Unauthorized();
+
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
@@ -82,6 +99,9 @@ namespace RKS_IB150071_WebServisi.Controllers
         [ResponseType(typeof(Klijenti))]
         public IHttpActionResult DeleteKlijenti(int id)
         {
+            if (ProvjeriValidnostTokena() == false)
+                return Unauthorized();
+
             Klijenti klijenti = db.Klijenti.Find(id);
             if (klijenti == null)
             {

@@ -8,44 +8,25 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
+using RKS_IB150071_WebServisi.Helper;
 using RKS_IB150071_WebServisi.Model2;
 using RKS_IB150071_WebServisi.Models;
 
 namespace RKS_IB150071_WebServisi.Controllers
 {
-    public class KompanijeController : ApiController
+    public class KompanijeController : authToken // authToken nasljedjuje ApiController
     {
         private RKS_150071Entities db = new RKS_150071Entities();
 
         // GET: api/Kompanije
 
-             [HttpGet]
-            [Route("api/Kompanije/GetKompanije/{naziv?}")]
-        public IHttpActionResult GetKompanije(string naziv="")
+        [HttpGet]
+        [Route("api/Kompanije/GetKompanije/{naziv?}")]
+        public IHttpActionResult GetKompanije(string naziv = "")
         {
 
-            //List<Kompanije> k= db.Kompanije.ToList();
-
-            //List<KompanijePregledVM> model = new List<KompanijePregledVM>();
-
-            //foreach (var x in k)
-            //{
-            //    KompanijePregledVM n = new KompanijePregledVM();
-            //    n.KompanijaID = x.KompanijaID;
-            //    n.Naziv = x.Naziv;
-            //    n.Adresa = x.Adresa;
-            //    n.Telefon = x.Telefon;
-            //    n.Email = x.Email;
-            //    n.KorisickoIme = x.KorisickoIme;
-            //    n.LozinkaSalt = x.LozinkaSalt;
-            //    n.LozinkaHash = x.LozinkaHash;
-            //    n.GradID = x.GradID;
-
-            //    model.Add(n);
-            //}
-
-            //return model;
-
+            if (ProvjeriValidnostTokena() == false)
+                return Unauthorized();
 
             if (naziv != "---" && naziv != "")
             {
@@ -102,6 +83,10 @@ namespace RKS_IB150071_WebServisi.Controllers
         [Route("api/Kompanije/GetKompanijaByID/{id}")]
         public IHttpActionResult GetKompanijaByID(string id)
         {
+            if (ProvjeriValidnostTokena() == false)
+                return Unauthorized();
+
+
             int ID = Convert.ToInt32(id);
 
             Kompanije k = db.Kompanije.Where(x => x.KompanijaID == ID).FirstOrDefault();
@@ -109,23 +94,15 @@ namespace RKS_IB150071_WebServisi.Controllers
 
             return Ok(k);
         }
-        //// GET: api/Kompanije/5
-        //[ResponseType(typeof(Kompanije))]
-        //public IHttpActionResult GetKompanije(int id)
-        //{
-        //    Kompanije kompanije = db.Kompanije.Find(id);
-        //    if (kompanije == null)
-        //    {
-        //        return NotFound();
-        //    }
 
-            //    return Ok(kompanije);
-            //}
-
-            // PUT: api/Kompanije/5
+        // PUT: api/Kompanije/5
         [ResponseType(typeof(void))]
         public IHttpActionResult PutKompanije(int id, Kompanije kompanije)
         {
+
+            if (ProvjeriValidnostTokena() == false)
+                return Unauthorized();
+
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
@@ -164,6 +141,9 @@ namespace RKS_IB150071_WebServisi.Controllers
         [ResponseType(typeof(Kompanije))]
         public IHttpActionResult PostKompanije(Kompanije kompanije)
         {
+            if (ProvjeriValidnostTokena() == false)
+                return Unauthorized();
+
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
@@ -179,6 +159,9 @@ namespace RKS_IB150071_WebServisi.Controllers
         [ResponseType(typeof(Kompanije))]
         public IHttpActionResult DeleteKompanije(int id)
         {
+            if (ProvjeriValidnostTokena() == false)
+                return Unauthorized();
+
             Kompanije kompanije = db.Kompanije.Find(id);
             if (kompanije == null)
             {

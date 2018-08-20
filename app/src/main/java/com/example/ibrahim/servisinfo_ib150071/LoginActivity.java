@@ -100,7 +100,7 @@ public class LoginActivity extends AppCompatActivity {
             View parentLayout = findViewById(android.R.id.content);
             Snackbar.make(parentLayout, "Pogrešan username/password", Snackbar.LENGTH_LONG).show();
         } else {
-            // MySession.setKorisnik(x);
+             //MySession.setKorisnik(x);
             Global.prijavljeniKlijent = x;
 
             startActivity(new Intent(this, MainActivity.class));

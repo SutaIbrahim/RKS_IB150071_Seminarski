@@ -256,6 +256,9 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="GetTokenPoVrijednosti" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="token" Type="nvarchar" Mode="In" />
+        </Function>
         <EntityContainer Name="RKS_150071ModelStoreContainer">
           <EntitySet Name="AutorizacijskiToken" EntityType="Self.AutorizacijskiToken" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Gradovi" EntityType="Self.Gradovi" Schema="dbo" store:Type="Tables" />
@@ -616,6 +619,9 @@
             <End Role="Klijenti" EntitySet="Klijenti" />
             <End Role="AutorizacijskiToken" EntitySet="AutorizacijskiToken" />
           </AssociationSet>
+          <FunctionImport Name="GetTokenPoVrijednosti" EntitySet="AutorizacijskiToken" ReturnType="Collection(RKS_150071Model.AutorizacijskiToken)">
+            <Parameter Name="token" Mode="In" Type="String" />
+          </FunctionImport>
         </EntityContainer>
         <Association Name="FK__Upiti__Kompanija__5AEE82B9">
           <End Type="RKS_150071Model.Kompanije" Role="Kompanije" Multiplicity="0..1" />
@@ -775,6 +781,8 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="GetTokenPoVrijednosti" FunctionName="RKS_150071Model.Store.GetTokenPoVrijednosti">
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

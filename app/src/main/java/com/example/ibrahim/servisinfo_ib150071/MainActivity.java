@@ -319,10 +319,8 @@ public class MainActivity extends AppCompatActivity
             startActivity(new Intent(MainActivity.this, UpitiActivity.class));
         } else if (id == R.id.nav_postavke) {
             startActivity(new Intent(MainActivity.this, PostavkeActivity.class));
-
         } else if (id == R.id.nav_odjava) {
-            Global.prijavljeniKlijent = null;
-            finish();
+            izbrisiToken();
             startActivity(new Intent(MainActivity.this, LoginActivity.class));
         }
 
@@ -330,6 +328,15 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    private void izbrisiToken() {
+        MyApiRequest.delete(this, "api/autentifikacija/Logout", new MyRunnable<KompanijePregledVM>() {
+            @Override
+            public void run(KompanijePregledVM x) {
+                //
+            }
+        });
     }
 
 

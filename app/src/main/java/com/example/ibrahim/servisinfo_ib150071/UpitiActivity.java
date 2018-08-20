@@ -22,6 +22,7 @@ import android.widget.TextView;
 import com.example.ibrahim.servisinfo_ib150071.Helper.MyApiRequest;
 import com.example.ibrahim.servisinfo_ib150071.Helper.MyRunnable;
 import com.example.ibrahim.servisinfo_ib150071.data.Global;
+import com.example.ibrahim.servisinfo_ib150071.data.KompanijePregledVM;
 import com.example.ibrahim.servisinfo_ib150071.data.UpitiResultVM;
 
 public class UpitiActivity extends AppCompatActivity {
@@ -79,7 +80,7 @@ public class UpitiActivity extends AppCompatActivity {
                     startActivity(new Intent(UpitiActivity.this, PostavkeActivity.class));
 
                 } else if (id == R.id.nav_odjava) {
-                    Global.prijavljeniKlijent = null;
+                    izbrisiToken();
                     startActivity(new Intent(UpitiActivity.this, LoginActivity.class));
 
                 }
@@ -117,7 +118,7 @@ public class UpitiActivity extends AppCompatActivity {
 
     private void popuniPodatkeTask() {
 
-        MyApiRequest.get(this, "/api/upiti/getUpitiByKlijentID/" + String.valueOf(Global.prijavljeniKlijent.KlijentID) +"/"+ Global.prijavljeniKlijent.Token, new MyRunnable<UpitiResultVM>() {
+        MyApiRequest.get(this, "/api/upiti/getUpitiByKlijentID/" + String.valueOf(Global.prijavljeniKlijent.KlijentID), new MyRunnable<UpitiResultVM>() {
             @Override
             public void run(UpitiResultVM x) {
                 podaci = x;
@@ -193,6 +194,15 @@ public class UpitiActivity extends AppCompatActivity {
         } else {
             startActivity(new Intent(UpitiActivity.this, MainActivity.class));
         }
+    }
+
+    private void izbrisiToken() {
+        MyApiRequest.delete(this, "api/autentifikacija/Logout", new MyRunnable<KompanijePregledVM>() {
+            @Override
+            public void run(KompanijePregledVM x) {
+                //
+            }
+        });
     }
 
 

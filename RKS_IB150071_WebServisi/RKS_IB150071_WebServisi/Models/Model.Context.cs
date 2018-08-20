@@ -12,6 +12,8 @@ namespace RKS_IB150071_WebServisi.Models
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using System.Data.Entity.Core.Objects;
+    using System.Linq;
     
     public partial class RKS_150071Entities : DbContext
     {
@@ -36,5 +38,23 @@ namespace RKS_IB150071_WebServisi.Models
         public virtual DbSet<Servisi> Servisi { get; set; }
         public virtual DbSet<Upiti> Upiti { get; set; }
         public virtual DbSet<AutorizacijskiToken> AutorizacijskiToken { get; set; }
+    
+        public virtual ObjectResult<AutorizacijskiToken> GetTokenPoVrijednosti(string token)
+        {
+            var tokenParameter = token != null ?
+                new ObjectParameter("token", token) :
+                new ObjectParameter("token", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<AutorizacijskiToken>("GetTokenPoVrijednosti", tokenParameter);
+        }
+    
+        public virtual ObjectResult<AutorizacijskiToken> GetTokenPoVrijednosti(string token, MergeOption mergeOption)
+        {
+            var tokenParameter = token != null ?
+                new ObjectParameter("token", token) :
+                new ObjectParameter("token", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<AutorizacijskiToken>("GetTokenPoVrijednosti", mergeOption, tokenParameter);
+        }
     }
 }
