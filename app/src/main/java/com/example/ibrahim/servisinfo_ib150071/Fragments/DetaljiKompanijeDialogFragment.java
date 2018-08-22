@@ -29,12 +29,9 @@ public class DetaljiKompanijeDialogFragment extends DialogFragment {
     TextView email;
 
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
 
@@ -47,10 +44,7 @@ public class DetaljiKompanijeDialogFragment extends DialogFragment {
     // TODO: Rename and change types and number of parameters
     public static DetaljiKompanijeDialogFragment newInstance() {
         DetaljiKompanijeDialogFragment fragment = new DetaljiKompanijeDialogFragment();
-       /* Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);*/
+
         return fragment;
     }
 
@@ -86,7 +80,6 @@ public class DetaljiKompanijeDialogFragment extends DialogFragment {
             @Override
             public void onClick(View view) {
                 getDialog().dismiss();
-
             }
         });
 
@@ -99,7 +92,7 @@ public class DetaljiKompanijeDialogFragment extends DialogFragment {
         MyApiRequest.get(getActivity(), "/api/kompanije/GetKompanijaByID/" + Global.izabranaKompanijaID, new MyRunnable<Kompanije>() {
             @Override
             public void run(Kompanije x) {
-                k = x; //postavljeno kao field radi    adapter.notifyDataSetChanged(); za brisanje posiljke iz ListView
+                k = x;
                 popuniPodatke();
             }
         });

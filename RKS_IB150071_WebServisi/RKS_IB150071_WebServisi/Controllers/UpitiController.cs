@@ -32,33 +32,7 @@ namespace RKS_IB150071_WebServisi.Controllers
 
             int IDint = Convert.ToInt32(id);
 
-            string Token = GetAuthToken();
-
-            if (Token == null)
-            {
-                return Unauthorized();
-            }
-            else
-            {
-                List<AutorizacijskiToken> Tokens = db.AutorizacijskiToken.Where(x => x.KlijentID == IDint).ToList();
-                Tokens = Tokens.OrderBy(x => x.VrijemeEvidentiranja).ToList();
-
-                AutorizacijskiToken lastToken = Tokens.Last();
-
-                if (lastToken.Vrijednost == Token)
-                {
-                    //if (lastToken.VrijemeEvidentiranja < DateTime.Now.AddDays(-3))
-                    //{ // token moze biti star 3 dana
-                    //    return Unauthorized();
-                    //}
-                }
-                else
-                {
-                    return Unauthorized();
-                }
-
-            }
-
+                   
             var model = new UpitiResultVM
             {
                 rows = db.Upiti.Where(k => k.KlijentID == IDint).Select(s => new UpitiResultVM.Row
@@ -126,8 +100,6 @@ namespace RKS_IB150071_WebServisi.Controllers
 
 
             return Ok(up);
-
-
 
         }
 
@@ -217,7 +189,7 @@ namespace RKS_IB150071_WebServisi.Controllers
 
         // DELETE: api/Upiti/5
         [ResponseType(typeof(Upiti))]
-        public IHttpActionResult DeleteUpiti(int id)
+        public IHttpActionResult Delete(int id)
         {
             if (ProvjeriValidnostTokena() == false)
                 return Unauthorized();

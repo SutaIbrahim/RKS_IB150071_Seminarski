@@ -45,7 +45,6 @@ public class DodajUpitActivity extends AppCompatActivity {
         setContentView(R.layout.activity_dodaj_upit);
 
         slika = null;
-
         naslovTxt = (EditText) findViewById(R.id.NaslovTxt);
         modelTxt = (EditText) findViewById(R.id.ModelTxt);
         opisTxt = (EditText) findViewById(R.id.opisTxt);
@@ -55,9 +54,7 @@ public class DodajUpitActivity extends AppCompatActivity {
         dodajSlikuBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view1) {
-
                 dodajSliku_click();
-
             }
         });
 
@@ -65,9 +62,7 @@ public class DodajUpitActivity extends AppCompatActivity {
         posaljiUpitBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 posaljiBtn_click();
-
             }
         });
 
@@ -98,7 +93,6 @@ public class DodajUpitActivity extends AppCompatActivity {
 
 
     private void posaljiBtn_click() {
-
 
         if (validacija()) {
 
@@ -143,23 +137,11 @@ public class DodajUpitActivity extends AppCompatActivity {
             });
 
         }
-     /*   else{
-            AlertDialog alertDialog = new AlertDialog.Builder(DodajUpitActivity.this).create();
-            alertDialog.setTitle("Greška");
-            alertDialog.setMessage("Niste unijeli sve potrebne podatke");
-            alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
-                    new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-                            dialog.dismiss();
-                        }
-                    });
-            alertDialog.show();
 
-        }*/
     }
 
 
-    // za sliku
+    // za sliku dodano
     @Override
     protected void onActivityResult(int reqCode, int resultCode, Intent data) {
         super.onActivityResult(reqCode, resultCode, data);
@@ -176,7 +158,6 @@ public class DodajUpitActivity extends AppCompatActivity {
 
                 dodajSlikuBtn.setText("Ukloni sliku");
                 dodajSlikuBtn.setTextColor(Color.rgb(255, 127, 80));
-
 
             } catch (FileNotFoundException e) {
                 e.printStackTrace();

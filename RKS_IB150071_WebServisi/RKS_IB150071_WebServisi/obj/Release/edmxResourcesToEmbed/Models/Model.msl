@@ -1,0 +1,122 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="RKS_150071ModelStoreContainer" CdmEntityContainer="RKS_150071Entities">
+    <EntitySetMapping Name="Gradovi">
+      <EntityTypeMapping TypeName="RKS_150071Model.Gradovi">
+        <MappingFragment StoreEntitySet="Gradovi">
+          <ScalarProperty Name="GradID" ColumnName="GradID" />
+          <ScalarProperty Name="Naziv" ColumnName="Naziv" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Kategorije">
+      <EntityTypeMapping TypeName="RKS_150071Model.Kategorije">
+        <MappingFragment StoreEntitySet="Kategorije">
+          <ScalarProperty Name="KategorijaID" ColumnName="KategorijaID" />
+          <ScalarProperty Name="Naziv" ColumnName="Naziv" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Klijenti">
+      <EntityTypeMapping TypeName="RKS_150071Model.Klijenti">
+        <MappingFragment StoreEntitySet="Klijenti">
+          <ScalarProperty Name="KlijentID" ColumnName="KlijentID" />
+          <ScalarProperty Name="Ime" ColumnName="Ime" />
+          <ScalarProperty Name="Prezime" ColumnName="Prezime" />
+          <ScalarProperty Name="Adresa" ColumnName="Adresa" />
+          <ScalarProperty Name="Telefon" ColumnName="Telefon" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="KorisickoIme" ColumnName="KorisickoIme" />
+          <ScalarProperty Name="LozinkaSalt" ColumnName="LozinkaSalt" />
+          <ScalarProperty Name="LozinkaHash" ColumnName="LozinkaHash" />
+          <ScalarProperty Name="GradID" ColumnName="GradID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Kompanije">
+      <EntityTypeMapping TypeName="RKS_150071Model.Kompanije">
+        <MappingFragment StoreEntitySet="Kompanije">
+          <ScalarProperty Name="KompanijaID" ColumnName="KompanijaID" />
+          <ScalarProperty Name="Naziv" ColumnName="Naziv" />
+          <ScalarProperty Name="Adresa" ColumnName="Adresa" />
+          <ScalarProperty Name="Telefon" ColumnName="Telefon" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="KorisickoIme" ColumnName="KorisickoIme" />
+          <ScalarProperty Name="LozinkaSalt" ColumnName="LozinkaSalt" />
+          <ScalarProperty Name="LozinkaHash" ColumnName="LozinkaHash" />
+          <ScalarProperty Name="GradID" ColumnName="GradID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="KompanijeKategorije">
+      <EntityTypeMapping TypeName="RKS_150071Model.KompanijeKategorije">
+        <MappingFragment StoreEntitySet="KompanijeKategorije">
+          <ScalarProperty Name="KompanijaKategorijaID" ColumnName="KompanijaKategorijaID" />
+          <ScalarProperty Name="KategorijaID" ColumnName="KategorijaID" />
+          <ScalarProperty Name="KompanijaID" ColumnName="KompanijaID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Ponude">
+      <EntityTypeMapping TypeName="RKS_150071Model.Ponude">
+        <MappingFragment StoreEntitySet="Ponude">
+          <ScalarProperty Name="PonudaID" ColumnName="PonudaID" />
+          <ScalarProperty Name="DatumKreiranja" ColumnName="DatumKreiranja" />
+          <ScalarProperty Name="Odgovor" ColumnName="Odgovor" />
+          <ScalarProperty Name="Cijena" ColumnName="Cijena" />
+          <ScalarProperty Name="DatumNajranijegMogucegPrijema" ColumnName="DatumNajranijegMogucegPrijema" />
+          <ScalarProperty Name="TrajanjeDani" ColumnName="TrajanjeDani" />
+          <ScalarProperty Name="TrajanjeSati" ColumnName="TrajanjeSati" />
+          <ScalarProperty Name="Prihvacena" ColumnName="Prihvacena" />
+          <ScalarProperty Name="KompanijaID" ColumnName="KompanijaID" />
+          <ScalarProperty Name="KlijentID" ColumnName="KlijentID" />
+          <ScalarProperty Name="UpitID" ColumnName="UpitID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Servisi">
+      <EntityTypeMapping TypeName="RKS_150071Model.Servisi">
+        <MappingFragment StoreEntitySet="Servisi">
+          <ScalarProperty Name="ServisID" ColumnName="ServisID" />
+          <ScalarProperty Name="DatumPrihvatanja" ColumnName="DatumPrihvatanja" />
+          <ScalarProperty Name="DatumPocetka" ColumnName="DatumPocetka" />
+          <ScalarProperty Name="DatumZavršetka" ColumnName="DatumZavršetka" />
+          <ScalarProperty Name="Cijena" ColumnName="Cijena" />
+          <ScalarProperty Name="TrajanjeDani" ColumnName="TrajanjeDani" />
+          <ScalarProperty Name="KompanijaID" ColumnName="KompanijaID" />
+          <ScalarProperty Name="PonudaID" ColumnName="PonudaID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Upiti">
+      <EntityTypeMapping TypeName="RKS_150071Model.Upiti">
+        <MappingFragment StoreEntitySet="Upiti">
+          <ScalarProperty Name="Odgovoreno" ColumnName="Odgovoreno" />
+          <ScalarProperty Name="KompanijaID" ColumnName="KompanijaID" />
+          <ScalarProperty Name="Datum" ColumnName="Datum" />
+          <ScalarProperty Name="Naslov" ColumnName="Naslov" />
+          <ScalarProperty Name="UpitID" ColumnName="UpitID" />
+          <ScalarProperty Name="MarkaUredjaja" ColumnName="MarkaUredjaja" />
+          <ScalarProperty Name="OpisKvara" ColumnName="OpisKvara" />
+          <ScalarProperty Name="Slika" ColumnName="Slika" />
+          <ScalarProperty Name="ZeljeniDatumPrijemaOd" ColumnName="ZeljeniDatumPrijemaOd" />
+          <ScalarProperty Name="ZeljeniDatumPrijemaDo" ColumnName="ZeljeniDatumPrijemaDo" />
+          <ScalarProperty Name="KlijentID" ColumnName="KlijentID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AutorizacijskiToken">
+      <EntityTypeMapping TypeName="RKS_150071Model.AutorizacijskiToken">
+        <MappingFragment StoreEntitySet="AutorizacijskiToken">
+          <ScalarProperty Name="deviceInfo" ColumnName="deviceInfo" />
+          <ScalarProperty Name="IpAdresa" ColumnName="IpAdresa" />
+          <ScalarProperty Name="VrijemeEvidentiranja" ColumnName="VrijemeEvidentiranja" />
+          <ScalarProperty Name="KlijentID" ColumnName="KlijentID" />
+          <ScalarProperty Name="Vrijednost" ColumnName="Vrijednost" />
+          <ScalarProperty Name="AutorizacijskiTokenID" ColumnName="AutorizacijskiTokenID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="GetTokenPoVrijednosti" FunctionName="RKS_150071Model.Store.GetTokenPoVrijednosti" />
+  </EntityContainerMapping>
+</Mapping>

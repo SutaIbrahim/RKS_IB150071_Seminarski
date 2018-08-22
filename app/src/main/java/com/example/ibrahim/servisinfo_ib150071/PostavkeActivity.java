@@ -32,16 +32,15 @@ public class PostavkeActivity extends AppCompatActivity {
         SpasiBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                do_btn_clicl();
+                do_btn_click();
             }
         });
 
     }
 
-    private void do_btn_clicl() {
+    private void do_btn_click() {
 
         if (validacija()) {
-
 
             Global.prijavljeniKlijent.KorisickoIme = user.getText().toString();
             Global.prijavljeniKlijent.Email = email.getText().toString();
@@ -66,7 +65,6 @@ public class PostavkeActivity extends AppCompatActivity {
         }
     }
 
-
     private void Incijalizacija() {
         tel = (TextView) findViewById(R.id.telefonTxt);
         email = (TextView) findViewById(R.id.emailTxt);
@@ -88,7 +86,6 @@ public class PostavkeActivity extends AppCompatActivity {
                     }
                 });
 
-
         if (android.util.Patterns.EMAIL_ADDRESS.matcher(email.getText().toString()).matches() == false) {
             alertDialog.setMessage("Email nije u ispravnom formatu");
             alertDialog.show();
@@ -109,7 +106,6 @@ public class PostavkeActivity extends AppCompatActivity {
 
             return false;
         }
-
 
         return true;
     }

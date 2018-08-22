@@ -22,8 +22,8 @@ namespace RKS_IB150071_WebServisi.Controllers
         // GET: api/Gradovi
         public IHttpActionResult GetGradovi()
         {
-            if (ProvjeriValidnostTokena() == false)
-                return Unauthorized();
+            //if (ProvjeriValidnostTokena() == false)
+            //    return Unauthorized();
 
             var model = new GradoviResultVM
             {

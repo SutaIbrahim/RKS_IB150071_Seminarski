@@ -89,7 +89,6 @@ C:\FIT_VI_semestar\RKS\Seminarski\RKS_IB150071_WebServisi\RKS_IB150071_WebServis
 C:\FIT_VI_semestar\RKS\Seminarski\RKS_IB150071_WebServisi\RKS_IB150071_WebServisi\bin\roslyn\Microsoft.VisualBasic.Core.targets
 C:\FIT_VI_semestar\RKS\Seminarski\RKS_IB150071_WebServisi\RKS_IB150071_WebServisi\bin\roslyn\Microsoft.Win32.Primitives.dll
 C:\FIT_VI_semestar\RKS\Seminarski\RKS_IB150071_WebServisi\RKS_IB150071_WebServisi\bin\roslyn\System.AppContext.dll
-C:\FIT_VI_semestar\RKS\Seminarski\RKS_IB150071_WebServisi\RKS_IB150071_WebServisi\bin\roslyn\System.Collections.Immutable.dll
 C:\FIT_VI_semestar\RKS\Seminarski\RKS_IB150071_WebServisi\RKS_IB150071_WebServisi\bin\roslyn\System.Console.dll
 C:\FIT_VI_semestar\RKS\Seminarski\RKS_IB150071_WebServisi\RKS_IB150071_WebServisi\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
 C:\FIT_VI_semestar\RKS\Seminarski\RKS_IB150071_WebServisi\RKS_IB150071_WebServisi\bin\roslyn\System.Diagnostics.Process.dll
@@ -133,8 +132,9 @@ C:\FIT_VI_semestar\RKS\Seminarski\RKS_IB150071_WebServisi\RKS_IB150071_WebServis
 C:\FIT_VI_semestar\RKS\Seminarski\RKS_IB150071_WebServisi\RKS_IB150071_WebServisi\bin\System.Web.Http.xml
 C:\FIT_VI_semestar\RKS\Seminarski\RKS_IB150071_WebServisi\RKS_IB150071_WebServisi\bin\System.Web.Http.WebHost.xml
 C:\FIT_VI_semestar\RKS\Seminarski\RKS_IB150071_WebServisi\RKS_IB150071_WebServisi\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-C:\FIT_VI_semestar\RKS\Seminarski\RKS_IB150071_WebServisi\RKS_IB150071_WebServisi\obj\Debug\RKS_IB150071_WebServisi.csprojAssemblyReference.cache
 C:\FIT_VI_semestar\RKS\Seminarski\RKS_IB150071_WebServisi\RKS_IB150071_WebServisi\obj\Debug\RKS_IB150071_WebServisi.csproj.CoreCompileInputs.cache
 C:\FIT_VI_semestar\RKS\Seminarski\RKS_IB150071_WebServisi\RKS_IB150071_WebServisi\obj\Debug\RKS_IB150071_WebServisi.csproj.CopyComplete
 C:\FIT_VI_semestar\RKS\Seminarski\RKS_IB150071_WebServisi\RKS_IB150071_WebServisi\obj\Debug\RKS_IB150071_WebServisi.dll
 C:\FIT_VI_semestar\RKS\Seminarski\RKS_IB150071_WebServisi\RKS_IB150071_WebServisi\obj\Debug\RKS_IB150071_WebServisi.pdb
+C:\FIT_VI_semestar\RKS\Seminarski\RKS_IB150071_WebServisi\RKS_IB150071_WebServisi\bin\roslyn\System.Collections.Immutable.dll
+C:\FIT_VI_semestar\RKS\Seminarski\RKS_IB150071_WebServisi\RKS_IB150071_WebServisi\obj\Debug\RKS_IB150071_WebServisi.csprojAssemblyReference.cache

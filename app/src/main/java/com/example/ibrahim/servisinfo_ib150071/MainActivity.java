@@ -101,14 +101,14 @@ public class MainActivity extends AppCompatActivity
 
 
         popuniGradoveTask();
-        // popuniPodatkeTask("0"); jer nakon popunjavanja grada aktivira se onItemSelected
+        // popuniPodatkeTask("0"); komentarisano jer nakon popunjavanja grada aktivira se onItemSelected
 
 
         lvKompanije.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
-//pohrani izabranu kompaniju
+        //pohrani izabranu kompaniju
                 String selected = ((TextView) view.findViewById(R.id.KompanijaIDHiddenTxt)).getText().toString();
                 Global.izabranaKompanijaID = selected;
 
@@ -121,8 +121,6 @@ public class MainActivity extends AppCompatActivity
     private void do_item_Click() {
 
         Util.otvoriFragmentKaoDijalog(this, DetaljiKompanijeDialogFragment.newInstance());
-
-        //Util.otvoriFragmentKaoReplace(this,R.id.mjestoFragment,DetaljiKompanijeFragment.newInstance());
 
     }
 
@@ -290,9 +288,7 @@ public class MainActivity extends AppCompatActivity
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
 
-
         startActivity(new Intent(MainActivity.this, PostavkeActivity.class));
-
 
         int id = item.getItemId();
 /*
@@ -324,19 +320,20 @@ public class MainActivity extends AppCompatActivity
             startActivity(new Intent(MainActivity.this, LoginActivity.class));
         }
 
-
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
 
     private void izbrisiToken() {
+
         MyApiRequest.delete(this, "api/autentifikacija/Logout", new MyRunnable<KompanijePregledVM>() {
             @Override
             public void run(KompanijePregledVM x) {
                 //
             }
         });
+
     }
 
 

@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<sitemanifest>
+  <IisApp path="C:\FIT_VI_semestar\RKS\Seminarski\RKS_IB150071_WebServisi\RKS_IB150071_WebServisi\obj\Release\Package\PackageTmp" />
+  <setAcl path="C:\FIT_VI_semestar\RKS\Seminarski\RKS_IB150071_WebServisi\RKS_IB150071_WebServisi\obj\Release\Package\PackageTmp" setAclResourceType="Directory" />
+  <setAcl path="C:\FIT_VI_semestar\RKS\Seminarski\RKS_IB150071_WebServisi\RKS_IB150071_WebServisi\obj\Release\Package\PackageTmp" setAclUser="anonymousAuthenticationUser" setAclResourceType="Directory" />
+</sitemanifest>

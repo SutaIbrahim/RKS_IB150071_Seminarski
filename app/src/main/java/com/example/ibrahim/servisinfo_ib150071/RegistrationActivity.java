@@ -41,7 +41,6 @@ public class RegistrationActivity extends AppCompatActivity {
 
         Button regBtn = (Button) findViewById(R.id.registrujSeBtn);
 
-
         regBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -127,7 +126,7 @@ public class RegistrationActivity extends AppCompatActivity {
             return false;
         }
 
-        if (true) { // pass
+        if (true) { // password
             Pattern pattern;
             Matcher matcher;
 

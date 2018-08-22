@@ -1,11 +1,13 @@
 package com.example.ibrahim.servisinfo_ib150071.Fragments;
 
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,6 +23,9 @@ import com.example.ibrahim.servisinfo_ib150071.R;
 import com.example.ibrahim.servisinfo_ib150071.UpitiActivity;
 import com.example.ibrahim.servisinfo_ib150071.data.UpitiVM;
 
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+
 
 public class DetaljiUpitaFragment extends Fragment {
 
@@ -32,7 +37,6 @@ public class DetaljiUpitaFragment extends Fragment {
     TextView uredjaj;
     TextView opis;
     ImageView img;
-    Bitmap slika;
     TextView slikaLbl;
     Bitmap bm;
     Button izbrisiButton;
@@ -86,7 +90,6 @@ public class DetaljiUpitaFragment extends Fragment {
 
         img.buildDrawingCache();
         bm = img.getDrawingCache();
-
         img.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -97,13 +100,7 @@ public class DetaljiUpitaFragment extends Fragment {
         izbrisiButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                MyApiRequest.delete(getActivity(), "/api/upiti/" + String.valueOf(upitID), new MyRunnable<UpitiVM>() {
-                    @Override
-                    public void run(UpitiVM x) {
-                        Toast.makeText(getActivity(), "Upit uspjesno izbrisan", Toast.LENGTH_SHORT).show();
-                        startActivity(new Intent(getActivity(), UpitiActivity.class));
-                    }
-                });
+                PotvrdaBrisanja();
             }
         });
 
@@ -111,16 +108,62 @@ public class DetaljiUpitaFragment extends Fragment {
         return view;
     }
 
+    private void PotvrdaBrisanja() {
+
+        AlertDialog alertDialog = new AlertDialog.Builder(getActivity()).create();
+        alertDialog.setTitle("Upozorenje");
+        alertDialog.setMessage("Jeste li sigurni da zelite izbrisati upit?");
+
+        alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "DA",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        izbrisiUpit();
+                    }
+                });
+
+        alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "Odustani",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+
+            alertDialog.show();
+    }
+
+    private void izbrisiUpit() {
+
+        Calendar trenutno=Calendar.getInstance();
+        Calendar datumUpita=new GregorianCalendar();
+
+        datumUpita.setTime(u.Datum);
+        trenutno.add(Calendar.HOUR,-1);
+
+        if(trenutno.after(datumUpita))
+        {
+            Toast.makeText(getActivity(), "Samo upiti kreirani u zadnjih 1h se mogu izbrisati", Toast.LENGTH_SHORT).show();
+        }
+          else
+        {
+            MyApiRequest.delete(getActivity(), "/api/upiti/" + String.valueOf(upitID), new MyRunnable<UpitiVM>() {
+                @Override
+                public void run(UpitiVM x) {
+                    Toast.makeText(getActivity(), "Upit uspjesno izbrisan", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(getActivity(), UpitiActivity.class));
+                }
+            });
+        }
+    }
+
     private void popuniPodatkeTask() {
 
         MyApiRequest.get(getActivity(), "/api/upiti/GetUpitByID/" + String.valueOf(upitID), new MyRunnable<UpitiVM>() {
             @Override
             public void run(UpitiVM x) {
-                u = x; //postavljeno kao field radi    adapter.notifyDataSetChanged(); za brisanje posiljke iz ListView
+                u = x;
                 popuniPodatke();
             }
         });
-
 
     }
 
@@ -139,12 +182,9 @@ public class DetaljiUpitaFragment extends Fragment {
             slikaLbl.setText("");
         }
 
-        // image_view.setImageBitmap(selectedImage); //pregled izabrane slike
-
-
     }
 
-    public Bitmap StringToBitMap(String strng) { //nakon klika
+    public Bitmap StringToBitMap(String strng) {
         try {
             byte[] encodeByte = Base64.decode(strng, Base64.DEFAULT);
             Bitmap bitmap = BitmapFactory.decodeByteArray(encodeByte, 0, encodeByte.length);
@@ -175,7 +215,8 @@ public class DetaljiUpitaFragment extends Fragment {
             fOut.close();
         } catch (Exception e) {
         }*/
-
     }
+
+
 
 }

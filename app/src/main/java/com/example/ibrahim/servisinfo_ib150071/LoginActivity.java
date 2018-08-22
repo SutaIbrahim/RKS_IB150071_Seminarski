@@ -45,10 +45,7 @@ public class LoginActivity extends AppCompatActivity {
         PrijavaBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 do_btn_Click();
-
-                //startActivity(new Intent(LoginActivity.this, MainActivity.class));
             }
 
         });
