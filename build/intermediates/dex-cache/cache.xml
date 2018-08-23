@@ -83,6 +83,16 @@
     </item>
     <item
         is-multidex="false"
+        jar="C:\Users\Ibrahim\.gradle\caches\modules-2\files-2.1\com.google.code.gson\gson\2.8.5\f645ed69d595b24d4cf8b3fbb64cc505bede8829\gson-2.8.5.jar"
+        jumboMode="false"
+        min-sdk-version="16"
+        optimize="true"
+        revision="26.0.2"
+        sha1="f645ed69d595b24d4cf8b3fbb64cc505bede8829">
+        <dex dex="C:\FIT_VI_semestar\RKS\Seminarski\app\build\intermediates\transforms\preDex\release\20.jar" />
+    </item>
+    <item
+        is-multidex="false"
         jar="C:\Users\Ibrahim\.gradle\caches\transforms-1\files-1.1\design-26.1.0.aar\0c99e234809f811b641702314a589141\jars\classes.jar"
         jumboMode="false"
         min-sdk-version="16"

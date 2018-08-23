@@ -54,8 +54,9 @@
         android:id="@+id/KorisnickoImeTxt"
         android:layout_width="281dp"
         android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/registrujSeBtn"
+        android:layout_alignRight="@+id/registrujSeBtn"
         android:layout_below="@+id/telefonTxt"
-        android:layout_centerHorizontal="true"
         android:layout_marginTop="18dp"
         android:ems="10"
         android:hint="Korisnicko ime"
@@ -80,7 +81,7 @@
         android:layout_centerHorizontal="true"
         android:ems="10"
         android:hint="Email"
-        android:inputType="textPersonName" />
+        android:inputType="textEmailAddress" />
 
     <EditText
         android:id="@+id/PrezimeTxt"

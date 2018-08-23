@@ -87,7 +87,7 @@
             android:layout_alignParentBottom="true"
             android:layout_marginBottom="204dp"
             android:layout_toStartOf="@+id/profile_image"
-            android:text="Korisnicko ime:" />
+            android:text="Username:" />
 
         <TextView
             android:id="@+id/emailLabel"
@@ -132,8 +132,8 @@
             android:layout_alignBaseline="@+id/emailLabel"
             android:layout_alignStart="@+id/usernameTxt"
             android:ems="10"
-            android:text="korisnik@gmail.com"
-            android:inputType="textPersonName" />
+            android:inputType="textEmailAddress"
+            android:text="korisnik@gmail.com" />
 
     <!--    <Button
             android:id="@+id/sacuvajPromjeneBtn"
