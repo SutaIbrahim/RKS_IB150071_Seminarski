@@ -80,8 +80,6 @@ namespace RKS_IB150071_WebServisi.Controllers
         [ResponseType(typeof(Klijenti))]
         public IHttpActionResult PostKlijenti([FromBody] Klijenti klijenti)
         {
-            if (ProvjeriValidnostTokena() == false)
-                return Unauthorized();
 
             if (!ModelState.IsValid)
             {
