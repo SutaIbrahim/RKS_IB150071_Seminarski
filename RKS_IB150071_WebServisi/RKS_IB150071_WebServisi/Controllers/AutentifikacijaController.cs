@@ -52,7 +52,10 @@ namespace RKS_IB150071_WebServisi.Controllers
 
             }
 
-            return null;
+            AutentifikacijaResultVM y = new AutentifikacijaResultVM();
+            y.Ime = "Greska";
+
+            return Ok(y);
         }
 
 

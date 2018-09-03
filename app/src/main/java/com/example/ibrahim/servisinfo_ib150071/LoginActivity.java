@@ -93,7 +93,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private void checkLogin(AutentifikacijaResultVM x) {
 
-        if (x == null) {
+        if ("Greska".equals(x.Ime)) {
             View parentLayout = findViewById(android.R.id.content);
             Snackbar.make(parentLayout, "Pogrešan username/password", Snackbar.LENGTH_LONG).show();
         } else {
